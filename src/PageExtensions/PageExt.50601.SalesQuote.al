@@ -65,11 +65,13 @@ pageextension 50601 "Sales Quote_Ext" extends "Sales Quote"
     actions
     {
         // Add changes to page actions here
-        addafter(Create)
+        addafter(Email)
         {
             action("PROPOSAL-COAL/COKE")
             {
                 ApplicationArea = Basic, Suite;
+                Promoted = true;
+                PromotedCategory = Category9;
                 Image = Report;
                 trigger OnAction()
                 begin
@@ -81,6 +83,7 @@ pageextension 50601 "Sales Quote_Ext" extends "Sales Quote"
                 end;
             }
         }
+
 
         modify(Print)
         {

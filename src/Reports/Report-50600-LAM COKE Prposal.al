@@ -14,15 +14,27 @@ report 50600 "PROPOSAL-COAL/COKE"
             {
 
             }
+            column(reportHeading; reportHeading)
+            {
+
+            }
             column(Currency_Code; "Currency Code")
             {
 
             }
-            column(UOM; UOM)
+            column(Seller; CompInfo.Name)
             {
 
             }
-            column(REDM_Document_Tolerance; "REDM Document Tolerance")
+            column(Seller2; CompInfo."Name 2")
+            {
+
+            }
+            column(UOM; ItemUOM.Description)
+            {
+
+            }
+            column(REDM_Document_Tolerance; OverReceiptCode.Description)
             {
 
             }
@@ -192,6 +204,10 @@ report 50600 "PROPOSAL-COAL/COKE"
             begin
                 if RecCountry.Get(CompInfo."Country/Region Code") then;
                 if RedmCountry.Get("REDM Country of Origin") then;
+                OverReceiptCode.Reset();
+                OverReceiptCode.SetRange(Code, "REDM Document Tolerance");
+                if OverReceiptCode.FindFirst() then;
+
                 REDMPort.Reset();
                 REDMPort.SetRange(Code, "REDM Load Port");
                 if REDMPort.FindFirst() then;
@@ -204,6 +220,9 @@ report 50600 "PROPOSAL-COAL/COKE"
                 SL.SetFilter("No.", '<>%1', '');
                 if SL.FindSet() then
                     repeat
+                        ItemUOM.Reset();
+                        ItemUOM.SetRange(Code, SL."Unit of Measure Code");
+                        if ItemUOM.FindFirst() then;
                         UOM := SL."Unit of Measure";
                         Qty += SL.Quantity;
                         UnitPrice += SL."Unit Price";
@@ -216,6 +235,25 @@ report 50600 "PROPOSAL-COAL/COKE"
             end;
         }
     }
+    requestpage
+    {
+
+        layout
+        {
+            area(content)
+            {
+                group(Functions)
+                {
+                    field("Report Heading"; reportHeading)
+                    {
+                        ApplicationArea = all;
+                    }
+                }
+            }
+        }
+
+    }
+
 
     trigger OnInitReport();
     begin
@@ -234,6 +272,9 @@ report 50600 "PROPOSAL-COAL/COKE"
         RedmCountry: Record "Country/Region";
         UOM: Text;
         REDMPort: Record "REDM Port Master";// 51411006
-                                            //REDmIcoterm : Record 
+        ItemUOM: Record 204;
+        OverReceiptCode: record 8510;
+        reportHeading: text;
+    //REDmIcoterm : Record 
 
 }

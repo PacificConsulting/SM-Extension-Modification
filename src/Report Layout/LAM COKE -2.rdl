@@ -69,14 +69,14 @@
                     </TablixCell>
                     <TablixCell>
                       <CellContents>
-                        <Textbox Name="Sell_to_Customer_Name_2">
+                        <Textbox Name="Seller2">
                           <CanGrow>true</CanGrow>
                           <KeepTogether>true</KeepTogether>
                           <Paragraphs>
                             <Paragraph>
                               <TextRuns>
                                 <TextRun>
-                                  <Value>=Fields!Sell_to_Customer_Name.Value</Value>
+                                  <Value>=Fields!Seller.Value</Value>
                                   <Style />
                                 </TextRun>
                                 <TextRun>
@@ -84,14 +84,14 @@
                                   <Style />
                                 </TextRun>
                                 <TextRun>
-                                  <Value>=Fields!Sell_to_Customer_Name_2.Value</Value>
+                                  <Value>=Fields!Seller2.Value</Value>
                                   <Style />
                                 </TextRun>
                               </TextRuns>
                               <Style />
                             </Paragraph>
                           </Paragraphs>
-                          <rd:DefaultName>Sell_to_Customer_Name_2</rd:DefaultName>
+                          <rd:DefaultName>Seller2</rd:DefaultName>
                           <Style>
                             <Border>
                               <Color>LightGrey</Color>
@@ -425,41 +425,21 @@
                     </TablixCell>
                     <TablixCell>
                       <CellContents>
-                        <Rectangle Name="Rectangle3">
-                          <ReportItems>
-                            <Textbox Name="Qty4">
-                              <CanGrow>true</CanGrow>
-                              <KeepTogether>true</KeepTogether>
-                              <Paragraphs>
-                                <Paragraph>
-                                  <TextRuns>
-                                    <TextRun>
-                                      <Value>=Fields!REDM_Document_Tolerance.Value</Value>
-                                      <Style />
-                                    </TextRun>
-                                  </TextRuns>
-                                  <Style>
-                                    <TextAlign>Left</TextAlign>
-                                  </Style>
-                                </Paragraph>
-                              </Paragraphs>
-                              <rd:DefaultName>Qty</rd:DefaultName>
-                              <Top>0cm</Top>
-                              <Left>0cm</Left>
-                              <Height>0.6cm</Height>
-                              <Width>2.5cm</Width>
-                              <Style>
-                                <Border>
-                                  <Style>None</Style>
-                                </Border>
-                                <PaddingLeft>2pt</PaddingLeft>
-                                <PaddingRight>2pt</PaddingRight>
-                                <PaddingTop>2pt</PaddingTop>
-                                <PaddingBottom>2pt</PaddingBottom>
-                              </Style>
-                            </Textbox>
-                          </ReportItems>
+                        <Textbox Name="Textbox10">
+                          <CanGrow>true</CanGrow>
                           <KeepTogether>true</KeepTogether>
+                          <Paragraphs>
+                            <Paragraph>
+                              <TextRuns>
+                                <TextRun>
+                                  <Value>=Fields!REDM_Document_Tolerance.Value</Value>
+                                  <Style />
+                                </TextRun>
+                              </TextRuns>
+                              <Style />
+                            </Paragraph>
+                          </Paragraphs>
+                          <rd:DefaultName>Textbox10</rd:DefaultName>
                           <Style>
                             <Border>
                               <Color>LightGrey</Color>
@@ -471,8 +451,12 @@
                             <RightBorder>
                               <Style>None</Style>
                             </RightBorder>
+                            <PaddingLeft>2pt</PaddingLeft>
+                            <PaddingRight>2pt</PaddingRight>
+                            <PaddingTop>2pt</PaddingTop>
+                            <PaddingBottom>2pt</PaddingBottom>
                           </Style>
-                        </Rectangle>
+                        </Textbox>
                       </CellContents>
                     </TablixCell>
                   </TablixCells>
@@ -777,6 +761,14 @@
                                       <Value>=Fields!UnitPrice.Value</Value>
                                       <Style />
                                     </TextRun>
+                                    <TextRun>
+                                      <Value> Per </Value>
+                                      <Style />
+                                    </TextRun>
+                                    <TextRun>
+                                      <Value>=Fields!UOM.Value</Value>
+                                      <Style />
+                                    </TextRun>
                                   </TextRuns>
                                   <Style>
                                     <TextAlign>Left</TextAlign>
@@ -787,7 +779,7 @@
                               <Top>0cm</Top>
                               <Left>0cm</Left>
                               <Height>0.6cm</Height>
-                              <Width>7.23604cm</Width>
+                              <Width>13.0975cm</Width>
                               <Style>
                                 <Border>
                                   <Style>None</Style>
@@ -829,7 +821,7 @@
                             <Paragraph>
                               <TextRuns>
                                 <TextRun>
-                                  <Value>IncoTerms</Value>
+                                  <Value>Incoterms</Value>
                                   <Style>
                                     <FontWeight>Bold</FontWeight>
                                   </Style>
@@ -1105,9 +1097,7 @@
                                   </Style>
                                 </TextRun>
                               </TextRuns>
-                              <Style>
-                                <TextAlign>Center</TextAlign>
-                              </Style>
+                              <Style />
                             </Paragraph>
                           </Paragraphs>
                           <rd:DefaultName>Textbox3</rd:DefaultName>
@@ -1312,7 +1302,9 @@
                                   <Style />
                                 </TextRun>
                               </TextRuns>
-                              <Style />
+                              <Style>
+                                <TextAlign>Center</TextAlign>
+                              </Style>
                             </Paragraph>
                           </Paragraphs>
                           <rd:DefaultName>Srno</rd:DefaultName>
@@ -1342,7 +1334,9 @@
                                   <Style />
                                 </TextRun>
                               </TextRuns>
-                              <Style />
+                              <Style>
+                                <TextAlign>Center</TextAlign>
+                              </Style>
                             </Paragraph>
                           </Paragraphs>
                           <rd:DefaultName>REDM_Parameter_Description</rd:DefaultName>
@@ -1372,7 +1366,9 @@
                                   <Style />
                                 </TextRun>
                               </TextRuns>
-                              <Style />
+                              <Style>
+                                <TextAlign>Center</TextAlign>
+                              </Style>
                             </Paragraph>
                           </Paragraphs>
                           <rd:DefaultName>REDM_Parameter_UOM</rd:DefaultName>
@@ -1402,7 +1398,9 @@
                                   <Style />
                                 </TextRun>
                               </TextRuns>
-                              <Style />
+                              <Style>
+                                <TextAlign>Center</TextAlign>
+                              </Style>
                             </Paragraph>
                           </Paragraphs>
                           <rd:DefaultName>REDM_Guaranteed_Value</rd:DefaultName>
@@ -1432,7 +1430,9 @@
                                   <Style />
                                 </TextRun>
                               </TextRuns>
-                              <Style />
+                              <Style>
+                                <TextAlign>Center</TextAlign>
+                              </Style>
                             </Paragraph>
                           </Paragraphs>
                           <rd:DefaultName>REDM_Rejected_Value</rd:DefaultName>
@@ -1462,7 +1462,9 @@
                                   <Style />
                                 </TextRun>
                               </TextRuns>
-                              <Style />
+                              <Style>
+                                <TextAlign>Left</TextAlign>
+                              </Style>
                             </Paragraph>
                           </Paragraphs>
                           <rd:DefaultName>REDM_Additional_Description</rd:DefaultName>
@@ -1477,6 +1479,7 @@
                             <PaddingBottom>2pt</PaddingBottom>
                           </Style>
                         </Textbox>
+                        <rd:Selected>true</rd:Selected>
                       </CellContents>
                     </TablixCell>
                   </TablixCells>
@@ -1734,7 +1737,7 @@
                             <Paragraph>
                               <TextRuns>
                                 <TextRun>
-                                  <Value>=Fields!REDM_Country_of_Origin.Value</Value>
+                                  <Value>=Fields!Validity_And_Subject.Value</Value>
                                   <Style />
                                 </TextRun>
                               </TextRuns>
@@ -1876,10 +1879,9 @@
               <Paragraph>
                 <TextRuns>
                   <TextRun>
-                    <Value>PROPOSAL - COAL/COKE</Value>
+                    <Value>=Fields!reportHeading.Value</Value>
                     <Style>
                       <FontWeight>Bold</FontWeight>
-                      <TextDecoration>Underline</TextDecoration>
                     </Style>
                   </TextRun>
                 </TextRuns>
@@ -2084,8 +2086,17 @@ End Function
         <Field Name="logo">
           <DataField>logo</DataField>
         </Field>
+        <Field Name="reportHeading">
+          <DataField>reportHeading</DataField>
+        </Field>
         <Field Name="Currency_Code">
           <DataField>Currency_Code</DataField>
+        </Field>
+        <Field Name="Seller">
+          <DataField>Seller</DataField>
+        </Field>
+        <Field Name="Seller2">
+          <DataField>Seller2</DataField>
         </Field>
         <Field Name="UOM">
           <DataField>UOM</DataField>
