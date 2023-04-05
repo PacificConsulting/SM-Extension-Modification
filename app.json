@@ -1,0 +1,45 @@
+{
+  "id": "1d34e986-c949-4a1c-a8b0-a868ef94c622",
+  "name": "SM-Extension-Modification",
+  "publisher": "Default publisher",
+  "version": "1.0.0.0",
+  "brief": "",
+  "description": "",
+  "privacyStatement": "",
+  "EULA": "",
+  "help": "",
+  "url": "",
+  "logo": "",
+  "dependencies": [
+    {
+      "id": "f9bd46cd-9923-4840-97a2-550fb3b9cc57",
+      "publisher": "Robosoft Solutions",
+      "name": "SteelMont",
+      "version": "1.0.0.102"
+      },
+      {
+        "id": "48cf1ef3-9f21-4f8c-a409-85bcded004f2",
+        "publisher": "Robosoft Solutions DMCC",
+        "name": "Robo Energy 365",
+        "version": "17.0.0.11"
+        }
+  ],
+  "screenshots": [],
+  "platform": "1.0.0.0",
+  "application": "21.0.0.0",
+  "idRanges": [
+    {
+      "from": 50600,
+      "to": 50649
+    }
+  ],
+  "resourceExposurePolicy": {
+    "allowDebugging": true,
+    "allowDownloadingSource": false,
+    "includeSourceInSymbolFile": false
+  },
+  "runtime": "10.0",
+  "features": [
+    "NoImplicitWith"
+  ]
+}
