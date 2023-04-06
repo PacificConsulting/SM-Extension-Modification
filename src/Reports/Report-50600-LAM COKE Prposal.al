@@ -30,10 +30,7 @@ report 50600 "PROPOSAL-COAL/COKE"
             {
 
             }
-            column(UOM; ItemUOM.Description)
-            {
 
-            }
             column(REDM_Document_Tolerance; OverReceiptCode.Description)
             {
 
@@ -150,21 +147,92 @@ report 50600 "PROPOSAL-COAL/COKE"
             {
 
             }
-            // dataitem("Sales Line"; "Sales Line")
+            // column(SHComment; SHComment)
             // {
-            //     DataItemLink = "Document No." = FIELD("No.");
-            //     DataItemLinkReference = "Sales Header";
 
-            //     column(Item_No_; "Sales Line"."No.")
-            //     {
-
-            //     }
             // }
+            dataitem("Sales Line"; "Sales Line")
+            {
+                DataItemLink = "Document No." = FIELD("No.");
+                DataItemLinkReference = "Sales Header";
+                //DataItemTableView = where(Quantity = filter(<> 0));
+                column(Item_No_; "Sales Line"."No.")
+                {
+
+                }
+                column(Document_No_; "Document No.")
+                {
+
+                }
+                column(Description; Description)
+                {
+
+                }
+                column(Unit_Price; "Unit Price")
+                {
+
+                }
+                column(Unit_of_Measure_Code; "Unit of Measure Code")
+                {
+
+                }
+                column(UOM; ItemUOM.Description)
+                {
+
+                }
+
+                dataitem("Sales Comment Line"; "Sales Comment Line")
+                {
+                    DataItemLink = "No." = field("Document No."), "Document Line No." = field("Line No.");
+                    DataItemLinkReference = "Sales Line";
+                    column(SLComment; Comment)
+                    {
+
+                    }
+                    column(CommentNo_; "No.")
+                    {
+
+                    }
+                }
+                trigger OnAfterGetRecord()
+                begin
+                    ItemUOM.Reset();
+                    ItemUOM.SetRange(Code, "Unit of Measure Code");
+                    if ItemUOM.FindFirst() then;
+                end;
+            }
+            dataitem("Sales Comment Line Header"; "Sales Comment Line")
+            {
+                DataItemLink = "No." = field("No."), "Document Type" = field("Document Type");
+                DataItemLinkReference = "Sales Header";
+                DataItemTableView = where("Document Line No." = Filter(0));
+                column(SHComment; Comment)
+                {
+
+                }
+                column(SHCommentNO; "No.")
+                {
+
+                }
+                column(ShLine_No_; "Line No.")
+                {
+
+                }
+
+            }
             dataitem("REDM Item Specification (Sale)"; "REDM Item Specification (Sale)")
             {
                 DataItemLink = "REDM Document No." = field("No.");
                 DataItemLinkReference = "Sales Header";
                 column(REDM_Parameter_Code; "REDM Parameter Code")
+                {
+
+                }
+                column(REDM_Line_No_; "REDM Parameter Code")
+                {
+
+                }
+                column(REDM_Document_No_; "REDM Document No.")
                 {
 
                 }
@@ -198,6 +266,7 @@ report 50600 "PROPOSAL-COAL/COKE"
                     myInt: Integer;
                 begin
                     Srno += 1;
+                    //Message(Format("REDM Line No."));
                 end;
             }
             trigger OnAfterGetRecord()
@@ -211,6 +280,20 @@ report 50600 "PROPOSAL-COAL/COKE"
                 REDMPort.Reset();
                 REDMPort.SetRange(Code, "REDM Load Port");
                 if REDMPort.FindFirst() then;
+
+                // Clear(SHComment);
+                // SalCommentL.Reset();
+                // SalCommentL.SetRange("Document Type", "Document Type");
+                // SalCommentL.SetRange("No.", "No.");
+                // SalCommentL.SetRange("Document Line No.", 0);
+                // if SalCommentL.FindSet() then
+                //     repeat
+                //         if SHComment = '' then
+                //             SHComment := SalCommentL.Comment
+                //         else
+                //             SHComment := SHComment + ', ' + SalCommentL.Comment;
+                //     until SalCommentL.Next() = 0;
+
                 Clear(ItemDesc);
                 Clear(UnitPrice);
                 Clear(Qty);
@@ -220,9 +303,9 @@ report 50600 "PROPOSAL-COAL/COKE"
                 SL.SetFilter("No.", '<>%1', '');
                 if SL.FindSet() then
                     repeat
-                        ItemUOM.Reset();
-                        ItemUOM.SetRange(Code, SL."Unit of Measure Code");
-                        if ItemUOM.FindFirst() then;
+                        // ItemUOM.Reset();
+                        // ItemUOM.SetRange(Code, SL."Unit of Measure Code");
+                        // if ItemUOM.FindFirst() then;
                         UOM := SL."Unit of Measure";
                         Qty += SL.Quantity;
                         UnitPrice += SL."Unit Price";
@@ -275,6 +358,9 @@ report 50600 "PROPOSAL-COAL/COKE"
         ItemUOM: Record 204;
         OverReceiptCode: record 8510;
         reportHeading: text;
-    //REDmIcoterm : Record 
+        SalCommentL: Record 44;
+        SCommentLine: Record 44;
+        SHComment: text;
+        SLComment: Text;
 
 }
