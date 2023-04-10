@@ -75,6 +75,8 @@ pageextension 50601 "Sales Quote_Ext" extends "Sales Quote"
                 Image = Report;
                 trigger OnAction()
                 begin
+                                        rec."Language Code" := 'ENU';
+                    rec.Modify();
                     SH.Reset();
                     SH.SetRange("No.", Rec."No.");
                     if SH.FindFirst() then begin
@@ -83,7 +85,6 @@ pageextension 50601 "Sales Quote_Ext" extends "Sales Quote"
                 end;
             }
         }
-
 
         modify(Print)
         {
@@ -95,4 +96,5 @@ pageextension 50601 "Sales Quote_Ext" extends "Sales Quote"
     var
         myInt: Integer;
         SH: Record 36;
+        
 }
