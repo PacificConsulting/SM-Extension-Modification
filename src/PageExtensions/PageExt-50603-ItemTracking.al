@@ -9,11 +9,12 @@ pageextension 50603 "Item Tracking_Ext" extends "Item Tracking Lines"
     {
         // Add changes to page actions here
     }
-    trigger OnClosePage()
+
+    trigger OnQueryClosePage(CloseAction: Action): Boolean
     var
         myInt: Integer;
     begin
-        if Rec."Lot No." <> '' then
+        if (Rec."Lot No." <> '') and (Rec."Qty. to Handle (Base)" <> 0) then
             Rec.TestField("No.Of Units");
     end;
 
