@@ -9,6 +9,31 @@ pageextension 50604 "Value Entries EXT" extends "Value Entries"
             {
                 ApplicationArea = All;
             }
+            field(Thickness; Rec.Thickness)
+            {
+                ApplicationArea = All;
+            }
+            field("Length (MM)"; Rec."Length (MM)")
+            {
+                ApplicationArea = All;
+            }
+            field(Diameter; Rec.Diameter)
+            {
+                ApplicationArea = All;
+            }
+            field("Width (MM)"; Rec."Width (MM)")
+            {
+                ApplicationArea = All;
+            }
+
+            field("Profile Code"; Rec."Profile Code")
+            {
+                ApplicationArea = All;
+            }
+
+
+
+
         }
         modify("Transportation Type")
         {

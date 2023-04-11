@@ -47,6 +47,11 @@ codeunit 50600 "Sales Order to Sales quotes"
         ValueEntry."VAT Transaction Type" := ItemJournalLine."VAT Transaction Type";
         ValueEntry."Own Vat Account No." := ItemJournalLine."Own VAT Account No.";
         ValueEntry."Number Of Units" := ItemLedgerEntry."No.Of Units";
+        ValueEntry.Thickness := ItemLedgerEntry."REDM Thickness";
+        ValueEntry."Length (MM)" := ItemLedgerEntry."REDM Length (MM)";
+        ValueEntry."Width (MM)" := ItemLedgerEntry."REDM Width (MM)";
+        ValueEntry.Diameter := ItemLedgerEntry."REDM Diameter";
+        ValueEntry."Profile Code" := ItemLedgerEntry."REDM Profile Code";
     end;
     //Codeunit 22 end
 
@@ -85,32 +90,38 @@ codeunit 50600 "Sales Order to Sales quotes"
     end;
     //Table 83 end 
 
-    //Table 271 start
-    [EventSubscriber(ObjectType::Table, Database::"Bank Account Ledger Entry", 'OnAfterCopyFromGenJnlLine', '', true, true)]
-    procedure OnAfterCopyFromGenJnlLine(var BankAccountLedgerEntry: Record "Bank Account Ledger Entry"; GenJournalLine: Record "Gen. Journal Line")
-    begin
-        Message(Format(GenJournalLine."Document No."));
-        BankAccountLedgerEntry."Gen. Prod. Posting Group" := GenJournalLine."Gen. Prod. Posting Group";
-    end;
-    //Table 271 end 
-
-    //Codeunit 12 start
-    //    [IntegrationEvent(false, false)]
-    [EventSubscriber(ObjectType::Codeunit, Codeunit::"Gen. Jnl.-Post Line", 'OnAfterInitBankAccLedgEntry', '', true, true)]
-    local procedure OnAfterInitBankAccLedgEntry(var BankAccountLedgerEntry: Record "Bank Account Ledger Entry"; GenJournalLine: Record "Gen. Journal Line")
-    begin
-        Message(Format(BankAccountLedgerEntry."Gen. Prod. Posting Group"));
-        BankAccountLedgerEntry."Gen. Prod. Posting Group" := GenJournalLine."Gen. Prod. Posting Group";
-    end;
-
-
     //[IntegrationEvent(false, false)]
+
     [EventSubscriber(ObjectType::Codeunit, Codeunit::"Gen. Jnl.-Post Line", 'OnPostBankAccOnBeforeBankAccLedgEntryInsert', '', true, true)]
     local procedure OnPostBankAccOnBeforeBankAccLedgEntryInsert(var BankAccountLedgerEntry: Record "Bank Account Ledger Entry"; var GenJournalLine: Record "Gen. Journal Line"; BankAccount: Record "Bank Account"; var TempGLEntryBuf: Record "G/L Entry" temporary; var NextTransactionNo: Integer; GLRegister: Record "G/L Register")
+    var
+        GenjnlL: Record 81;
     begin
-        BankAccountLedgerEntry."Gen. Prod. Posting Group" := GenJournalLine."Gen. Prod. Posting Group";
+        GenjnlL.Reset();
+        GenjnlL.SetRange("Journal Batch Name", GenJournalLine."Journal Batch Name");
+        GenjnlL.SetRange("Journal Template Name", GenJournalLine."Journal Template Name");
+        GenjnlL.SetRange("Line No.", GenJournalLine."Line No.");
+        if GenjnlL.FindFirst() then;
+        BankAccountLedgerEntry."Gen. Prod. Posting Group" := GenjnlL."Gen. Prod. Posting Group";
     end;
-    //Codeunit 12 end     
+    //Codeunit 12 end 
+
+    //Table 77 Start
+    // [EventSubscriber(ObjectType::Table, Database::"Report Selections", 'OnBeforeSaveAsDocumentAttachment', '', true, true)]
+    // local procedure OnBeforeSaveAsDocumentAttachment(ReportUsage: Enum "Report Selection Usage"; RecordVariant: Variant; DocumentNo: Code[20]; AccountNo: Code[20]; ShowNotificationAction: Boolean)
+    // var
+    //     PSH: Record 112;
+    // begin
+    //     PSH.Reset();
+    //     psh.SetRange("No.", DocumentNo);
+    //     if PSH.FindFirst() then begin
+    //         DocumentNo := PSH."External Document No."
+    //     end
+    //     else
+    //         DocumentNo := DocumentNo;
+
+    // end;
+    // //Table 77 Start  
 
     //Report 1304 Start
     //[IntegrationEvent(false, false)]

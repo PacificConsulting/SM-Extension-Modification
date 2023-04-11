@@ -396,7 +396,7 @@
 //                             //IW.STM.9692 20200115 >
 //                             DecreaseExpectedValue := ValueEntry2."Cost Amount (Expected)" * -1;
 //                             DecreaseExpectedQty := ValueEntry2."Item Ledger Entry Quantity" * -1;
-//                             DecreaseExpectedWeight := ValueEntry2."Item Ledger Entry Weight ()" * -1;
+//                             //DecreaseExpectedWeight := ValueEntry2."Item Ledger Entry Weight ()" * -1;  //temp comment
 //                             //IW.STM.9692 20200115 <
 //                         END;
 //                         //IW.STM.9692 20200116 >
@@ -413,12 +413,12 @@
 //                                 //IW.STM.9692 20200115 >
 //                                 DecreaseExpectedValue := ValueEntry2."Cost Amount (Expected)" * -1;
 //                                 DecreaseExpectedQty := ValueEntry2."Item Ledger Entry Quantity" * -1;
-//                                 DecreaseExpectedWeight := ValueEntry2."Item Ledger Entry Weight ()" * -1;
+//                                 //DecreaseExpectedWeight := ValueEntry2."Item Ledger Entry Weight ()" * -1;//temp comment
 //                                 //IW.STM.9692 20200115 <
 //                             END ELSE BEGIN
 //                                 IncreaseInvoicedValueVar := ValueEntry2."Cost Amount (Actual)";
 //                                 IncreaseInvoicedQtyVar := ValueEntry2."Invoiced Quantity";
-//                                 IncreaseInvoicedWeightVar := ValueEntry2."Item Ledger Entry Weight ()";
+//                                 //IncreaseInvoicedWeightVar := ValueEntry2."Item Ledger Entry Weight ()";//temp comment
 //                                 //IW.STM.9692 20200115 >
 //                                 IncreaseExpectedValue := ValueEntry2."Cost Amount (Expected)";
 //                                 IncreaseExpectedQty := ValueEntry2."Item Ledger Entry Quantity";
@@ -714,7 +714,7 @@
 //     var
 //         Text005: Label 'As of %1';
 //         ValueEntry: Record 5802;
-//         ClientTypeManagement: Codeunit 4;
+//         ClientTypeManagement: Codeunit "Client Type Management";// 4;
 //         StartDate: Date;
 //         EndDate: Date;
 //         ShowExpected: Boolean;
