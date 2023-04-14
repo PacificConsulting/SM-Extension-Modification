@@ -17,19 +17,24 @@
       "name": "SteelMont",
       "version": "1.0.0.102"
       },
-      {
-        
-"id":"c7658daa-31d8-44b9-a5a8-c6fa8ad7641e",
-"publisher": "GMBH Item Profile",
-"name": "GMBH Item Profile",
-"version": "1.0.0.58"
+      {        
+        "id":"c7658daa-31d8-44b9-a5a8-c6fa8ad7641e",
+        "publisher": "GMBH Item Profile",
+        "name": "GMBH Item Profile",
+        "version": "1.0.0.58"
+      },
+      {        
+        "id":"16b759cc-55c2-456e-a652-4146bb284f51",
+        "publisher": "RoboSoft Dmcc",
+        "name": "SteelMontProjectReport",
+        "version": "1.0.0.47"
       },
       {
         "id": "48cf1ef3-9f21-4f8c-a409-85bcded004f2",
         "publisher": "Robosoft Solutions DMCC",
         "name": "Robo Energy 365",
         "version": "17.0.0.11"
-        }
+      }
   ],
   "screenshots": [],
   "platform": "1.0.0.0",

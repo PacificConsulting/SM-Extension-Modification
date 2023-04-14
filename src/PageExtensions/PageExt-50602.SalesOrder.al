@@ -42,6 +42,7 @@ pageextension 50602 "Sales ord_Ext" extends "Sales Order"
                 ApplicationArea = all;
                 Promoted = true;
                 PromotedCategory = Category11;
+                Image = Print;
                 trigger OnAction()
                 begin
                     SH.Reset();

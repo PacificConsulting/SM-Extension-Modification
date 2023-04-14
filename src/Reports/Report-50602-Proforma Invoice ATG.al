@@ -1,4 +1,4 @@
-report 50602 "Proforma Invoice ATG"
+report 50602 "Proforma UIC"
 {
     DefaultLayout = RDLC;
     RDLCLayout = 'src\Report Layout\ProformaInvoiceATG-1.rdl';
@@ -18,7 +18,10 @@ report 50602 "Proforma Invoice ATG"
             column(PaymnttermsDiscnt; PaymnttermsDiscnt)
             {
             }
-            column(Origin_SalesHeader; "Sales Header"."REDM Country of Origin")//"Sales Header".Origin)    //Temp comment
+            column(Prepayment_Due_Date; "Prepayment Due Date")
+            {
+            }
+            column(Origin_SalesHeader; CountryOrigin.Name)//"Sales Header".Origin)    //Temp comment
             {
             }
             column(IncoTerms_SH; "Sales Header"."REDM Inco Terms/Delivery Terms")//"Sales Header".Incoterms)//Temp comment
@@ -33,10 +36,10 @@ report 50602 "Proforma Invoice ATG"
             column(FORMAT_TODAY_0_4_; FORMAT(TODAY, 0, 4))
             {
             }
-            column(StueMummer; '')//CompanyInfo."Registry Tax No.")  //temp comment
+            column(StueMummer; CompanyInfo."RSPL Registry Tax No.")//CompanyInfo."Registry Tax No.")  
             {
             }
-            column(RegistrieMummer; '')//CompanyInfo."Register Court No.")//temp comment
+            column(RegistrieMummer; CompanyInfo."RSPLRegister Court No.")//CompanyInfo."Register Court No.")
             {
             }
             column(USTIDNr; "REDM OWN VAT Account No.")//"Sales Header"."own VAT Registration No.")
@@ -75,6 +78,13 @@ report 50602 "Proforma Invoice ATG"
             column(CompanyEmail; CompanyInfo."E-Mail")
             {
             }
+            column(website; CompanyInfo."Home Page")
+            {
+
+            }
+            column(VATNo; CompanyInfo."VAT Registration No.")
+            {
+            }
             column(CustVATNo; CustVATNo)
             {
             }
@@ -111,7 +121,7 @@ report 50602 "Proforma Invoice ATG"
             column(ShipmentDate_SalesHeader; "Sales Header"."Shipment Date")
             {
             }
-            column(DeliveryTerms_SalesHeader; "Sales Header"."REDM Delivery Time")//"Delivery Terms")
+            column(DeliveryTerms_SalesHeader; "Sales Header"."REDM Discharge Terms")//"Delivery Terms")
             {
             }
             column(PortOfLoad; PortOfLoading)
@@ -184,6 +194,9 @@ report 50602 "Proforma Invoice ATG"
                                     ORDER(Ascending)
                                     WHERE("Document Type" = FILTER(Order | Quote));
                 column(TotalPrepmntvalue; TotalPrepmntvalue)
+                {
+                }
+                column(SlDocno; "Sales Line"."Document No.")
                 {
                 }
                 column(Tarrifcode; "Sales Line"."REDM Tariff Code")
@@ -268,6 +281,9 @@ report 50602 "Proforma Invoice ATG"
                 {
                 }
                 column(BankAdd_3_City; BankAdd[3])
+                {
+                }
+                column(Postcode; BankAdd[13])
                 {
                 }
                 column(BankAdd_4_; BankAdd[4])
@@ -391,12 +407,37 @@ report 50602 "Proforma Invoice ATG"
                     //MESSAGE(AmountInWords[1]);
                     //MESSAGE(NewAmtInwords);
                     */
-
                 end;
 
                 trigger OnPreDataItem()
                 begin
                     CLEAR(TotalAmount);
+                end;
+            }
+            dataitem("Sales Comment Line Header"; "Sales Comment Line")
+            {
+                DataItemLink = "No." = field("No."), "Document Type" = field("Document Type");
+                DataItemLinkReference = "Sales Header";
+                DataItemTableView = where("Document Line No." = Filter(0));
+                column(SHComment; Comment)
+                {
+
+                }
+                column(SHCommentNO; "No.")
+                {
+
+                }
+                column(ShLine_No_; "Line No.")
+                {
+
+                }
+                column(Srno; Srno)
+                {
+
+                }
+                trigger OnAfterGetRecord()
+                begin
+                    Srno += 1;
                 end;
             }
 
@@ -411,31 +452,38 @@ report 50602 "Proforma Invoice ATG"
                   PaymentTermsDesc := (PaymentTerms.Description);   //ASR +' '+ FORMAT("Sales Header"."Pricing Event Date");
                 END;
                 */
+                CountryOrigin.Reset();
+                CountryOrigin.SetRange(Code, "REDM Country of Origin");
+                if CountryOrigin.FindFirst() then;
 
                 IF CustomerRec.GET("Sales Header"."Sell-to Customer No.") THEN
                     CustVATNo := CustomerRec."VAT Registration No.";
 
-                //IF "Sales Header"."Payment Terms" <> '' THEN BEGIN  
-                if "Sales Header"."Payment Terms Code" <> '' then BEGIN //code added above code comment
-                    PaymentTermsDesc := "Sales Header"."Payment Terms Code"//"Sales Header"."Payment Terms"
+                if "Sales Header"."REDM Payment Conditions" <> '' then BEGIN
+                    PaymentTermsDesc := "Sales Header"."REDM Payment Conditions"
                 END ELSE BEGIN
                     PaymentTerms.RESET;
                     PaymentTerms.SETRANGE(Code, "Payment Terms Code");
                     IF PaymentTerms.FINDFIRST THEN
                         PaymentTermsDesc := (PaymentTerms.Description);
-                    //PaymnttermsDiscnt := PaymentTerms."Discount %";
                 END;
-                //MESSAGE(PaymentTermsDesc);
 
                 PaymentTerms.RESET;
                 PaymentTerms.SETRANGE(Code, "Payment Terms Code");
                 IF PaymentTerms.FINDFIRST THEN
                     PaymnttermsDiscnt := PaymentTerms."Discount %";
 
+                RDMPortMaster.RESET;
+                RDMPortMaster.SETRANGE(Code, "Sales Header"."REDM Load Port");
+                IF RDMPortMaster.FINDFIRST THEN
+                    PortOfLoading := RDMPortMaster.Decription;
 
-                //MESSAGE('%1',PaymnttermsDiscnt);
+                RDMPortMaster.RESET;
+                RDMPortMaster.SETRANGE(Code, "Sales Header"."REDM Discharge Port");///"Sales Header"."Port of Discharge");  //temp comment
+                IF RDMPortMaster.FINDFIRST THEN
+                    portofDischarge := RDMPortMaster.Decription;
 
-                EntryExitPoint.RESET;
+                /*EntryExitPoint.RESET;
                 EntryExitPoint.SETRANGE(Code, "Sales Header"."REDM Load Port");//"Sales Header"."Port of Loading");  //temp comment
                 IF EntryExitPoint.FINDFIRST THEN
                     PortOfLoading := EntryExitPoint.Description;
@@ -444,7 +492,7 @@ report 50602 "Proforma Invoice ATG"
                 EntryExitPoint.SETRANGE(Code, "Sales Header"."REDM Discharge Port");///"Sales Header"."Port of Discharge");  //temp comment
                 IF EntryExitPoint.FINDFIRST THEN
                     portofDischarge := EntryExitPoint.Description;
-
+                    */
 
                 bankAccount.SETRANGE(bankAccount."No.", "Sales Header"."REDM Bank Account");//"Sales Header"."Bank to be used");   //temp comment
                 IF bankAccount.FINDFIRST THEN BEGIN
@@ -464,11 +512,8 @@ report 50602 "Proforma Invoice ATG"
                     BankAdd[10] := CompanyInfo.Name;
                     BankAdd[11] := bankAccount."Currency Code";
                     BankAdd[12] := bankAccount."No.";
+                    BankAdd[13] := bankAccount."Post Code";
                 END;
-
-
-
-
                 SalesInvoiceHeader.SETRANGE(SalesInvoiceHeader."Order No.", "Sales Header"."No.");
                 IF SalesInvoiceHeader.FINDFIRST THEN
                     InvoiceNo := SalesInvoiceHeader."No.";
@@ -482,8 +527,7 @@ report 50602 "Proforma Invoice ATG"
                 ELSE IF "Load Port" <> '' THEN BEGIN
                   //IF Port.GET("Load Port")THEN;   //ASR
                     //PortOfLoading := Port.Description; //ASR
-                END;
-                
+                END;                
                 
                 IF "Discharge Location" <> '' THEN
                   DischargePort := "Discharge Location"
@@ -518,7 +562,6 @@ report 50602 "Proforma Invoice ATG"
                 shipmentmethod.SETRANGE(shipmentmethod.Code, "Sales Header"."Shipment Method Code");
                 IF shipmentmethod.FINDFIRST THEN
                     shipmentDesc := shipmentmethod.Description;
-
 
                 i := 1;
                 SalComment.RESET;
@@ -613,7 +656,7 @@ report 50602 "Proforma Invoice ATG"
         bankAccount: Record 270;
         BankAcc: Text[50];
         BANKName: Text[50];
-        BankAdd: array[12] of Text[100];
+        BankAdd: array[13] of Text[100];
         TotalAmount: Decimal;
         Check: Report Check;
         AmountInWords: array[2] of Text[250];
@@ -664,5 +707,8 @@ report 50602 "Proforma Invoice ATG"
         PaymnttermsDiscnt: Decimal;
         TotalPrepmntvalue: Decimal;
         j: integer;
+        Srno: Integer;
+        RDMPortMaster: Record "REDM Port Master";
+        CountryOrigin: Record 349;
 }
 
