@@ -3,6 +3,7 @@ pageextension 50606 "Posted Sales Invoice_Ext" extends "Posted Sales Invoice"
     layout
     {
         // Add changes to page layout here
+
     }
 
     actions

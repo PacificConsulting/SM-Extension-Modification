@@ -31,7 +31,7 @@
                   <Width>2.5cm</Width>
                 </TablixColumn>
                 <TablixColumn>
-                  <Width>3.29129cm</Width>
+                  <Width>3.28129cm</Width>
                 </TablixColumn>
               </TablixColumns>
               <TablixRows>
@@ -78,12 +78,12 @@
                             </BottomBorder>
                             <LeftBorder>
                               <Color>Black</Color>
-                              <Style>None</Style>
+                              <Style>Solid</Style>
                               <Width>1pt</Width>
                             </LeftBorder>
                             <RightBorder>
                               <Color>Black</Color>
-                              <Style>None</Style>
+                              <Style>Solid</Style>
                               <Width>1pt</Width>
                             </RightBorder>
                             <PaddingLeft>2pt</PaddingLeft>
@@ -255,7 +255,7 @@
                             </BottomBorder>
                             <LeftBorder>
                               <Color>Black</Color>
-                              <Style>None</Style>
+                              <Style>Solid</Style>
                               <Width>1pt</Width>
                             </LeftBorder>
                             <RightBorder>
@@ -437,7 +437,7 @@
                             </BottomBorder>
                             <RightBorder>
                               <Color>Black</Color>
-                              <Style>None</Style>
+                              <Style>Solid</Style>
                               <Width>1pt</Width>
                             </RightBorder>
                           </Style>
@@ -501,7 +501,7 @@
                             </BottomBorder>
                             <LeftBorder>
                               <Color>Black</Color>
-                              <Style>None</Style>
+                              <Style>Solid</Style>
                               <Width>1pt</Width>
                             </LeftBorder>
                             <PaddingLeft>2pt</PaddingLeft>
@@ -566,7 +566,7 @@
                             </LeftBorder>
                             <RightBorder>
                               <Color>Black</Color>
-                              <Style>None</Style>
+                              <Style>Solid</Style>
                               <Width>1pt</Width>
                             </RightBorder>
                             <PaddingLeft>2pt</PaddingLeft>
@@ -663,7 +663,7 @@
                             </BottomBorder>
                             <LeftBorder>
                               <Color>Black</Color>
-                              <Style>None</Style>
+                              <Style>Solid</Style>
                               <Width>1pt</Width>
                             </LeftBorder>
                             <PaddingLeft>2pt</PaddingLeft>
@@ -778,7 +778,7 @@
                             </LeftBorder>
                             <RightBorder>
                               <Color>Black</Color>
-                              <Style>None</Style>
+                              <Style>Solid</Style>
                               <Width>1pt</Width>
                             </RightBorder>
                             <PaddingLeft>2pt</PaddingLeft>
@@ -832,7 +832,7 @@
                             </BottomBorder>
                             <LeftBorder>
                               <Color>Black</Color>
-                              <Style>None</Style>
+                              <Style>Solid</Style>
                               <Width>1pt</Width>
                             </LeftBorder>
                             <RightBorder>
@@ -1041,7 +1041,7 @@
                             </BottomBorder>
                             <RightBorder>
                               <Color>Black</Color>
-                              <Style>None</Style>
+                              <Style>Solid</Style>
                               <Width>1pt</Width>
                             </RightBorder>
                             <PaddingLeft>2pt</PaddingLeft>
@@ -1086,7 +1086,7 @@
                             </Border>
                             <LeftBorder>
                               <Color>Black</Color>
-                              <Style>None</Style>
+                              <Style>Solid</Style>
                               <Width>1pt</Width>
                             </LeftBorder>
                             <PaddingLeft>2pt</PaddingLeft>
@@ -1186,7 +1186,7 @@
                                   <Style>
                                     <FontFamily>Segoe UI</FontFamily>
                                     <FontSize>8pt</FontSize>
-                                    <Format>n3</Format>
+                                    <Format>n2</Format>
                                   </Style>
                                 </TextRun>
                               </TextRuns>
@@ -1239,7 +1239,6 @@
                             </Border>
                             <RightBorder>
                               <Color>Black</Color>
-                              <Style>None</Style>
                               <Width>1pt</Width>
                             </RightBorder>
                             <PaddingLeft>2pt</PaddingLeft>
@@ -1288,7 +1287,7 @@
                             </BottomBorder>
                             <LeftBorder>
                               <Color>Black</Color>
-                              <Style>None</Style>
+                              <Style>Solid</Style>
                               <Width>1pt</Width>
                             </LeftBorder>
                             <RightBorder>
@@ -1428,7 +1427,6 @@
                             </BottomBorder>
                             <RightBorder>
                               <Color>Black</Color>
-                              <Style>None</Style>
                               <Width>1pt</Width>
                             </RightBorder>
                             <PaddingLeft>2pt</PaddingLeft>
@@ -1477,7 +1475,7 @@
                             </BottomBorder>
                             <LeftBorder>
                               <Color>Black</Color>
-                              <Style>None</Style>
+                              <Style>Solid</Style>
                               <Width>1pt</Width>
                             </LeftBorder>
                             <PaddingLeft>2pt</PaddingLeft>
@@ -1527,7 +1525,6 @@
                             </BottomBorder>
                             <RightBorder>
                               <Color>Black</Color>
-                              <Style>None</Style>
                               <Width>1pt</Width>
                             </RightBorder>
                             <PaddingLeft>2pt</PaddingLeft>
@@ -1576,7 +1573,7 @@
                             </BottomBorder>
                             <LeftBorder>
                               <Color>Black</Color>
-                              <Style>None</Style>
+                              <Style>Solid</Style>
                               <Width>1pt</Width>
                             </LeftBorder>
                             <PaddingLeft>2pt</PaddingLeft>
@@ -1626,7 +1623,6 @@
                             </BottomBorder>
                             <RightBorder>
                               <Color>Black</Color>
-                              <Style>None</Style>
                               <Width>1pt</Width>
                             </RightBorder>
                             <PaddingLeft>2pt</PaddingLeft>
@@ -1674,7 +1670,7 @@
                             </BottomBorder>
                             <LeftBorder>
                               <Color>Black</Color>
-                              <Style>None</Style>
+                              <Style>Solid</Style>
                               <Width>1pt</Width>
                             </LeftBorder>
                             <PaddingLeft>2pt</PaddingLeft>
@@ -1727,7 +1723,6 @@
                             </LeftBorder>
                             <RightBorder>
                               <Color>Black</Color>
-                              <Style>None</Style>
                               <Width>1pt</Width>
                             </RightBorder>
                             <PaddingLeft>2pt</PaddingLeft>
@@ -1775,7 +1770,7 @@
                             </BottomBorder>
                             <LeftBorder>
                               <Color>Black</Color>
-                              <Style>None</Style>
+                              <Style>Solid</Style>
                               <Width>1pt</Width>
                             </LeftBorder>
                             <PaddingLeft>2pt</PaddingLeft>
@@ -1827,7 +1822,6 @@
                             </LeftBorder>
                             <RightBorder>
                               <Color>Black</Color>
-                              <Style>None</Style>
                               <Width>1pt</Width>
                             </RightBorder>
                             <PaddingLeft>2pt</PaddingLeft>
@@ -1877,12 +1871,12 @@
                             </BottomBorder>
                             <LeftBorder>
                               <Color>Black</Color>
-                              <Style>None</Style>
+                              <Style>Solid</Style>
                               <Width>1pt</Width>
                             </LeftBorder>
                             <RightBorder>
                               <Color>Black</Color>
-                              <Style>None</Style>
+                              <Style>Solid</Style>
                               <Width>1pt</Width>
                             </RightBorder>
                             <PaddingLeft>2pt</PaddingLeft>
@@ -2034,15 +2028,14 @@
                             </BottomBorder>
                             <LeftBorder>
                               <Color>Black</Color>
-                              <Style>None</Style>
+                              <Style>Solid</Style>
                               <Width>1pt</Width>
                             </LeftBorder>
                             <RightBorder>
                               <Color>Black</Color>
-                              <Style>None</Style>
+                              <Style>Solid</Style>
                               <Width>1pt</Width>
                             </RightBorder>
-                            <BackgroundColor>LightGrey</BackgroundColor>
                             <PaddingLeft>2pt</PaddingLeft>
                             <PaddingRight>2pt</PaddingRight>
                             <PaddingTop>2pt</PaddingTop>
@@ -2063,7 +2056,7 @@
                   <TablixCells>
                     <TablixCell>
                       <CellContents>
-                        <Textbox Name="Textbox12">
+                        <Textbox Name="Textbox11">
                           <CanGrow>true</CanGrow>
                           <KeepTogether>true</KeepTogether>
                           <Paragraphs>
@@ -2214,7 +2207,6 @@
                               <Style>Solid</Style>
                               <Width>1pt</Width>
                             </LeftBorder>
-                            <BackgroundColor>LightGrey</BackgroundColor>
                             <PaddingLeft>2pt</PaddingLeft>
                             <PaddingRight>2pt</PaddingRight>
                             <PaddingTop>2pt</PaddingTop>
@@ -2348,7 +2340,6 @@
                               <Style>Solid</Style>
                               <Width>1pt</Width>
                             </RightBorder>
-                            <BackgroundColor>LightGrey</BackgroundColor>
                             <PaddingLeft>2pt</PaddingLeft>
                             <PaddingRight>2pt</PaddingRight>
                             <PaddingTop>2pt</PaddingTop>
@@ -2417,24 +2408,18 @@
                   <KeepWithGroup>Before</KeepWithGroup>
                 </TablixMember>
                 <TablixMember>
-                  <Visibility>
-                    <Hidden>true</Hidden>
-                  </Visibility>
                   <KeepWithGroup>Before</KeepWithGroup>
                 </TablixMember>
                 <TablixMember>
-                  <Visibility>
-                    <Hidden>true</Hidden>
-                  </Visibility>
                   <KeepWithGroup>Before</KeepWithGroup>
                 </TablixMember>
               </TablixMembers>
             </TablixRowHierarchy>
             <DataSetName>DataSet_Result</DataSetName>
             <Top>0cm</Top>
-            <Left>0.00722cm</Left>
+            <Left>0cm</Left>
             <Height>18.63937cm</Height>
-            <Width>19.55309cm</Width>
+            <Width>19.54309cm</Width>
             <Style>
               <Border>
                 <Style>None</Style>
@@ -2443,20 +2428,9 @@
           </Tablix>
         </ReportItems>
         <Height>18.63937cm</Height>
-        <Style>
-          <Border>
-            <Style>None</Style>
-            <Width>1.5pt</Width>
-          </Border>
-          <LeftBorder>
-            <Style>Solid</Style>
-          </LeftBorder>
-          <RightBorder>
-            <Style>Solid</Style>
-          </RightBorder>
-        </Style>
+        <Style />
       </Body>
-      <Width>19.56031cm</Width>
+      <Width>19.54309cm</Width>
       <Page>
         <PageHeader>
           <Height>2.25076cm</Height>
@@ -2583,7 +2557,7 @@
               </ReportItems>
               <KeepTogether>true</KeepTogether>
               <Top>0cm</Top>
-              <Left>0.00722cm</Left>
+              <Left>0cm</Left>
               <Height>2.10973cm</Height>
               <Width>19.54309cm</Width>
               <Style>
@@ -2599,491 +2573,14 @@
             </Border>
           </Style>
         </PageHeader>
-        <PageFooter>
-          <Height>7.36481cm</Height>
-          <PrintOnFirstPage>true</PrintOnFirstPage>
-          <PrintOnLastPage>true</PrintOnLastPage>
-          <ReportItems>
-            <Rectangle Name="Rectangle3">
-              <ReportItems>
-                <Textbox Name="Textbox11">
-                  <CanGrow>true</CanGrow>
-                  <KeepTogether>true</KeepTogether>
-                  <Paragraphs>
-                    <Paragraph>
-                      <TextRuns>
-                        <TextRun>
-                          <Value>Bank Details For Remittance of Payment :</Value>
-                          <Style>
-                            <FontFamily>Segoe UI</FontFamily>
-                            <FontSize>8pt</FontSize>
-                            <FontWeight>Bold</FontWeight>
-                          </Style>
-                        </TextRun>
-                      </TextRuns>
-                      <Style />
-                    </Paragraph>
-                    <Paragraph>
-                      <TextRuns>
-                        <TextRun>
-                          <Value>=Fields!Bank1.Value</Value>
-                          <Style>
-                            <FontFamily>Segoe UI</FontFamily>
-                            <FontSize>8pt</FontSize>
-                            <FontWeight>Bold</FontWeight>
-                          </Style>
-                        </TextRun>
-                      </TextRuns>
-                      <Style />
-                    </Paragraph>
-                    <Paragraph>
-                      <TextRuns>
-                        <TextRun>
-                          <Value>BENEFICIARY: </Value>
-                          <Style>
-                            <FontFamily>Segoe UI</FontFamily>
-                            <FontSize>8pt</FontSize>
-                            <FontWeight>Normal</FontWeight>
-                          </Style>
-                        </TextRun>
-                        <TextRun>
-                          <Value>=Fields!CompInfo_Name.Value</Value>
-                          <Style>
-                            <FontFamily>Segoe UI</FontFamily>
-                            <FontSize>8pt</FontSize>
-                            <FontWeight>Bold</FontWeight>
-                          </Style>
-                        </TextRun>
-                      </TextRuns>
-                      <Style />
-                    </Paragraph>
-                    <Paragraph>
-                      <TextRuns>
-                        <TextRun>
-                          <Value>Bank Account No. : </Value>
-                          <Style>
-                            <FontFamily>Segoe UI</FontFamily>
-                            <FontSize>8pt</FontSize>
-                          </Style>
-                        </TextRun>
-                        <TextRun>
-                          <Value>=Fields!Bank2.Value</Value>
-                          <Style>
-                            <FontFamily>Segoe UI</FontFamily>
-                            <FontSize>8pt</FontSize>
-                            <FontWeight>Normal</FontWeight>
-                          </Style>
-                        </TextRun>
-                      </TextRuns>
-                      <Style />
-                    </Paragraph>
-                    <Paragraph>
-                      <TextRuns>
-                        <TextRun>
-                          <Value>SWIFT : </Value>
-                          <Style>
-                            <FontFamily>Segoe UI</FontFamily>
-                            <FontSize>8pt</FontSize>
-                            <FontWeight>Normal</FontWeight>
-                          </Style>
-                        </TextRun>
-                        <TextRun>
-                          <Value>=Fields!BankAdd_5_SwiftCode.Value</Value>
-                          <Style>
-                            <FontFamily>Segoe UI</FontFamily>
-                            <FontSize>8pt</FontSize>
-                            <FontWeight>Normal</FontWeight>
-                          </Style>
-                        </TextRun>
-                      </TextRuns>
-                      <Style />
-                    </Paragraph>
-                    <Paragraph>
-                      <TextRuns>
-                        <TextRun>
-                          <Value>Currency : </Value>
-                          <Style>
-                            <FontFamily>Segoe UI</FontFamily>
-                            <FontSize>8pt</FontSize>
-                            <FontWeight>Normal</FontWeight>
-                          </Style>
-                        </TextRun>
-                        <TextRun>
-                          <Value>=Fields!CurrencyCode_SalesInvoiceHeader.Value</Value>
-                          <Style>
-                            <FontFamily>Segoe UI</FontFamily>
-                            <FontSize>8pt</FontSize>
-                            <FontWeight>Normal</FontWeight>
-                          </Style>
-                        </TextRun>
-                      </TextRuns>
-                      <Style />
-                    </Paragraph>
-                    <Paragraph>
-                      <TextRuns>
-                        <TextRun>
-                          <Value>Bank Address : </Value>
-                          <Style>
-                            <FontFamily>Segoe UI</FontFamily>
-                            <FontSize>8pt</FontSize>
-                            <FontWeight>Normal</FontWeight>
-                          </Style>
-                        </TextRun>
-                        <TextRun>
-                          <Value>=Fields!BankAdd_1_.Value + " " + Fields!BankAdd_2_.Value + ", " + Fields!BankAdd_3_City.Value + "- " + Fields!Postcode.Value</Value>
-                          <Style>
-                            <FontFamily>Segoe UI</FontFamily>
-                            <FontSize>8pt</FontSize>
-                            <FontWeight>Normal</FontWeight>
-                          </Style>
-                        </TextRun>
-                      </TextRuns>
-                      <Style />
-                    </Paragraph>
-                  </Paragraphs>
-                  <rd:DefaultName>Textbox11</rd:DefaultName>
-                  <Top>1.78136in</Top>
-                  <Left>0.0011in</Left>
-                  <Height>1.11817in</Height>
-                  <Width>4.16803in</Width>
-                  <Style>
-                    <Border>
-                      <Color>LightGrey</Color>
-                      <Style>Solid</Style>
-                    </Border>
-                    <BottomBorder>
-                      <Color>Black</Color>
-                      <Style>None</Style>
-                      <Width>1pt</Width>
-                    </BottomBorder>
-                    <LeftBorder>
-                      <Color>Black</Color>
-                      <Style>None</Style>
-                      <Width>1pt</Width>
-                    </LeftBorder>
-                    <PaddingLeft>2pt</PaddingLeft>
-                    <PaddingRight>2pt</PaddingRight>
-                    <PaddingTop>2pt</PaddingTop>
-                    <PaddingBottom>2pt</PaddingBottom>
-                  </Style>
-                </Textbox>
-                <Textbox Name="Textbox15">
-                  <CanGrow>true</CanGrow>
-                  <KeepTogether>true</KeepTogether>
-                  <Paragraphs>
-                    <Paragraph>
-                      <TextRuns>
-                        <TextRun>
-                          <Value>=Fields!CompInfo_Name.Value</Value>
-                          <Style>
-                            <FontFamily>Segoe UI</FontFamily>
-                            <FontSize>8pt</FontSize>
-                            <FontWeight>Bold</FontWeight>
-                          </Style>
-                        </TextRun>
-                      </TextRuns>
-                      <Style>
-                        <TextAlign>Center</TextAlign>
-                      </Style>
-                    </Paragraph>
-                    <Paragraph>
-                      <TextRuns>
-                        <TextRun>
-                          <Value />
-                          <Style>
-                            <FontFamily>Segoe UI</FontFamily>
-                            <FontSize>8pt</FontSize>
-                          </Style>
-                        </TextRun>
-                      </TextRuns>
-                      <Style>
-                        <TextAlign>Center</TextAlign>
-                      </Style>
-                    </Paragraph>
-                    <Paragraph>
-                      <TextRuns>
-                        <TextRun>
-                          <Value />
-                          <Style>
-                            <FontFamily>Segoe UI</FontFamily>
-                            <FontSize>8pt</FontSize>
-                          </Style>
-                        </TextRun>
-                      </TextRuns>
-                      <Style>
-                        <TextAlign>Center</TextAlign>
-                      </Style>
-                    </Paragraph>
-                    <Paragraph>
-                      <TextRuns>
-                        <TextRun>
-                          <Value />
-                          <Style>
-                            <FontFamily>Segoe UI</FontFamily>
-                            <FontSize>8pt</FontSize>
-                          </Style>
-                        </TextRun>
-                      </TextRuns>
-                      <Style>
-                        <TextAlign>Center</TextAlign>
-                      </Style>
-                    </Paragraph>
-                    <Paragraph>
-                      <TextRuns>
-                        <TextRun>
-                          <Value />
-                          <Style>
-                            <FontFamily>Segoe UI</FontFamily>
-                            <FontSize>8pt</FontSize>
-                          </Style>
-                        </TextRun>
-                      </TextRuns>
-                      <Style>
-                        <TextAlign>Center</TextAlign>
-                      </Style>
-                    </Paragraph>
-                    <Paragraph>
-                      <TextRuns>
-                        <TextRun>
-                          <Value />
-                          <Style>
-                            <FontFamily>Segoe UI</FontFamily>
-                            <FontSize>8pt</FontSize>
-                          </Style>
-                        </TextRun>
-                      </TextRuns>
-                      <Style>
-                        <TextAlign>Center</TextAlign>
-                      </Style>
-                    </Paragraph>
-                    <Paragraph>
-                      <TextRuns>
-                        <TextRun>
-                          <Value>Authorised Signatory</Value>
-                          <Style>
-                            <FontFamily>Segoe UI</FontFamily>
-                            <FontSize>8pt</FontSize>
-                          </Style>
-                        </TextRun>
-                      </TextRuns>
-                      <Style>
-                        <TextAlign>Center</TextAlign>
-                      </Style>
-                    </Paragraph>
-                  </Paragraphs>
-                  <rd:DefaultName>Textbox14</rd:DefaultName>
-                  <Top>1.78136in</Top>
-                  <Left>4.16913in</Left>
-                  <Height>1.11817in</Height>
-                  <Width>3.52784in</Width>
-                  <ZIndex>1</ZIndex>
-                  <Style>
-                    <Border>
-                      <Color>LightGrey</Color>
-                      <Style>Solid</Style>
-                    </Border>
-                    <BottomBorder>
-                      <Color>Black</Color>
-                      <Style>None</Style>
-                      <Width>1pt</Width>
-                    </BottomBorder>
-                    <RightBorder>
-                      <Color>Black</Color>
-                      <Style>None</Style>
-                      <Width>1pt</Width>
-                    </RightBorder>
-                    <PaddingLeft>2pt</PaddingLeft>
-                    <PaddingRight>2pt</PaddingRight>
-                    <PaddingTop>2pt</PaddingTop>
-                    <PaddingBottom>2pt</PaddingBottom>
-                  </Style>
-                </Textbox>
-                <Textbox Name="Textbox13">
-                  <CanGrow>true</CanGrow>
-                  <KeepTogether>true</KeepTogether>
-                  <Paragraphs>
-                    <Paragraph>
-                      <TextRuns>
-                        <TextRun>
-                          <Value>DELIVERY: </Value>
-                          <Style>
-                            <FontFamily>Segoe UI</FontFamily>
-                            <FontSize>8pt</FontSize>
-                            <FontWeight>Bold</FontWeight>
-                          </Style>
-                        </TextRun>
-                        <TextRun>
-                          <Value>=Fields!DeliveryTerms_SalesInvoiceHeaderNew.Value</Value>
-                          <Style>
-                            <FontFamily>Segoe UI</FontFamily>
-                            <FontSize>8pt</FontSize>
-                            <FontWeight>Bold</FontWeight>
-                            <Format>n2</Format>
-                          </Style>
-                        </TextRun>
-                      </TextRuns>
-                      <Style />
-                    </Paragraph>
-                    <Paragraph>
-                      <TextRuns>
-                        <TextRun>
-                          <Value />
-                          <Style>
-                            <FontFamily>Segoe UI</FontFamily>
-                            <FontSize>8pt</FontSize>
-                          </Style>
-                        </TextRun>
-                      </TextRuns>
-                      <Style />
-                    </Paragraph>
-                    <Paragraph>
-                      <TextRuns>
-                        <TextRun>
-                          <Value>General terms and Conditions:</Value>
-                          <Style>
-                            <FontFamily>Segoe UI</FontFamily>
-                            <FontSize>8pt</FontSize>
-                            <FontWeight>Bold</FontWeight>
-                          </Style>
-                        </TextRun>
-                        <TextRun>
-                          <Value>
-1. Goods are owned by the seller until full payment of invoice value received by Seller bank counter. 
-2. Seller reservers right to resell or to take material back if buyer do not pay full amount of invoice on time.
-3. Goods offered are out of quality and apply no paper standard - choosen and accepted by buyer and not liable to compliant. Seller do not</Value>
-                          <Style>
-                            <FontFamily>Segoe UI</FontFamily>
-                            <FontSize>8pt</FontSize>
-                          </Style>
-                        </TextRun>
-                      </TextRuns>
-                      <Style />
-                    </Paragraph>
-                    <Paragraph>
-                      <TextRuns>
-                        <TextRun>
-                          <Value>     accept any complaint from buyer.
-4. Buyer is oblige to collect material from destination port immediately. Seller do not accept any destination port costs. Buyer is obligate</Value>
-                          <Style>
-                            <FontFamily>Segoe UI</FontFamily>
-                            <FontSize>8pt</FontSize>
-                          </Style>
-                        </TextRun>
-                      </TextRuns>
-                      <Style />
-                    </Paragraph>
-                    <Paragraph>
-                      <TextRuns>
-                        <TextRun>
-                          <Value>    without protest to pay any demurrage &amp; storage at destination.
-</Value>
-                          <Style>
-                            <FontFamily>Segoe UI</FontFamily>
-                            <FontSize>8pt</FontSize>
-                          </Style>
-                        </TextRun>
-                        <TextRun>
-                          <Value>5. Amount is to be credited to Seller's bank account without any deduction.</Value>
-                          <Style>
-                            <FontFamily>Segoe UI</FontFamily>
-                            <FontSize>8pt</FontSize>
-                            <FontWeight>Bold</FontWeight>
-                          </Style>
-                        </TextRun>
-                        <TextRun>
-                          <Value>
-6. The governing law for this transaction shall be the substantive laws of Germany and any dispute to be dealt with to be governed by German</Value>
-                          <Style>
-                            <FontFamily>Segoe UI</FontFamily>
-                            <FontSize>8pt</FontSize>
-                          </Style>
-                        </TextRun>
-                      </TextRuns>
-                      <Style />
-                    </Paragraph>
-                    <Paragraph>
-                      <TextRuns>
-                        <TextRun>
-                          <Value>    law.</Value>
-                          <Style>
-                            <FontFamily>Segoe UI</FontFamily>
-                            <FontSize>8pt</FontSize>
-                          </Style>
-                        </TextRun>
-                      </TextRuns>
-                      <Style />
-                    </Paragraph>
-                  </Paragraphs>
-                  <rd:DefaultName>Textbox9</rd:DefaultName>
-                  <Height>1.78136in</Height>
-                  <Width>7.69807in</Width>
-                  <ZIndex>2</ZIndex>
-                  <Style>
-                    <Border>
-                      <Color>LightGrey</Color>
-                      <Style>Solid</Style>
-                    </Border>
-                    <BottomBorder>
-                      <Color>LightGrey</Color>
-                      <Style>Solid</Style>
-                      <Width>0.5pt</Width>
-                    </BottomBorder>
-                    <LeftBorder>
-                      <Color>Black</Color>
-                      <Style>None</Style>
-                      <Width>1pt</Width>
-                    </LeftBorder>
-                    <RightBorder>
-                      <Color>Black</Color>
-                      <Style>None</Style>
-                      <Width>1pt</Width>
-                    </RightBorder>
-                    <PaddingLeft>2pt</PaddingLeft>
-                    <PaddingRight>2pt</PaddingRight>
-                    <PaddingTop>2pt</PaddingTop>
-                    <PaddingBottom>2pt</PaddingBottom>
-                  </Style>
-                </Textbox>
-              </ReportItems>
-              <KeepTogether>true</KeepTogether>
-              <Top>0cm</Top>
-              <Left>0cm</Left>
-              <Height>7.36481cm</Height>
-              <Width>19.5531cm</Width>
-              <Style>
-                <Border>
-                  <Style>None</Style>
-                </Border>
-                <BottomBorder>
-                  <Style>Solid</Style>
-                </BottomBorder>
-              </Style>
-            </Rectangle>
-          </ReportItems>
-          <Style>
-            <Border>
-              <Style>None</Style>
-              <Width>1.5pt</Width>
-            </Border>
-            <BottomBorder>
-              <Style>Solid</Style>
-            </BottomBorder>
-            <LeftBorder>
-              <Style>Solid</Style>
-            </LeftBorder>
-            <RightBorder>
-              <Style>Solid</Style>
-            </RightBorder>
-          </Style>
-        </PageFooter>
         <PageHeight>29.7cm</PageHeight>
         <PageWidth>21cm</PageWidth>
         <InteractiveHeight>11in</InteractiveHeight>
         <InteractiveWidth>8.5in</InteractiveWidth>
-        <LeftMargin>0.6cm</LeftMargin>
-        <RightMargin>0.8cm</RightMargin>
+        <LeftMargin>0.5cm</LeftMargin>
+        <RightMargin>0.5cm</RightMargin>
         <TopMargin>0.5cm</TopMargin>
-        <BottomMargin>0.2cm</BottomMargin>
+        <BottomMargin>0.5cm</BottomMargin>
         <ColumnSpacing>1.27cm</ColumnSpacing>
         <Style />
       </Page>

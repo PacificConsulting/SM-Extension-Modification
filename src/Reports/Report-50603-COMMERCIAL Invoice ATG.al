@@ -255,7 +255,7 @@ report 50603 "COMMERCIAL Invoice UIC"
             column(VessalName; VessalName)
             {
             }
-            column(DeliveryTerms_SalesInvoiceHeaderNew; "Sales Invoice Header"."REDM Delivery Time")//"Delivery Terms")
+            column(DeliveryTerms_SalesInvoiceHeaderNew; "REDM Discharge Terms")//"Delivery Terms")
             {
             }
             column(DischargePort; DischargePort)
@@ -517,28 +517,25 @@ report 50603 "COMMERCIAL Invoice UIC"
                     SILRec.RESET;
                     SILRec.SETRANGE("Document No.", "Document No.");
                     SILRec.SETRANGE(Type, Type);
-
                     IF SILRec.FINDFIRST THEN
                         REPEAT
                             //FOB Value
-                            FOBQty := SILRec."Unit Price" - 100;
+                            if SILRec."Unit of Measure Code" = 'MT' then
+                                FOBQty := SILRec."Unit Price" - 100
+                            else
+                                FOBQty := SILRec."Unit Price" - 0.100;
                             TotalFOBQty := FOBQty * SILRec.Quantity;
                             FOBvalue += TotalFOBQty;
                             //FOB Value
 
                             //Freight Value
-                            TotalFreightQty := SILRec.Quantity * 100;
+                            if SILRec."Unit of Measure Code" = 'MT' then
+                                TotalFreightQty := SILRec.Quantity * 100
+                            else
+                                TotalFreightQty := SILRec.Quantity * 0.100;
                             Freightvalue += TotalFreightQty;
                             //Freight Value
-
-                            //    MESSAGE('%1 ', FOBQty);
-                            //    MESSAGE('%1 ',TotalFOBQty);
-                            //    MESSAGE('%1 ',FOBvalue);
-                            //    MESSAGE('%1 ',TotalFreightQty);
-                            //    MESSAGE('%1 ',Freightvalue);
-
                             TotalLineAmount += SILRec."Line Amount";
-
                         UNTIL SILRec.NEXT = 0;
 
                     TotalBalAmntRecvble := TotalLineAmount - ABS(AdvancedReceived);
@@ -645,17 +642,17 @@ report 50603 "COMMERCIAL Invoice UIC"
                 END;
 
                 //CLEAR(AdvancedReceived);
-                CustLedEntryRec.RESET;
-                CustLedEntryRec.SETRANGE("Customer No.", "Sell-to Customer No.");
-                CustLedEntryRec.SETRANGE("Global Dimension 1 Code", "Sales Invoice Header"."Shortcut Dimension 1 Code");
-                CustLedEntryRec.SETRANGE(CustLedEntryRec."Document Type", CustLedEntryRec."Document Type"::Payment);
-                CustLedEntryRec.SETFILTER("Posting Date", '<%1', "Sales Invoice Header"."Posting Date");
-                IF CustLedEntryRec.FINDSET THEN
-                    REPEAT
-                        CustLedEntryRec.CALCFIELDS(Amount);
-                        AdvancedReceived += CustLedEntryRec.Amount;
-                    //MESSAGE('%1',AdvancedReceived);
-                    UNTIL CustLedEntryRec.NEXT = 0;
+                /* CustLedEntryRec.RESET;
+                 CustLedEntryRec.SETRANGE("Customer No.", "Sell-to Customer No.");
+                 CustLedEntryRec.SETRANGE("Global Dimension 1 Code", "Sales Invoice Header"."Shortcut Dimension 1 Code");
+                 CustLedEntryRec.SETRANGE(CustLedEntryRec."Document Type", CustLedEntryRec."Document Type"::Payment);
+                 CustLedEntryRec.SETFILTER("Posting Date", '<%1', "Sales Invoice Header"."Posting Date");
+                 IF CustLedEntryRec.FINDSET THEN
+                     REPEAT
+                         CustLedEntryRec.CALCFIELDS(Amount);
+                         AdvancedReceived += CustLedEntryRec.Amount;
+                     //MESSAGE('%1',AdvancedReceived);
+                     UNTIL CustLedEntryRec.NEXT = 0; */  //temp comment
 
                 //MESSAGE('%1,%2',"Sales Invoice Header"."Shortcut Dimension 1 Code",CustLedEntryRec."Global Dimension 1 Code");
 
@@ -696,6 +693,10 @@ report 50603 "COMMERCIAL Invoice UIC"
                     {
                         Caption = 'FOB Bifurcation';
                         ApplicationArea = all;
+                    }
+                    field("Advanced Received"; AdvancedReceived)
+                    {
+                        ApplicationArea = All;
                     }
                 }
             }

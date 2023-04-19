@@ -90,8 +90,7 @@ codeunit 50600 "Sales Order to Sales quotes"
     end;
     //Table 83 end 
 
-    //[IntegrationEvent(false, false)]
-
+    //Codeunit 12 start
     [EventSubscriber(ObjectType::Codeunit, Codeunit::"Gen. Jnl.-Post Line", 'OnPostBankAccOnBeforeBankAccLedgEntryInsert', '', true, true)]
     local procedure OnPostBankAccOnBeforeBankAccLedgEntryInsert(var BankAccountLedgerEntry: Record "Bank Account Ledger Entry"; var GenJournalLine: Record "Gen. Journal Line"; BankAccount: Record "Bank Account"; var TempGLEntryBuf: Record "G/L Entry" temporary; var NextTransactionNo: Integer; GLRegister: Record "G/L Register")
     var
@@ -106,50 +105,54 @@ codeunit 50600 "Sales Order to Sales quotes"
     end;
     //Codeunit 12 end 
 
-    //Table 77 Start
-    // [EventSubscriber(ObjectType::Table, Database::"Report Selections", 'OnBeforeSaveAsDocumentAttachment', '', true, true)]
-    // local procedure OnBeforeSaveAsDocumentAttachment(ReportUsage: Enum "Report Selection Usage"; RecordVariant: Variant; DocumentNo: Code[20]; AccountNo: Code[20]; ShowNotificationAction: Boolean)
-    // var
-    //     PSH: Record 112;
+    // //Codeunit 90 Start
+    // [EventSubscriber(ObjectType::Codeunit, Codeunit::"Purch.-Post", 'OnAfterPurchInvHeaderInsert', '', true, true)]
+    // local procedure OnAfterPurchInvHeaderInsert(var PurchInvHeader: Record "Purch. Inv. Header"; var PurchHeader: Record "Purchase Header"; PreviewMode: Boolean)
     // begin
-    //     PSH.Reset();
-    //     psh.SetRange("No.", DocumentNo);
-    //     if PSH.FindFirst() then begin
-    //         DocumentNo := PSH."External Document No."
-    //     end
-    //     else
-    //         DocumentNo := DocumentNo;
+    //     PurchHeader.CalcFields(Amount);
+    //     if PurchHeader."Currency Factor" <> 0 then
+    //         PurchInvHeader."Invoice Amount(LCY)" := PurchHeader.Amount / PurchHeader."Currency Factor";
+    //     Message(Format(PurchInvHeader."Invoice Amount(LCY)"));
 
     // end;
-    // //Table 77 Start  
 
-    //Report 1304 Start
-    //[IntegrationEvent(false, false)]
-    // [EventSubscriber(ObjectType::Report, Report::"Standard Sales - Quote", 'OnAfterSetLanguage', '', true, true)]
-    // local procedure OnAfterSetLanguage()
-    // var
-    //     SdSalesQuotes: Report "Standard Sales - Quote";
-    //     Language: Codeunit Language;
+    // [EventSubscriber(ObjectType::Codeunit, Codeunit::"Purch.-Post", 'OnBeforePurchCrMemoHeaderInsert', '', true, true)]
+    // local procedure OnBeforePurchCrMemoHeaderInsert(var PurchCrMemoHdr: Record "Purch. Cr. Memo Hdr."; var PurchHeader: Record "Purchase Header"; CommitIsSupressed: Boolean)
     // begin
-    //     //CurrReport.Language := Language.GetLanguageIdOrDefault(LanguageCode);
-    //     SdSalesQuotes.Language := Language.GetLanguageIdOrDefault('ENU');
+    //     PurchHeader.CalcFields(Amount);
+    //     if PurchHeader."Currency Factor" <> 0 then
+    //         PurchCrMemoHdr."Invoice Amount(LCY)" := PurchHeader.Amount / PurchHeader."Currency Factor";
     // end;
 
-    // // [IntegrationEvent(false, false)]
-    // [EventSubscriber(ObjectType::Report, Report::"Standard Sales - Quote", 'OnAfterFormatDocumentFields', '', true, true)]
-    // local procedure OnAfterFormatDocumentFields(var SalesHeader: Record "Sales Header")
-    // var
-    //     FormatDocument: Codeunit "Format Document";
-    //     ShipmentMethod: Record "Shipment Method";
-    //     PaymentTerms: Record "Payment Terms";
-    //     PaymentMethod: Record "Payment Method";
-    // begin
-    //     FormatDocument.SetPaymentTerms(PaymentTerms, SalesHeader."Payment Terms Code", 'ENU');
-    //     FormatDocument.SetPaymentMethod(PaymentMethod, SalesHeader."Payment Method Code", 'ENU');
-    //     FormatDocument.SetShipmentMethod(ShipmentMethod, SalesHeader."Shipment Method Code", 'ENU');
-    // end;
-    // //Report 1304 end
+    [EventSubscriber(ObjectType::Codeunit, Codeunit::"Purch.-Post", 'OnAfterPurchInvLineInsert', '', true, true)]
+    local procedure OnAfterPurchInvLineInsert(var PurchInvLine: Record "Purch. Inv. Line"; PurchInvHeader: Record "Purch. Inv. Header"; PurchLine: Record "Purchase Line"; ItemLedgShptEntryNo: Integer; WhseShip: Boolean; WhseReceive: Boolean; CommitIsSupressed: Boolean; PurchHeader: Record "Purchase Header"; PurchRcptHeader: Record "Purch. Rcpt. Header"; TempWhseRcptHeader: Record "Warehouse Receipt Header")
+    begin
+        PurchInvHeader."Invoice Amount(LCY)" += PurchInvLine.Amount / PurchInvHeader."Currency Factor";
+        PurchInvHeader.Modify();
+        Message(Format(PurchInvHeader."Invoice Amount(LCY)"));
+    end;
+    // //Codeunit 90 End
 
+
+    // //Codeunit 80 Start
+
+    [EventSubscriber(ObjectType::Codeunit, Codeunit::"Sales-Post", 'OnAfterSalesInvLineInsert', '', true, true)]
+    local procedure OnAfterSalesInvLineInsert(var SalesInvLine: Record "Sales Invoice Line"; SalesInvHeader: Record "Sales Invoice Header"; SalesLine: Record "Sales Line"; ItemLedgShptEntryNo: Integer; WhseShip: Boolean; WhseReceive: Boolean; CommitIsSuppressed: Boolean; var SalesHeader: Record "Sales Header"; var TempItemChargeAssgntSales: Record "Item Charge Assignment (Sales)" temporary; var TempWhseShptHeader: Record "Warehouse Shipment Header" temporary; var TempWhseRcptHeader: Record "Warehouse Receipt Header" temporary; PreviewMode: Boolean)
+    begin
+        SalesInvHeader."Invoice Amount(LCY)" += SalesInvLine.Amount / SalesInvHeader."Currency Factor";
+        SalesInvHeader.Modify();
+        Message(Format(SalesInvHeader."Invoice Amount(LCY)"));
+    end;
+
+
+    // [EventSubscriber(ObjectType::Codeunit, Codeunit::"Sales-Post", 'OnBeforeSalesCrMemoHeaderInsert', '', true, true)]
+    // local procedure OnBeforeSalesCrMemoHeaderInsert(var SalesCrMemoHeader: Record "Sales Cr.Memo Header"; var SalesHeader: Record "Sales Header"; CommitIsSuppressed: Boolean; var IsHandled: Boolean; var SalesInvHeader: Record "Sales Invoice Header")
+    // begin
+    //     SalesHeader.CalcFields(Amount);
+    //     if SalesHeader."Currency Factor" <> 0 then
+    //         SalesCrMemoHeader."Invoice Amount(LCY)" := SalesHeader.Amount / SalesHeader."Currency Factor";
+    // end;
+    // //Codeunit 80 End
     var
         myInt: Integer;
         ItemSpecification: Record 50122;

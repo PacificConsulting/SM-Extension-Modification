@@ -24,6 +24,12 @@ tableextension 50600 "Sales header_Ext" extends "Sales Header"
         {
             DataClassification = ToBeClassified;
         }
+        field(50605; "Invoiced Quantity"; Decimal)
+        {
+            FieldClass = FlowField;
+            CalcFormula = Sum("Sales Line".Quantity WHERE("Document Type" = FIELD("Document Type"), "Document No." = FIELD("No.")));
+            Editable = false;
+        }
     }
 
     var
