@@ -1,5 +1,7 @@
 codeunit 50600 "Sales Order to Sales quotes"
 {
+    Permissions = tabledata 112 = RM, tabledata 114 = RM, tabledata 122 = RM, tabledata 124 = RM;
+
     //for create item specification
     trigger OnRun()
     begin
@@ -106,52 +108,54 @@ codeunit 50600 "Sales Order to Sales quotes"
     //Codeunit 12 end 
 
     // //Codeunit 90 Start
-    // [EventSubscriber(ObjectType::Codeunit, Codeunit::"Purch.-Post", 'OnAfterPurchInvHeaderInsert', '', true, true)]
-    // local procedure OnAfterPurchInvHeaderInsert(var PurchInvHeader: Record "Purch. Inv. Header"; var PurchHeader: Record "Purchase Header"; PreviewMode: Boolean)
-    // begin
-    //     PurchHeader.CalcFields(Amount);
-    //     if PurchHeader."Currency Factor" <> 0 then
-    //         PurchInvHeader."Invoice Amount(LCY)" := PurchHeader.Amount / PurchHeader."Currency Factor";
-    //     Message(Format(PurchInvHeader."Invoice Amount(LCY)"));
+    [EventSubscriber(ObjectType::Codeunit, Codeunit::"Purch.-Post", 'OnAfterPostPurchaseDoc', '', true, true)]
 
-    // end;
-
-    // [EventSubscriber(ObjectType::Codeunit, Codeunit::"Purch.-Post", 'OnBeforePurchCrMemoHeaderInsert', '', true, true)]
-    // local procedure OnBeforePurchCrMemoHeaderInsert(var PurchCrMemoHdr: Record "Purch. Cr. Memo Hdr."; var PurchHeader: Record "Purchase Header"; CommitIsSupressed: Boolean)
-    // begin
-    //     PurchHeader.CalcFields(Amount);
-    //     if PurchHeader."Currency Factor" <> 0 then
-    //         PurchCrMemoHdr."Invoice Amount(LCY)" := PurchHeader.Amount / PurchHeader."Currency Factor";
-    // end;
-
-    [EventSubscriber(ObjectType::Codeunit, Codeunit::"Purch.-Post", 'OnAfterPurchInvLineInsert', '', true, true)]
-    local procedure OnAfterPurchInvLineInsert(var PurchInvLine: Record "Purch. Inv. Line"; PurchInvHeader: Record "Purch. Inv. Header"; PurchLine: Record "Purchase Line"; ItemLedgShptEntryNo: Integer; WhseShip: Boolean; WhseReceive: Boolean; CommitIsSupressed: Boolean; PurchHeader: Record "Purchase Header"; PurchRcptHeader: Record "Purch. Rcpt. Header"; TempWhseRcptHeader: Record "Warehouse Receipt Header")
+    procedure OnAfterPostPurchaseDoc(var PurchaseHeader: Record "Purchase Header"; var GenJnlPostLine: Codeunit "Gen. Jnl.-Post Line"; PurchRcpHdrNo: Code[20]; RetShptHdrNo: Code[20]; PurchInvHdrNo: Code[20]; PurchCrMemoHdrNo: Code[20]; CommitIsSupressed: Boolean)
+    var
+        PIH: Record 122;
+        PCRMH: Record 124;
     begin
-        PurchInvHeader."Invoice Amount(LCY)" += PurchInvLine.Amount / PurchInvHeader."Currency Factor";
-        PurchInvHeader.Modify();
-        Message(Format(PurchInvHeader."Invoice Amount(LCY)"));
+        PIH.Reset();
+        PIH.SetRange("No.", PurchInvHdrNo);
+        if PIH.FindFirst() then begin
+            PIH.CalcFields(Amount);
+            PIH."Invoice Amount(LCY)" += PIH.Amount / PIH."Currency Factor";
+            PIH.Modify();
+        end;
+
+        PCRMH.Reset();
+        PCRMH.SetRange("No.", PurchCrMemoHdrNo);
+        if PCRMH.FindFirst() then begin
+            PCRMH.CalcFields(Amount);
+            PCRMH."Invoice Amount(LCY)" += PCRMH.Amount / PCRMH."Currency Factor";
+            PCRMH.Modify();
+        end;
     end;
     // //Codeunit 90 End
 
-
     // //Codeunit 80 Start
-
-    [EventSubscriber(ObjectType::Codeunit, Codeunit::"Sales-Post", 'OnAfterSalesInvLineInsert', '', true, true)]
-    local procedure OnAfterSalesInvLineInsert(var SalesInvLine: Record "Sales Invoice Line"; SalesInvHeader: Record "Sales Invoice Header"; SalesLine: Record "Sales Line"; ItemLedgShptEntryNo: Integer; WhseShip: Boolean; WhseReceive: Boolean; CommitIsSuppressed: Boolean; var SalesHeader: Record "Sales Header"; var TempItemChargeAssgntSales: Record "Item Charge Assignment (Sales)" temporary; var TempWhseShptHeader: Record "Warehouse Shipment Header" temporary; var TempWhseRcptHeader: Record "Warehouse Receipt Header" temporary; PreviewMode: Boolean)
+    [EventSubscriber(ObjectType::Codeunit, Codeunit::"Sales-Post", 'OnAfterPostSalesDoc', '', true, true)]
+    local procedure OnAfterPostSalesDoc(var SalesHeader: Record "Sales Header"; var GenJnlPostLine: Codeunit "Gen. Jnl.-Post Line"; SalesShptHdrNo: Code[20]; RetRcpHdrNo: Code[20]; SalesInvHdrNo: Code[20]; SalesCrMemoHdrNo: Code[20]; CommitIsSuppressed: Boolean; InvtPickPutaway: Boolean; var CustLedgerEntry: Record "Cust. Ledger Entry"; WhseShip: Boolean; WhseReceiv: Boolean; PreviewMode: Boolean)
+    var
+        SIH: Record 112;
+        SCRMH: Record 114;
     begin
-        SalesInvHeader."Invoice Amount(LCY)" += SalesInvLine.Amount / SalesInvHeader."Currency Factor";
-        SalesInvHeader.Modify();
-        Message(Format(SalesInvHeader."Invoice Amount(LCY)"));
+        SIH.Reset();
+        SIH.SetRange("No.", SalesInvHdrNo);
+        if SIH.FindFirst() then begin
+            SIH.CalcFields(Amount);
+            SIH."Invoice Amount(LCY)" += SIH.Amount / SIH."Currency Factor";
+            SIH.Modify();
+        end;
+
+        SCRMH.Reset();
+        SCRMH.SetRange("No.", SalesCrMemoHdrNo);
+        if SCRMH.FindFirst() then begin
+            SCRMH.CalcFields(Amount);
+            SCRMH."Invoice Amount(LCY)" += SCRMH.Amount / SCRMH."Currency Factor";
+            SCRMH.Modify();
+        end;
     end;
-
-
-    // [EventSubscriber(ObjectType::Codeunit, Codeunit::"Sales-Post", 'OnBeforeSalesCrMemoHeaderInsert', '', true, true)]
-    // local procedure OnBeforeSalesCrMemoHeaderInsert(var SalesCrMemoHeader: Record "Sales Cr.Memo Header"; var SalesHeader: Record "Sales Header"; CommitIsSuppressed: Boolean; var IsHandled: Boolean; var SalesInvHeader: Record "Sales Invoice Header")
-    // begin
-    //     SalesHeader.CalcFields(Amount);
-    //     if SalesHeader."Currency Factor" <> 0 then
-    //         SalesCrMemoHeader."Invoice Amount(LCY)" := SalesHeader.Amount / SalesHeader."Currency Factor";
-    // end;
     // //Codeunit 80 End
     var
         myInt: Integer;

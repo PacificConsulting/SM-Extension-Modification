@@ -12,6 +12,22 @@ report 50603 "COMMERCIAL Invoice UIC"
             column(FOB_Bifurcation; FOB_Bifurcation)
             {
             }
+            column(Sumqty; Sumqty)
+            {
+
+            }
+            column(Deal; "Shortcut Dimension 1 Code")
+            {
+
+            }
+            column(REDM_BL_Date; "REDM BL Date")
+            {
+
+            }
+            column(REDM_Deal_No_; "REDM Deal No.")
+            {
+
+            }
             column(TotalBalAmntRecvble; TotalBalAmntRecvble)
             {
             }
@@ -140,6 +156,10 @@ report 50603 "COMMERCIAL Invoice UIC"
             }
             column(Bank2; BankAcc)
             {
+            }
+            column(BankCOuntry; BankCountry.Name)
+            {
+
             }
             column(BankAdd_1_; BankAdd[1])
             {
@@ -362,6 +382,9 @@ report 50603 "COMMERCIAL Invoice UIC"
                 column(FOBvalue; FOBvalue)
                 {
                 }
+                column(SlDocno; "Sales Invoice Line"."Document No.")
+                {
+                }
                 column(Tarrifcode; "Sales Invoice Line"."REDM Tariff Code")
                 {
                 }
@@ -382,6 +405,11 @@ report 50603 "COMMERCIAL Invoice UIC"
                 }
                 column(Quantity_SIL; "Sales Invoice Line".Quantity)
                 {
+                }
+
+                column(Description_Comment; "Description Comment")
+                {
+
                 }
                 column(UnitPrice_SIL; "Sales Invoice Line"."Unit Price")
                 {
@@ -513,6 +541,8 @@ report 50603 "COMMERCIAL Invoice UIC"
                     VATAmt29 := "Sales Invoice Line"."Amount Including VAT" - "Sales Invoice Line".Amount;
 
                     //RSPL-AR
+                    if "Sales Invoice Line".Type <> "Sales Invoice Line".Type::"G/L Account" then // [THEN] Then
+                        Sumqty := "Sales Invoice Line".Quantity;
 
                     SILRec.RESET;
                     SILRec.SETRANGE("Document No.", "Document No.");
@@ -563,9 +593,43 @@ report 50603 "COMMERCIAL Invoice UIC"
                     TotalAmount := 0;
                 end;
             }
+            dataitem("Sales Comment Line Header"; "Sales Comment Line")
+            {
+                DataItemLink = "No." = field("No.");
+                DataItemLinkReference = "Sales Invoice Header";
+                DataItemTableView = where("Document Line No." = Filter(0));
+                column(SHComment; Comment)
+                {
+
+                }
+                column(SHCommentNO; "No.")
+                {
+
+                }
+                column(ShLine_No_; "Line No.")
+                {
+
+                }
+                column(Srno; Srno)
+                {
+
+                }
+                trigger OnAfterGetRecord()
+                begin
+                    Srno += 1;
+                end;
+            }
 
             trigger OnAfterGetRecord()
             begin
+                Clear(Sumqty);
+                SILine.Reset();
+                SILine.SetRange("Document No.", "Sales Invoice Line"."Document No.");
+                SILine.SetFilter(Type, '<>%1', SILine.Type::"G/L Account");
+                if SILine.FindSet() then
+                    repeat
+                        Sumqty += SILine.Quantity;
+                    until SILine.Next() = 0;
 
                 CompInfo.GET;
                 CompInfo.CALCFIELDS(CompInfo.Picture);
@@ -639,6 +703,9 @@ report 50603 "COMMERCIAL Invoice UIC"
                     BankAdd[11] := BankAccount."Currency Code";
                     BankAdd[12] := BankAccount."No.";
                     BankAdd[13] := bankAccount."Post Code";
+                    BankCountry.Reset();
+                    BankCountry.SetRange(Code, BankAccount."No.");
+                    if BankCountry.FindFirst() then;
                 END;
 
                 //CLEAR(AdvancedReceived);
@@ -828,5 +895,9 @@ report 50603 "COMMERCIAL Invoice UIC"
         EntryEXit: Record 282;
         RDMPortMaster: Record "REDM Port Master";
         CountryOrigin: Record 349;
+        BankCountry: Record "Country/Region";
+        Srno: Integer;
+        Sumqty: Decimal;
+        SILine: Record 113;
 }
 
