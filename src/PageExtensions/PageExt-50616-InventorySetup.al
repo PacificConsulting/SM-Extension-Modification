@@ -20,6 +20,26 @@ pageextension 50616 "Inventory Setup EXT" extends "Inventory Setup"
     actions
     {
         // Add changes to page actions here
+
+        addlast(Posting)
+        {
+            action(Test)
+            {
+                ApplicationArea = All;
+                Caption = 'Test';
+                Promoted = true;
+                PromotedCategory = Process;
+                PromotedIsBig = true;
+                Image = Image;
+                RunObject = codeunit 50603;
+
+                trigger OnAction()
+                begin
+
+                end;
+            }
+
+        }
     }
 
     var
