@@ -16,5 +16,28 @@ pageextension 50613 "Sales & Receivable EXT" extends "Sales & Receivables Setup"
 
         }
     }
+    actions
+    {
+        addafter("Customer Price Groups")
+        {
+            action(Test)
+            {
+                ApplicationArea = All;
+                Caption = 'Test';
+                Promoted = true;
+                PromotedCategory = Process;
+                PromotedIsBig = true;
+                Image = Image;
+                RunObject = codeunit 50605;
+
+                trigger OnAction()
+                begin
+
+                end;
+            }
+
+        }
+    }
+
 
 }

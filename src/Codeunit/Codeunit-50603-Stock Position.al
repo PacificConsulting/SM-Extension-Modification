@@ -8,6 +8,8 @@ codeunit 50603 "Stock Position Alerts"
     var
         VarEmailSender1: Text[150];
         OutStr: OutStream;
+        TextFinalAmtLcy: Text;
+        DecFinalAmtLcy: Decimal;
         TotalInv: Decimal;
         Recref: RecordRef;
         InStr: InStream;
@@ -80,16 +82,16 @@ codeunit 50603 "Stock Position Alerts"
                     clear(TextAmtLcy);
                     Clear(CntAmtLcy);
                     Clear(fortextAmtLcy);
-                    AmountLcy := Round(RecItem.Inventory, 0.01);
-                    DecamtLcy := ABS(Round(AmountLcy) - Round(AmountLcy, 1));
-                    TextAmtLcy := CopyStr(Format(DecamtLcy), 2);
+                    AmountLcy := Round(RecItem.Inventory, 0.001);
+                    DecamtLcy := ABS((AmountLcy) - Round(AmountLcy, 1));
+                    TextAmtLcy := CopyStr(Format(DecamtLcy), 3);
                     CntAmtLcy := StrLen(Format(TextAmtLcy));
                     IF CntAmtLcy = 2 then
                         fortextAmtLcy := '0';
                     IF CntAmtLcy = 1 then
                         fortextAmtLcy := '00';
                     IF CntAmtLcy = 0 then
-                        fortextAmtLcy := '.00';
+                        fortextAmtLcy := '.000';
 
                     TotalInv += AmountLcy;
 
@@ -101,16 +103,16 @@ codeunit 50603 "Stock Position Alerts"
                     end;
 
                     if srno = Cnt then begin
-                        InvTotal := Round(TotalInv);
-                        DecInventory := ABS(Round(InvTotal) - Round(InvTotal, 1));
-                        TextInventory := CopyStr(Format(DecInventory), 2);
+                        InvTotal := Round(TotalInv, 0.001);
+                        DecInventory := ABS((InvTotal) - Round(InvTotal, 1));
+                        TextInventory := CopyStr(Format(DecInventory), 3);
                         CntInventory := StrLen(Format(TextInventory));
                         IF CntInventory = 2 then
                             fortextInv := '0';
                         IF CntInventory = 1 then
                             fortextInv := '00';
                         IF CntInventory = 0 then
-                            fortextInv := '.00';
+                            fortextInv := '.000';
 
                         BodyText1.AddText('<td> <B>' + 'Total' + '</td>');
                         BodyText1.AddText('<td> <B>' + '' + '</td>');
@@ -129,7 +131,7 @@ codeunit 50603 "Stock Position Alerts"
                             TempBlob.CreateOutStream(OutStr);
                             Report.SaveAs(Report::"Stock Position", '', ReportFormat::Pdf, OutStr, Recref);
                             TempBlob.CreateInStream(InStr);
-                            EmailMessage.AddAttachment('stock as on.pdf', '.pdf', InStr);
+                            EmailMessage.AddAttachment('STOCK POSITION AS ON.pdf', '.pdf', InStr);
                         END;
                         Email1.Send(Emailmessage, Enum::"Email Scenario"::Default);
                         Message('Done');

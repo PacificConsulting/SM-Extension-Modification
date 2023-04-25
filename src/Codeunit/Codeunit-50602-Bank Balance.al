@@ -69,13 +69,13 @@ codeunit 50602 "Bank Account Alerts"
                     Clear(CntAmtLcy);
                     Clear(fortextAmtLcy);
                     AmountLcy := Round(BankAcc."Balance (LCY)", 0.01);
-                    DecamtLcy := ABS(Round(AmountLcy) - Round(AmountLcy, 1));
-                    TextAmtLcy := CopyStr(Format(DecamtLcy), 2);
+                    DecamtLcy := ABS((AmountLcy) - Round(AmountLcy, 1));
+                    TextAmtLcy := CopyStr(Format(DecamtLcy), 3);
                     CntAmtLcy := StrLen(Format(TextAmtLcy));
-                    IF CntAmtLcy = 2 then
-                        fortextAmtLcy := '0';
                     IF CntAmtLcy = 1 then
-                        fortextAmtLcy := '00';
+                        fortextAmtLcy := '0';
+                    // IF CntAmtLcy = 1 then
+                    //     fortextAmtLcy := '00';
                     IF CntAmtLcy = 0 then
                         fortextAmtLcy := '.00';
 
