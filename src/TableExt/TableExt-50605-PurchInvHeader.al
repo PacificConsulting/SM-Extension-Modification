@@ -16,14 +16,14 @@ tableextension 50605 "Purchase Invoice Header_Ext" extends "Purch. Inv. Header"
         }
     }
 
-    trigger OnAfterInsert()
-    var
-        myInt: Integer;
-    begin
-        Rec.CalcFields(Amount);
-        if Rec."Currency Factor" <> 0 then
-            Rec."Invoice Amount(LCY)" := Rec.Amount / Rec."Currency Factor";
-    end;
+    // trigger OnAfterInsert()
+    // var
+    //     myInt: Integer;
+    // begin
+    //     Rec.CalcFields(Amount);
+    //     if Rec."Currency Factor" <> 0 then
+    //         Rec."Invoice Amount(LCY)" := Rec.Amount / Rec."Currency Factor";
+    // end;
 
     var
         myInt: Integer;

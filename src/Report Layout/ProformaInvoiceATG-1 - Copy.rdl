@@ -300,92 +300,6 @@
                                     <TextAlign>Left</TextAlign>
                                   </Style>
                                 </Paragraph>
-                                <Paragraph>
-                                  <TextRuns>
-                                    <TextRun>
-                                      <Value />
-                                      <Style>
-                                        <FontFamily>Segoe UI</FontFamily>
-                                        <FontSize>8pt</FontSize>
-                                      </Style>
-                                    </TextRun>
-                                  </TextRuns>
-                                  <Style>
-                                    <TextAlign>Left</TextAlign>
-                                  </Style>
-                                </Paragraph>
-                                <Paragraph>
-                                  <TextRuns>
-                                    <TextRun>
-                                      <Value>Ref Purchase and Sale Agreement No:</Value>
-                                      <Style>
-                                        <FontFamily>Segoe UI</FontFamily>
-                                        <FontSize>8pt</FontSize>
-                                        <FontWeight>Bold</FontWeight>
-                                      </Style>
-                                    </TextRun>
-                                  </TextRuns>
-                                  <Style>
-                                    <TextAlign>Left</TextAlign>
-                                  </Style>
-                                </Paragraph>
-                                <Paragraph>
-                                  <TextRuns>
-                                    <TextRun>
-                                      <Value>=Fields!Deal.Value</Value>
-                                      <Style>
-                                        <FontFamily>Segoe UI</FontFamily>
-                                        <FontSize>8pt</FontSize>
-                                      </Style>
-                                    </TextRun>
-                                  </TextRuns>
-                                  <Style>
-                                    <TextAlign>Left</TextAlign>
-                                  </Style>
-                                </Paragraph>
-                                <Paragraph>
-                                  <TextRuns>
-                                    <TextRun>
-                                      <Value />
-                                      <Style>
-                                        <FontFamily>Segoe UI</FontFamily>
-                                        <FontSize>8pt</FontSize>
-                                      </Style>
-                                    </TextRun>
-                                  </TextRuns>
-                                  <Style>
-                                    <TextAlign>Left</TextAlign>
-                                  </Style>
-                                </Paragraph>
-                                <Paragraph>
-                                  <TextRuns>
-                                    <TextRun>
-                                      <Value>Place</Value>
-                                      <Style>
-                                        <FontFamily>Segoe UI</FontFamily>
-                                        <FontSize>8pt</FontSize>
-                                        <FontWeight>Bold</FontWeight>
-                                      </Style>
-                                    </TextRun>
-                                  </TextRuns>
-                                  <Style>
-                                    <TextAlign>Left</TextAlign>
-                                  </Style>
-                                </Paragraph>
-                                <Paragraph>
-                                  <TextRuns>
-                                    <TextRun>
-                                      <Value>=Fields!CompCountry.Value</Value>
-                                      <Style>
-                                        <FontFamily>Segoe UI</FontFamily>
-                                        <FontSize>8pt</FontSize>
-                                      </Style>
-                                    </TextRun>
-                                  </TextRuns>
-                                  <Style>
-                                    <TextAlign>Left</TextAlign>
-                                  </Style>
-                                </Paragraph>
                               </Paragraphs>
                               <rd:DefaultName>Textbox17</rd:DefaultName>
                               <Top>1.63744cm</Top>
@@ -398,10 +312,6 @@
                                   <Style>None</Style>
                                   <Width>0.5pt</Width>
                                 </Border>
-                                <LeftBorder>
-                                  <Color>Black</Color>
-                                  <Style>Solid</Style>
-                                </LeftBorder>
                                 <PaddingLeft>2pt</PaddingLeft>
                                 <PaddingRight>2pt</PaddingRight>
                                 <PaddingTop>2pt</PaddingTop>
@@ -2336,35 +2246,7 @@
                             <Paragraph>
                               <TextRuns>
                                 <TextRun>
-                                  <Value>Purchase and Sales Agreement No: </Value>
-                                  <Style>
-                                    <FontFamily>Segoe UI</FontFamily>
-                                    <FontSize>7pt</FontSize>
-                                  </Style>
-                                </TextRun>
-                                <TextRun>
-                                  <Value>=Fields!Deal.Value</Value>
-                                  <Style>
-                                    <FontFamily>Segoe UI</FontFamily>
-                                    <FontSize>7pt</FontSize>
-                                  </Style>
-                                </TextRun>
-                                <TextRun>
-                                  <Value> Dated: </Value>
-                                  <Style>
-                                    <FontFamily>Segoe UI</FontFamily>
-                                    <FontSize>7pt</FontSize>
-                                  </Style>
-                                </TextRun>
-                                <TextRun>
-                                  <Value>=Fields!REDM_BL_Date.Value</Value>
-                                  <Style>
-                                    <FontFamily>Segoe UI</FontFamily>
-                                    <FontSize>7pt</FontSize>
-                                  </Style>
-                                </TextRun>
-                                <TextRun>
-                                  <Value> is binding for both Buyer &amp; Seller and shall govern this order and the sales covered herein.</Value>
+                                  <Value>1. Goods are owned by the seller and reserve the title and property in the goods until Sellers full payment of invoice value received by Seller’s bank counter. Until such time the Buyer shall hold the goods in trust for the Seller.</Value>
                                   <Style>
                                     <FontFamily>Segoe UI</FontFamily>
                                     <FontSize>7pt</FontSize>
@@ -2457,7 +2339,6 @@
                               <Style>Solid</Style>
                               <Width>1.5pt</Width>
                             </RightBorder>
-                            <BackgroundColor>LightGrey</BackgroundColor>
                             <PaddingLeft>2pt</PaddingLeft>
                             <PaddingRight>2pt</PaddingRight>
                             <PaddingTop>2pt</PaddingTop>
@@ -2518,7 +2399,6 @@
                               <Style>Solid</Style>
                               <Width>1.5pt</Width>
                             </RightBorder>
-                            <BackgroundColor>LightGrey</BackgroundColor>
                             <PaddingLeft>2pt</PaddingLeft>
                             <PaddingRight>2pt</PaddingRight>
                             <PaddingTop>2pt</PaddingTop>
@@ -2579,7 +2459,6 @@
                               <Style>Solid</Style>
                               <Width>1.5pt</Width>
                             </RightBorder>
-                            <BackgroundColor>LightGrey</BackgroundColor>
                             <PaddingLeft>2pt</PaddingLeft>
                             <PaddingRight>2pt</PaddingRight>
                             <PaddingTop>2pt</PaddingTop>
@@ -2640,7 +2519,6 @@
                               <Style>Solid</Style>
                               <Width>1.5pt</Width>
                             </RightBorder>
-                            <BackgroundColor>LightGrey</BackgroundColor>
                             <PaddingLeft>2pt</PaddingLeft>
                             <PaddingRight>2pt</PaddingRight>
                             <PaddingTop>2pt</PaddingTop>
@@ -2701,7 +2579,6 @@
                               <Style>Solid</Style>
                               <Width>1.5pt</Width>
                             </RightBorder>
-                            <BackgroundColor>LightGrey</BackgroundColor>
                             <PaddingLeft>2pt</PaddingLeft>
                             <PaddingRight>2pt</PaddingRight>
                             <PaddingTop>2pt</PaddingTop>
@@ -2762,7 +2639,6 @@
                               <Style>Solid</Style>
                               <Width>1.5pt</Width>
                             </RightBorder>
-                            <BackgroundColor>LightGrey</BackgroundColor>
                             <PaddingLeft>2pt</PaddingLeft>
                             <PaddingRight>2pt</PaddingRight>
                             <PaddingTop>2pt</PaddingTop>
@@ -2823,7 +2699,6 @@
                               <Style>Solid</Style>
                               <Width>1.5pt</Width>
                             </RightBorder>
-                            <BackgroundColor>LightGrey</BackgroundColor>
                             <PaddingLeft>2pt</PaddingLeft>
                             <PaddingRight>2pt</PaddingRight>
                             <PaddingTop>2pt</PaddingTop>
@@ -2884,7 +2759,6 @@
                               <Style>Solid</Style>
                               <Width>1.5pt</Width>
                             </RightBorder>
-                            <BackgroundColor>LightGrey</BackgroundColor>
                             <PaddingLeft>2pt</PaddingLeft>
                             <PaddingRight>2pt</PaddingRight>
                             <PaddingTop>2pt</PaddingTop>
@@ -2945,7 +2819,6 @@
                               <Style>Solid</Style>
                               <Width>1.5pt</Width>
                             </RightBorder>
-                            <BackgroundColor>LightGrey</BackgroundColor>
                             <PaddingLeft>2pt</PaddingLeft>
                             <PaddingRight>2pt</PaddingRight>
                             <PaddingTop>2pt</PaddingTop>
@@ -3006,7 +2879,6 @@
                               <Style>Solid</Style>
                               <Width>1.5pt</Width>
                             </RightBorder>
-                            <BackgroundColor>LightGrey</BackgroundColor>
                             <PaddingLeft>2pt</PaddingLeft>
                             <PaddingRight>2pt</PaddingRight>
                             <PaddingTop>2pt</PaddingTop>
@@ -3106,7 +2978,7 @@
                               <TablixBody>
                                 <TablixColumns>
                                   <TablixColumn>
-                                    <Width>17.93749cm</Width>
+                                    <Width>18.57249cm</Width>
                                   </TablixColumn>
                                 </TablixColumns>
                                 <TablixRows>
@@ -3200,7 +3072,7 @@
                               <Top>0cm</Top>
                               <Left>0cm</Left>
                               <Height>0.4cm</Height>
-                              <Width>17.93749cm</Width>
+                              <Width>18.57249cm</Width>
                               <Style>
                                 <Border>
                                   <Style>Solid</Style>
@@ -3218,14 +3090,7 @@
                           <Style>
                             <Border>
                               <Style>None</Style>
-                              <Width>1.5pt</Width>
                             </Border>
-                            <LeftBorder>
-                              <Style>Solid</Style>
-                            </LeftBorder>
-                            <RightBorder>
-                              <Style>Solid</Style>
-                            </RightBorder>
                           </Style>
                         </Rectangle>
                         <ColSpan>5</ColSpan>
@@ -3296,6 +3161,13 @@
                             <Paragraph>
                               <TextRuns>
                                 <TextRun>
+                                  <Value>Bank Account No. : </Value>
+                                  <Style>
+                                    <FontFamily>Segoe UI</FontFamily>
+                                    <FontSize>8pt</FontSize>
+                                  </Style>
+                                </TextRun>
+                                <TextRun>
                                   <Value>=Fields!Bank2.Value</Value>
                                   <Style>
                                     <FontFamily>Segoe UI</FontFamily>
@@ -3308,6 +3180,14 @@
                             </Paragraph>
                             <Paragraph>
                               <TextRuns>
+                                <TextRun>
+                                  <Value>SWIFT : </Value>
+                                  <Style>
+                                    <FontFamily>Segoe UI</FontFamily>
+                                    <FontSize>8pt</FontSize>
+                                    <FontWeight>Normal</FontWeight>
+                                  </Style>
+                                </TextRun>
                                 <TextRun>
                                   <Value>=Fields!BankAdd_5_SwiftCode.Value</Value>
                                   <Style>
@@ -3322,6 +3202,14 @@
                             <Paragraph>
                               <TextRuns>
                                 <TextRun>
+                                  <Value>Currency : </Value>
+                                  <Style>
+                                    <FontFamily>Segoe UI</FontFamily>
+                                    <FontSize>8pt</FontSize>
+                                    <FontWeight>Normal</FontWeight>
+                                  </Style>
+                                </TextRun>
+                                <TextRun>
                                   <Value>=Fields!CurrencyCode_SalesHeader.Value</Value>
                                   <Style>
                                     <FontFamily>Segoe UI</FontFamily>
@@ -3334,6 +3222,14 @@
                             </Paragraph>
                             <Paragraph>
                               <TextRuns>
+                                <TextRun>
+                                  <Value>Bank Address : </Value>
+                                  <Style>
+                                    <FontFamily>Segoe UI</FontFamily>
+                                    <FontSize>8pt</FontSize>
+                                    <FontWeight>Normal</FontWeight>
+                                  </Style>
+                                </TextRun>
                                 <TextRun>
                                   <Value>=Fields!BankAdd_1_.Value + " " + Fields!BankAdd_2_.Value + ", " + Fields!BankAdd_3_City.Value + "- " + Fields!Postcode.Value</Value>
                                   <Style>
@@ -3423,11 +3319,10 @@
                             <Paragraph>
                               <TextRuns>
                                 <TextRun>
-                                  <Value />
+                                  <Value>We accept this PI together with the general terms &amp; conditions mentioned in the PI.</Value>
                                   <Style>
                                     <FontFamily>Segoe UI</FontFamily>
                                     <FontSize>8pt</FontSize>
-                                    <FontWeight>Bold</FontWeight>
                                   </Style>
                                 </TextRun>
                               </TextRuns>
@@ -3550,14 +3445,6 @@
                             <Paragraph>
                               <TextRuns>
                                 <TextRun>
-                                  <Value>For Buyer - </Value>
-                                  <Style>
-                                    <FontFamily>Segoe UI</FontFamily>
-                                    <FontSize>8pt</FontSize>
-                                    <FontWeight>Bold</FontWeight>
-                                  </Style>
-                                </TextRun>
-                                <TextRun>
                                   <Value>=Fields!CompanyContact.Value</Value>
                                   <Style>
                                     <FontFamily>Segoe UI</FontFamily>
@@ -3569,6 +3456,32 @@
                               <Style>
                                 <TextAlign>Center</TextAlign>
                               </Style>
+                            </Paragraph>
+                            <Paragraph>
+                              <TextRuns>
+                                <TextRun>
+                                  <Value />
+                                  <Style>
+                                    <FontFamily>Segoe UI</FontFamily>
+                                    <FontSize>8pt</FontSize>
+                                    <FontWeight>Bold</FontWeight>
+                                  </Style>
+                                </TextRun>
+                              </TextRuns>
+                              <Style />
+                            </Paragraph>
+                            <Paragraph>
+                              <TextRuns>
+                                <TextRun>
+                                  <Value />
+                                  <Style>
+                                    <FontFamily>Segoe UI</FontFamily>
+                                    <FontSize>8pt</FontSize>
+                                    <FontWeight>Bold</FontWeight>
+                                  </Style>
+                                </TextRun>
+                              </TextRuns>
+                              <Style />
                             </Paragraph>
                             <Paragraph>
                               <TextRuns>
@@ -3711,56 +3624,16 @@
               <TablixMembers>
                 <TablixMember />
                 <TablixMember />
-                <TablixMember>
-                  <Visibility>
-                    <Hidden>true</Hidden>
-                  </Visibility>
-                </TablixMember>
-                <TablixMember>
-                  <Visibility>
-                    <Hidden>true</Hidden>
-                  </Visibility>
-                </TablixMember>
-                <TablixMember>
-                  <Visibility>
-                    <Hidden>true</Hidden>
-                  </Visibility>
-                </TablixMember>
-                <TablixMember>
-                  <Visibility>
-                    <Hidden>true</Hidden>
-                  </Visibility>
-                </TablixMember>
-                <TablixMember>
-                  <Visibility>
-                    <Hidden>true</Hidden>
-                  </Visibility>
-                </TablixMember>
-                <TablixMember>
-                  <Visibility>
-                    <Hidden>true</Hidden>
-                  </Visibility>
-                </TablixMember>
-                <TablixMember>
-                  <Visibility>
-                    <Hidden>true</Hidden>
-                  </Visibility>
-                </TablixMember>
-                <TablixMember>
-                  <Visibility>
-                    <Hidden>true</Hidden>
-                  </Visibility>
-                </TablixMember>
-                <TablixMember>
-                  <Visibility>
-                    <Hidden>true</Hidden>
-                  </Visibility>
-                </TablixMember>
-                <TablixMember>
-                  <Visibility>
-                    <Hidden>true</Hidden>
-                  </Visibility>
-                </TablixMember>
+                <TablixMember />
+                <TablixMember />
+                <TablixMember />
+                <TablixMember />
+                <TablixMember />
+                <TablixMember />
+                <TablixMember />
+                <TablixMember />
+                <TablixMember />
+                <TablixMember />
                 <TablixMember />
                 <TablixMember />
                 <TablixMember />
@@ -3795,10 +3668,10 @@
         <Height>7.18768in</Height>
         <Style />
       </Body>
-      <Width>7.44464in</Width>
+      <Width>7.45714in</Width>
       <Page>
         <PageHeader>
-          <Height>2.16614cm</Height>
+          <Height>2.13968cm</Height>
           <PrintOnFirstPage>true</PrintOnFirstPage>
           <PrintOnLastPage>true</PrintOnLastPage>
           <ReportItems>
@@ -3834,7 +3707,7 @@
                         </TextRun>
                       </TextRuns>
                       <Style>
-                        <TextAlign>Right</TextAlign>
+                        <TextAlign>Center</TextAlign>
                       </Style>
                     </Paragraph>
                     <Paragraph>
@@ -3848,7 +3721,7 @@
                         </TextRun>
                       </TextRuns>
                       <Style>
-                        <TextAlign>Right</TextAlign>
+                        <TextAlign>Center</TextAlign>
                       </Style>
                     </Paragraph>
                     <Paragraph>
@@ -3862,14 +3735,14 @@
                         </TextRun>
                       </TextRuns>
                       <Style>
-                        <TextAlign>Right</TextAlign>
+                        <TextAlign>Center</TextAlign>
                       </Style>
                     </Paragraph>
                   </Paragraphs>
                   <rd:DefaultName>Textbox110</rd:DefaultName>
-                  <Top>0.2815in</Top>
+                  <Top>0.33706in</Top>
                   <Left>1.49256in</Left>
-                  <Height>0.49284in</Height>
+                  <Height>0.48379in</Height>
                   <Width>5.82708in</Width>
                   <ZIndex>1</ZIndex>
                   <Style>
@@ -3891,21 +3764,21 @@
                         <TextRun>
                           <Value>=Fields!COMPANYNAME.Value</Value>
                           <Style>
-                            <FontSize>16pt</FontSize>
+                            <FontSize>18pt</FontSize>
                             <FontWeight>Bold</FontWeight>
                             <Color>SteelBlue</Color>
                           </Style>
                         </TextRun>
                       </TextRuns>
                       <Style>
-                        <TextAlign>Right</TextAlign>
+                        <TextAlign>Center</TextAlign>
                       </Style>
                     </Paragraph>
                   </Paragraphs>
                   <rd:DefaultName>Textbox5</rd:DefaultName>
                   <Top>0.07091cm</Top>
                   <Left>3.7911cm</Left>
-                  <Height>0.64411cm</Height>
+                  <Height>0.78521cm</Height>
                   <Width>14.79903cm</Width>
                   <ZIndex>2</ZIndex>
                   <Style>
@@ -3922,8 +3795,8 @@
               </ReportItems>
               <KeepTogether>true</KeepTogether>
               <Top>0.03175cm</Top>
-              <Left>0.28575cm</Left>
-              <Height>2.0021cm</Height>
+              <Left>0.3175cm</Left>
+              <Height>2.10793cm</Height>
               <Width>18.62364cm</Width>
               <Style>
                 <Border>
@@ -3997,12 +3870,6 @@ End Function
         </Field>
         <Field Name="PaymnttermsDiscntFormat">
           <DataField>PaymnttermsDiscntFormat</DataField>
-        </Field>
-        <Field Name="Deal">
-          <DataField>Deal</DataField>
-        </Field>
-        <Field Name="REDM_BL_Date">
-          <DataField>REDM_BL_Date</DataField>
         </Field>
         <Field Name="Prepayment_Due_Date">
           <DataField>Prepayment_Due_Date</DataField>

@@ -35,6 +35,17 @@ pageextension 50613 "Sales & Receivable EXT" extends "Sales & Receivables Setup"
 
                 end;
             }
+            action("Due Next Week")
+            {
+                ApplicationArea = All;
+                Caption = 'Due NExt Week';
+                Promoted = true;
+                PromotedCategory = Process;
+                PromotedIsBig = true;
+                Image = Image;
+                RunObject = codeunit 50606;
+
+            }
 
         }
     }

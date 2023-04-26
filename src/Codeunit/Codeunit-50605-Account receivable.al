@@ -8,7 +8,6 @@ codeunit 50605 "Account Receivable Alerts"
     var
         VarEmailSender1: Text[150];
         OutStr: OutStream;
-        TotalInv: Decimal;
         Recref: RecordRef;
         InStr: InStream;
         TempBlob: Codeunit "Temp Blob";
@@ -77,45 +76,36 @@ codeunit 50605 "Account Receivable Alerts"
                 if (Not VarRecipaint1.Contains('')) then begin
                     if srno = 0 then begin
                         VarEmailSender1 := 'steelmont.erp@steelmont.net';
-                        Varsubject := 'Account receivable as on: ' + FORMAT(TODAY, 0, '<Day,2>/<Month,2>/<Year4>');
+                        Varsubject := 'Account Receivable as on: ' + FORMAT(TODAY, 0, '<Day,2>/<Month,2>/<Year4>');
                         BodyText1.AddText('Hi All,');
                         BodyText1.AddText('<br><Br>');
                         BodyText1.AddText('Account receivable as on: ' + FORMAT(TODAY, 0, '<Day,2>/<Month,2>/<Year4>') + ' for ' + CompanyName);
                         BodyText1.AddText('<br><Br>');
-                        BodyText1.AddText('<table style="width:180%" border="1">');
+                        //BodyText1.AddText('<table style="width:180%" border="1">');
+                        BodyText1.AddText('<table border="1">');
                         BodyText1.AddText('<tr style="background-color:#507CD1;color:#fff";align="center">');
                         BodyText1.AddText('<th align="center" > Posting Date </th>');
                         BodyText1.AddText('<th align="center" > Document Date </th>');
-                        BodyText1.AddText('<th align="center"> Document Type </th>');
-                        BodyText1.AddText('<th align="center"> Customer Invoice No. </th>');
-                        BodyText1.AddText('<th align="center"> Vendor No </th>');
-                        BodyText1.AddText('<th align="center"> Vendor Name      </th>');
+                        BodyText1.AddText('<th align="center"> Invoice No. </th>');
+                        BodyText1.AddText('<th align="center"> Vendor Name </th>');
                         BodyText1.AddText('<th align="center"> Deal </th>');
                         BodyText1.AddText('<th align="center"> Currency Code  </th>');
-                        BodyText1.AddText('<th align="center"> Amount    </th>');
-                        BodyText1.AddText('<th align="center"> Amount (LCY)     </th>');
-                        BodyText1.AddText('<th align="center"> Remaining Amount     </th>');
-                        BodyText1.AddText('<th align="center"> Remaining Amount (LCY)   </th>');
+                        BodyText1.AddText('<th align="center"> Receivable Amount     </th>');
+                        BodyText1.AddText('<th align="center"> Receivable Amount (LCY)   </th>');
                         BodyText1.AddText('<th align="center"> Due Date      </th>');
-                        BodyText1.AddText('<th align="center"> Salesperson Code      </th>');
                         BodyText1.AddText('</tr>');
                     end;
                     srno += 1;
                     if srno <> 0 then begin
                         BodyText1.AddText('<td align="center">' + FORMAT(CLE."Posting Date", 0, '<Day,2>/<Month,2>/<Year4>') + '</td>');
                         BodyText1.AddText('<td align="center">' + FORMAT(CLE."Document Date", 0, '<Day,2>/<Month,2>/<Year4>') + '</td>');
-                        BodyText1.AddText('<td align="center">' + Format(CLE."Document Type") + '</td>');
                         BodyText1.AddText('<td align="center">' + SIH."External Document No." + '</td>');
-                        BodyText1.AddText('<td align="center">' + CLE."Customer No." + '</td>');
                         BodyText1.AddText('<td>' + Cust.Name + '</td>');
                         BodyText1.AddText('<td>' + CLE."Global Dimension 1 Code" + '</td>');
                         BodyText1.AddText('<td align="center">' + CLE."Currency Code" + '</td>');
-                        BodyText1.AddText('<td align="right">' + Format(CLE.Amount) + '</td>');
-                        BodyText1.AddText('<td align="right">' + Format(CLE."Amount (LCY)") + '</td>');
                         BodyText1.AddText('<td align="right">' + Format(CLE."Remaining Amount") + '</td>');
                         BodyText1.AddText('<td align="right">' + Format(CLE."Remaining Amt. (LCY)") + '</td>');
                         BodyText1.AddText('<td align="center">' + FORMAT(CLE."Due Date", 0, '<Day,2>/<Month,2>/<Year4>') + '</td>');
-                        BodyText1.AddText('<td align="left">' + CLE."Shortcut Dimension 3 Code" + '</td>');
                         BodyText1.AddText('</tr>');
                     end;
                     if srno = Cnt then begin

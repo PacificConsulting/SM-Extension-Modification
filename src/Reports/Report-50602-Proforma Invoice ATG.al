@@ -18,6 +18,14 @@ report 50602 "Proforma UIC"
             column(PaymnttermsDiscnt; PaymnttermsDiscnt)
             {
             }
+            column(Deal; "Shortcut Dimension 1 Code")
+            {
+
+            }
+            column(REDM_BL_Date; "REDM BL Date")
+            {
+
+            }
             column(Prepayment_Due_Date; "Prepayment Due Date")
             {
             }
@@ -496,21 +504,20 @@ report 50602 "Proforma UIC"
 
                 bankAccount.SETRANGE(bankAccount."No.", "Sales Header"."REDM Bank Account");//"Sales Header"."Bank to be used");   //temp comment
                 IF bankAccount.FINDFIRST THEN BEGIN
-                    BankAcc := bankAccount."Bank Account No.";
+                    BankAcc := 'Bank Account No. : ' + bankAccount."Bank Account No.";
                     BANKName := bankAccount.Name;
-                    BankAdd[1] := bankAccount.Address;
+                    BankAdd[1] := 'Bank Address : ' + bankAccount.Address;
                     BankAdd[2] := bankAccount."Address 2";
                     BankAdd[3] := bankAccount.City;
                     IF CountryTable.GET(bankAccount."Country/Region Code") THEN;
                     BankAdd[4] := CountryTable.Name;
-
-                    BankAdd[5] := bankAccount."SWIFT Code";
+                    BankAdd[5] := 'SWIFT : ' + bankAccount."SWIFT Code";
                     BankAdd[6] := bankAccount.IBAN;
                     //BankAdd[7] := bankAccount."Correspondent Bank Name";
                     //BankAdd[8] := bankAccount."Correspondent Bank Branch";
                     //BankAdd[9] := bankAccount."Correspondent Bank Swift Code";
                     BankAdd[10] := CompanyInfo.Name;
-                    BankAdd[11] := bankAccount."Currency Code";
+                    BankAdd[11] := 'Currency : ' + bankAccount."Currency Code";
                     BankAdd[12] := bankAccount."No.";
                     BankAdd[13] := bankAccount."Post Code";
                 END;

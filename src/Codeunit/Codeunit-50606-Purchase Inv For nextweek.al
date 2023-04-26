@@ -1,15 +1,18 @@
-codeunit 50604 "Account Payable Alerts"
+codeunit 50606 "Purchase Invoice for Next Week"
 {
     trigger OnRun()
     begin
         SendMailtoVendor();
+        SendMailtoCustomer();
     end;
 
     var
         VarEmailSender1: Text[150];
         OutStr: OutStream;
-        TotalInv: Decimal;
-        Recref: RecordRef;
+        SalreceiveSet: Record "Sales & Receivables Setup";
+        SIH: Record "Sales Invoice Header";
+        CLE: Record "Cust. Ledger Entry";
+        ActivityCue: Record 1313;
         InStr: InStream;
         TempBlob: Codeunit "Temp Blob";
         VLE: Record "Vendor Ledger Entry";
@@ -47,17 +50,19 @@ codeunit 50604 "Account Payable Alerts"
         Clear(VarRecipaint1);
         Clear(Email1);
         Clear(BodyText1);
+        Clear(Emailmessage);
         PurchPaySet.Get();
         PurchPaySet.TestField("Email Alerts");
         EmailText1 := PurchPaySet."Email Id";
         VarRecipaint1.AddRange(EmailText1.Split(';'));
         srno := 0;
         Clear(Cnt);
-
+        ActivityCue.Get();
         VLE.Reset();
         VLE.SetRange(Open, true);
-        VLE.SetFilter("Due Date", '<%1', Today);
-        VLE.SetFilter("Posting Date", '%1..%2', 20220101D, Today);   //temp filter only for test DB 
+        //VLE.SetRange("Due Date", ActivityCue."Due Next Week Filter");
+        VLE.SetFilter("Due Date", '%1..%2', 20230201D, 20230207D);   //temp add code for testing
+        VLE.SetFilter("Document Type", '%1|%2', VLE."Document Type"::Invoice, VLE."Document Type"::"Credit Memo");
         IF VLE.FindSet() THEN BEGIN
             REPEAT
                 VLE.CalcFields(Amount, "Amount (LCY)", "Remaining Amount", "Remaining Amt. (LCY)", "Shortcut Dimension 3 Code");
@@ -77,10 +82,10 @@ codeunit 50604 "Account Payable Alerts"
                 if (Not VarRecipaint1.Contains('')) then begin
                     if srno = 0 then begin
                         VarEmailSender1 := 'steelmont.erp@steelmont.net';
-                        Varsubject := 'Account Payable as on: ' + FORMAT(TODAY, 0, '<Day,2>/<Month,2>/<Year4>');
+                        Varsubject := 'Payable Invoice Due For Next Week: ';
                         BodyText1.AddText('Hi All,');
                         BodyText1.AddText('<br><Br>');
-                        BodyText1.AddText('Account payable as on: ' + FORMAT(TODAY, 0, '<Day,2>/<Month,2>/<Year4>') + ' for ' + CompanyName);
+                        BodyText1.AddText('Payable Invoice Due For Next Week:');
                         BodyText1.AddText('<br><Br>');
                         BodyText1.AddText('<table border="1">');
                         BodyText1.AddText('<tr style="background-color:#507CD1;color:#fff">');
@@ -121,6 +126,90 @@ codeunit 50604 "Account Payable Alerts"
                     END;
                 end;
             UNTIL VLE.Next() = 0;
+        End;
+    END;
+
+    //Payable Invoice Due For Next Week
+    procedure SendMailtoCustomer()
+    var
+        Cust: Record Customer;
+    begin
+        Clear(VarRecipaint1);
+        Clear(Email1);
+        Clear(BodyText1);
+        Clear(EmailText1);
+        Clear(VarEmailSender1);
+        Clear(Varsubject);
+        Clear(Emailmessage);
+        SalreceiveSet.Get();
+        ActivityCue.Get();
+        SalreceiveSet.TestField("Email Alerts");
+        EmailText1 := SalreceiveSet."Email Id";
+        VarRecipaint1.AddRange(EmailText1.Split(';'));
+        srno := 0;
+        Clear(Cnt);
+        CLE.Reset();
+        CLE.SetRange(Open, true);
+        //VLE.SetRange("Due Date", ActivityCue."Due Next Week Filter");
+        CLE.SetFilter("Due Date", '%1..%2', 20230201D, 20230207D);//temp add code for testing
+        CLE.SetFilter("Document Type", '%1|%2', CLE."Document Type"::Invoice, CLE."Document Type"::"Credit Memo");
+        IF CLE.FindSet() THEN BEGIN
+            REPEAT
+                CLE.CalcFields(Amount, "Amount (LCY)", "Remaining Amount", "Remaining Amt. (LCY)", "Shortcut Dimension 3 Code");
+                if Cust.Get(CLE."Customer No.") then;
+                SIH.Reset();
+                SIH.SetRange("No.", CLE."Document No.");
+                if SIH.FindFirst() then;
+
+                cnt := CLE.Count;
+                if (Not VarRecipaint1.Contains('')) then begin
+                    if srno = 0 then begin
+                        VarEmailSender1 := 'steelmont.erp@steelmont.net';
+                        Varsubject := 'Receivable Invoice Due For Next Week :';
+                        BodyText1.AddText('Hi All,');
+                        BodyText1.AddText('<br><Br>');
+                        BodyText1.AddText('Receivable Invoice Due For Next Week :');
+                        BodyText1.AddText('<br><Br>');
+                        //BodyText1.AddText('<table style="width:180%" border="1">');
+                        BodyText1.AddText('<table border="1">');
+                        BodyText1.AddText('<tr style="background-color:#507CD1;color:#fff";align="center">');
+                        BodyText1.AddText('<th align="center" > Posting Date </th>');
+                        BodyText1.AddText('<th align="center" > Document Date </th>');
+                        BodyText1.AddText('<th align="center"> Invoice No. </th>');
+                        BodyText1.AddText('<th align="center"> Vendor Name </th>');
+                        BodyText1.AddText('<th align="center"> Deal </th>');
+                        BodyText1.AddText('<th align="center"> Currency Code  </th>');
+                        BodyText1.AddText('<th align="center"> Receivable Amount     </th>');
+                        BodyText1.AddText('<th align="center"> Receivable Amount (LCY)   </th>');
+                        BodyText1.AddText('<th align="center"> Due Date      </th>');
+                        BodyText1.AddText('</tr>');
+                    end;
+                    srno += 1;
+                    if srno <> 0 then begin
+                        BodyText1.AddText('<td align="center">' + FORMAT(CLE."Posting Date", 0, '<Day,2>/<Month,2>/<Year4>') + '</td>');
+                        BodyText1.AddText('<td align="center">' + FORMAT(CLE."Document Date", 0, '<Day,2>/<Month,2>/<Year4>') + '</td>');
+                        BodyText1.AddText('<td align="center">' + SIH."External Document No." + '</td>');
+                        BodyText1.AddText('<td>' + Cust.Name + '</td>');
+                        BodyText1.AddText('<td>' + CLE."Global Dimension 1 Code" + '</td>');
+                        BodyText1.AddText('<td align="center">' + CLE."Currency Code" + '</td>');
+                        BodyText1.AddText('<td align="right">' + Format(CLE."Remaining Amount") + '</td>');
+                        BodyText1.AddText('<td align="right">' + Format(CLE."Remaining Amt. (LCY)") + '</td>');
+                        BodyText1.AddText('<td align="center">' + FORMAT(CLE."Due Date", 0, '<Day,2>/<Month,2>/<Year4>') + '</td>');
+                        BodyText1.AddText('</tr>');
+                    end;
+                    if srno = Cnt then begin
+                        BodyText1.AddText('</table>');
+                        BodyText1.AddText('<br><Br>');
+                        BodyText1.AddText('<table border="0">');
+                        BodyText1.AddText('<tr>');
+                        BodyText1.AddText('<td style="text-align:left" colspan=8><b>' + 'Thanks & Regards' + '</b></td>');
+                        BodyText1.AddText('</tr>');
+                        Emailmessage.Create(VarRecipaint1, Varsubject, Format(BodyText1), true, UserReceipt1, NewReceipt1);
+                        Email1.Send(Emailmessage, Enum::"Email Scenario"::Default);
+                        Message('Done');
+                    END;
+                end;
+            UNTIL CLE.Next() = 0;
         End;
     END;
 }
