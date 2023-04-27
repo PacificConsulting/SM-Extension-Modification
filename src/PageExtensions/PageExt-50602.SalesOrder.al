@@ -53,10 +53,10 @@ pageextension 50602 "Sales ord_Ext" extends "Sales Order"
                 end;
             }
         }
-        // modify("REDMMulti Proforma Invoice Print")
-        // {
-        //     Visible = false;
-        // }
+        modify("Proforma Invoice ATG")
+        {
+            Visible = false;
+        }
     }
     var
         SH: Record 36;

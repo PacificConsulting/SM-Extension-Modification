@@ -12,6 +12,10 @@ report 50603 "COMMERCIAL Invoice UIC"
             column(FOB_Bifurcation; FOB_Bifurcation)
             {
             }
+            column(BenFicname; BenFicname)
+            {
+
+            }
             column(Sumqty; Sumqty)
             {
 
@@ -686,21 +690,21 @@ report 50603 "COMMERCIAL Invoice UIC"
 
                 BankAccount.SETRANGE(BankAccount."No.", "Sales Invoice Header"."REDM Bank Account");//"Sales Invoice Header"."Bank to be used");
                 IF BankAccount.FINDFIRST THEN BEGIN
-                    BankAcc := BankAccount."Bank Account No.";
+                    BenFicname := 'BENEFICIARY: ' + CompInfo.Name;
+                    BankAcc := 'Bank Account No. : ' + BankAccount."Bank Account No.";
                     BANKName := BankAccount.Name;
-                    BankAdd[1] := BankAccount.Address;
-
-                    BankAdd[2] := BankAccount."Address 2";
-                    BankAdd[3] := BankAccount.City;
+                    BankAdd[1] := 'Bank Address : ' + BankAccount.Address;
+                    BankAdd[2] := BankAccount."Address 2" + ', ';
+                    BankAdd[3] := BankAccount.City + '- ';
                     BankAdd[4] := BankAccount."Post Code";
 
-                    BankAdd[5] := BankAccount."SWIFT Code";
+                    BankAdd[5] := 'SWIFT : ' + BankAccount."SWIFT Code";
                     BankAdd[6] := BankAccount.IBAN;
                     //BankAdd[7] := bankAccount."Correspondent Bank Name";
                     //BankAdd[8] := bankAccount."Correspondent Bank Branch";
                     //BankAdd[9] := bankAccount."Correspondent Bank Swift Code";
                     BankAdd[10] := CompInfo.Name;
-                    BankAdd[11] := BankAccount."Currency Code";
+                    BankAdd[11] := 'Currency : ' + BankAccount."Currency Code";
                     BankAdd[12] := BankAccount."No.";
                     BankAdd[13] := bankAccount."Post Code";
                     BankCountry.Reset();
@@ -785,6 +789,7 @@ report 50603 "COMMERCIAL Invoice UIC"
 
     var
         CompInfo: Record 79;
+        BenFicname: Text;
         PaymTermsRec: Record 3;
         PaymMethodRec: Record 289;
         BankAccRec: Record 270;

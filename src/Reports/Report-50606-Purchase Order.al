@@ -1,14 +1,14 @@
-report 50602 "Proforma UIC"
+report 50606 "Purchase Order"
 {
     DefaultLayout = RDLC;
-    RDLCLayout = 'src\Report Layout\ProformaInvoiceATG-1.rdl';
+    RDLCLayout = 'src\Report Layout\PurchaseOrder.rdl';
     PreviewMode = Normal;
     UsageCategory = ReportsAndAnalysis;
     ApplicationArea = all;
 
     dataset
     {
-        dataitem("Sales Header"; "Sales Header")
+        dataitem("Purchase Header"; "Purchase Header")
         {
             DataItemTableView = SORTING("Document Type", "No.")
                                 ORDER(Ascending)
@@ -38,10 +38,10 @@ report 50602 "Proforma UIC"
             column(Prepayment_Due_Date; "Prepayment Due Date")
             {
             }
-            column(Origin_SalesHeader; CountryOrigin.Name)//"Sales Header".Origin)    //Temp comment
+            column(Origin_SalesHeader; CountryOrigin.Name)
             {
             }
-            column(IncoTerms_SH; "Sales Header"."REDM Inco Terms/Delivery Terms")//"Sales Header".Incoterms)//Temp comment
+            column(IncoTerms_SH; "Purchase Header"."REDM Inco Terms/Delivery Terms")
             {
             }
             column(PageConst_________FORMAT_CurrReport_PAGENO_; PageConst + ' ' + FORMAT(CurrReport.PAGENO))
@@ -53,13 +53,13 @@ report 50602 "Proforma UIC"
             column(FORMAT_TODAY_0_4_; FORMAT(TODAY, 0, 4))
             {
             }
-            column(StueMummer; CompanyInfo."RSPL Registry Tax No.")//CompanyInfo."Registry Tax No.")  
+            column(StueMummer; CompanyInfo."RSPL Registry Tax No.")
             {
             }
-            column(RegistrieMummer; CompanyInfo."RSPLRegister Court No.")//CompanyInfo."Register Court No.")
+            column(RegistrieMummer; CompanyInfo."RSPLRegister Court No.")
             {
             }
-            column(USTIDNr; "REDM OWN VAT Account No.")//"Sales Header"."own VAT Registration No.")
+            column(USTIDNr; "REDM OWN VAT Account No.")
             {
             }
             column(Company_Logo; CompanyInfo.Picture)
@@ -105,28 +105,28 @@ report 50602 "Proforma UIC"
             column(CustVATNo; CustVATNo)
             {
             }
-            column(SellContact; "Sales Header"."Sell-to Customer Name")
+            column(SellContact; "Purchase Header"."Buy-from Vendor Name")
             {
             }
-            column(SelAdd; "Sell-to Address")
+            column(SelAdd; "Purchase Header"."Buy-from Address")
             {
             }
-            column(SelltoAddress2_SalesHeader; "Sales Header"."Sell-to Address 2")
+            column(SelltoAddress2_SalesHeader; "Purchase Header"."Buy-from Address 2")
             {
             }
-            column(SelAdd1; "Sell-to Post Code" + ', ' + "Sell-to City")
+            column(SelAdd1; "Buy-from Post Code" + ', ' + "Buy-from City")
             {
             }
             column(SelAdd2; SalesCountryName)
             {
             }
-            column(SelAdd3; "Sell-to Post Code")
+            column(SelAdd3; "Buy-from Post Code")
             {
             }
-            column(SelAdd4; "Sell-to Contact No.")
+            column(SelAdd4; "Buy-from Contact No.")
             {
             }
-            column(CurrencyCode_SalesHeader; "Sales Header"."Currency Code")
+            column(CurrencyCode_SalesHeader; "Currency Code")
             {
             }
             column(NoInvoice; InvoiceNo)
@@ -135,10 +135,10 @@ report 50602 "Proforma UIC"
             column(DocDate; "Document Date")
             {
             }
-            column(ShipmentDate_SalesHeader; "Sales Header"."Shipment Date")
+            column(ShipmentDate_SalesHeader; "REDM Invoice Date")
             {
             }
-            column(DeliveryTerms_SalesHeader; "Sales Header"."REDM Discharge Terms")//"Delivery Terms")
+            column(DeliveryTerms_SalesHeader; "Purchase Header"."REDM Discharge Terms")
             {
             }
             column(PortOfLoad; PortOfLoading)
@@ -168,7 +168,7 @@ report 50602 "Proforma UIC"
             column(Sales_Header__Sales_Header___Deal_Reference_; '')
             {
             }
-            column(FORMAT__Sales_Header___Due_Date__0___Day_____Month_Text_____Year4___; FORMAT("Sales Header"."Due Date", 0, '<Day>/<Month>/<Year4>'))
+            column(FORMAT__Sales_Header___Due_Date__0___Day_____Month_Text_____Year4___; FORMAT("Purchase Header"."Due Date", 0, '<Day>/<Month>/<Year4>'))
             {
             }
             column(Sales_Invoice_HeaderCaption; Sales_Invoice_HeaderCaptionLbl)
@@ -201,10 +201,10 @@ report 50602 "Proforma UIC"
             column(Comm8; Comments[8])
             {
             }
-            column(ExternalDocumentNo_SalesHeader; "Sales Header"."External Document No.")
+            column(ExternalDocumentNo_SalesHeader; "Purchase Header"."REDM Ageement No. / Order No.")
             {
             }
-            dataitem("Sales Line"; "Sales Line")
+            dataitem("Purchase Line"; "Purchase Line")
             {
                 DataItemLink = "Document No." = FIELD("No.");
                 DataItemTableView = SORTING("Document Type", "Document No.", "Line No.")
@@ -213,16 +213,16 @@ report 50602 "Proforma UIC"
                 column(TotalPrepmntvalue; TotalPrepmntvalue)
                 {
                 }
-                column(SlDocno; "Sales Line"."Document No.")
+                column(SlDocno; "Document No.")
                 {
                 }
-                column(Tarrifcode; "Sales Line"."REDM Tariff Code")
+                column(Tarrifcode; "REDM Tariff Code")
                 {
                 }
-                column(DescOfProd; "Description Comment")
+                column(DescOfProd; Description)
                 {
                 }
-                column(UOMC_SL; "Sales Line"."Unit of Measure Code")
+                column(UOMC_SL; "Unit of Measure Code")
                 {
                 }
                 column(UOM; "Unit of Measure")
@@ -252,7 +252,7 @@ report 50602 "Proforma UIC"
                 column(NewAmtInwords; NewAmtInwords)
                 {
                 }
-                column(TranShipment; "Sales Header"."Transport Method")
+                column(TranShipment; "Purchase Header"."Transport Method")
                 {
                 }
                 column(PartialShipment; PartialShipment)
@@ -344,11 +344,9 @@ report 50602 "Proforma UIC"
                 begin
                     GenLedSetup.GET;
 
-
-
                     AmountLCY := "Line Amount";
                     AmountLCY1 := "Line Amount";
-                    UnitPriceLCY := "Unit Price";
+                    UnitPriceLCY := "Unit Cost";
                     // FixedPriceLCY := "Fixed Price"; } //ASR
                     AmountLCY := ROUND(UnitPriceLCY * Quantity);
                     AmountLCY1 := ROUND(UnitPriceLCY * Quantity);
@@ -356,18 +354,18 @@ report 50602 "Proforma UIC"
                     SNo += 1;
 
                     IF PrintAmountInLCY THEN BEGIN
-                        IF "Sales Header"."Currency Code" <> '' THEN BEGIN
-                            IF "Sales Header"."Currency Factor" <> 0 THEN BEGIN
+                        IF "Purchase Header"."Currency Code" <> '' THEN BEGIN
+                            IF "Purchase Header"."Currency Factor" <> 0 THEN BEGIN
                                 AmountLCY :=
                                   ROUND(
                                     CurrExchRate.ExchangeAmtFCYToLCY(
-                                      WORKDATE, "Sales Header"."Currency Code", "Line Amount",
-                                     "Sales Header"."Currency Factor"));
+                                      WORKDATE, "Purchase Header"."Currency Code", "Line Amount",
+                                     "Purchase Header"."Currency Factor"));
                                 UnitPriceLCY :=
                                    ROUND(
                                      CurrExchRate.ExchangeAmtFCYToLCY(
-                                       WORKDATE, "Sales Header"."Currency Code", "Unit Price",
-                                      "Sales Header"."Currency Factor"));
+                                       WORKDATE, "Purchase Header"."Currency Code", "Unit Cost",
+                                      "Purchase Header"."Currency Factor"));
 
                                 /* FixedPriceLCY :=
                                    ROUND(
@@ -381,11 +379,11 @@ report 50602 "Proforma UIC"
                             END;
                         END;
                     END ELSE BEGIN
-                        UnitPriceLCY := "Unit Price";
+                        UnitPriceLCY := "Unit Cost";
                         //FixedPriceLCY := "Fixed Price"; } //ASR
                         AmountLCY := ROUND(UnitPriceLCY * Quantity);
-                        IF "Sales Header"."Currency Code" <> '' THEN
-                            CurrCode := "Sales Header"."Currency Code"
+                        IF "Purchase Header"."Currency Code" <> '' THEN
+                            CurrCode := "Purchase Header"."Currency Code"
                         ELSE
                             CurrCode := GenLedSetup."LCY Code";
                     END;
@@ -400,14 +398,12 @@ report 50602 "Proforma UIC"
 
                     TotalAmount1 += TotalAmount;
 
-                    CurUOM := "Sales Header"."Currency Code" + '/' + "Sales Line"."Unit of Measure";
-                    CurUOM1 := "Sales Line"."Unit of Measure";
-                    CurUOM2 := "Sales Header"."Currency Code";
-
+                    CurUOM := "Purchase Header"."Currency Code" + '/' + "Purchase Line"."Unit of Measure";
+                    CurUOM1 := "Purchase Line"."Unit of Measure";
+                    CurUOM2 := "Purchase Header"."Currency Code";
 
                     TotalPrepmntvalue := TotalAmount1 * (PaymnttermsDiscnt / 100);
                     //MESSAGE('%1',TotalPrepmntvalue);
-
 
                     Check.InitTextVariable();
                     Check.FormatNoText(AmountInWords, TotalPrepmntvalue, CurrCode);
@@ -419,7 +415,7 @@ report 50602 "Proforma UIC"
                     Check.InitTextVariable();
                     Check.FormatNoText(AmountInWords,TotalAmount1,CurrCode);
                     //MESSAGE('%1',AmountInWords[1]);
-                    
+
                     NewAmtInwords := CONVERTSTR(AmountInWords[1],'*',' ');
                     //MESSAGE(AmountInWords[1]);
                     //MESSAGE(NewAmtInwords);
@@ -431,10 +427,10 @@ report 50602 "Proforma UIC"
                     CLEAR(TotalAmount);
                 end;
             }
-            dataitem("Sales Comment Line Header"; "Sales Comment Line")
+            dataitem("Sales Comment Line Header"; "Purch. Comment Line")
             {
                 DataItemLink = "No." = field("No."), "Document Type" = field("Document Type");
-                DataItemLinkReference = "Sales Header";
+                DataItemLinkReference = "Purchase Header";
                 DataItemTableView = where("Document Line No." = Filter(0));
                 column(SHComment; Comment)
                 {
@@ -473,11 +469,11 @@ report 50602 "Proforma UIC"
                 CountryOrigin.SetRange(Code, "REDM Country of Origin");
                 if CountryOrigin.FindFirst() then;
 
-                IF CustomerRec.GET("Sales Header"."Sell-to Customer No.") THEN
-                    CustVATNo := CustomerRec."VAT Registration No.";
+                IF Vend.GET("Purchase Header"."Buy-from Vendor No.") THEN
+                    CustVATNo := Vend."VAT Registration No.";
 
-                if "Sales Header"."REDM Payment Conditions" <> '' then BEGIN
-                    PaymentTermsDesc := "Sales Header"."REDM Payment Conditions"
+                if "Purchase Header"."REDM Payment Conditions" <> '' then BEGIN
+                    PaymentTermsDesc := "Purchase Header"."REDM Payment Conditions"
                 END ELSE BEGIN
                     PaymentTerms.RESET;
                     PaymentTerms.SETRANGE(Code, "Payment Terms Code");
@@ -490,28 +486,18 @@ report 50602 "Proforma UIC"
                 IF PaymentTerms.FINDFIRST THEN
                     PaymnttermsDiscnt := PaymentTerms."Discount %";
 
+
                 RDMPortMaster.RESET;
-                RDMPortMaster.SETRANGE(Code, "Sales Header"."REDM Load Port");
+                RDMPortMaster.SETRANGE(Code, "Purchase Header"."REDM Load Port");
                 IF RDMPortMaster.FINDFIRST THEN
                     PortOfLoading := RDMPortMaster.Decription;
 
                 RDMPortMaster.RESET;
-                RDMPortMaster.SETRANGE(Code, "Sales Header"."REDM Discharge Port");///"Sales Header"."Port of Discharge");  //temp comment
+                RDMPortMaster.SETRANGE(Code, "Purchase Header"."REDM Discharge Port");///"Sales Header"."Port of Discharge");  //temp comment
                 IF RDMPortMaster.FINDFIRST THEN
                     portofDischarge := RDMPortMaster.Decription;
 
-                /*EntryExitPoint.RESET;
-                EntryExitPoint.SETRANGE(Code, "Sales Header"."REDM Load Port");//"Sales Header"."Port of Loading");  //temp comment
-                IF EntryExitPoint.FINDFIRST THEN
-                    PortOfLoading := EntryExitPoint.Description;
-
-                EntryExitPoint.RESET;
-                EntryExitPoint.SETRANGE(Code, "Sales Header"."REDM Discharge Port");///"Sales Header"."Port of Discharge");  //temp comment
-                IF EntryExitPoint.FINDFIRST THEN
-                    portofDischarge := EntryExitPoint.Description;
-                    */
-
-                bankAccount.SETRANGE(bankAccount."No.", "Sales Header"."REDM Bank Account");//"Sales Header"."Bank to be used");   //temp comment
+                bankAccount.SETRANGE(bankAccount."No.", "Purchase Header"."BAnk Account");//"Sales Header"."Bank to be used");   //temp comment
                 IF bankAccount.FINDFIRST THEN BEGIN
                     BenFicname := 'BENEFICIARY: ' + CompanyInfo.Name;
                     BankAcc := 'Bank Account No. : ' + bankAccount."Bank Account No.";
@@ -531,70 +517,29 @@ report 50602 "Proforma UIC"
                     BankAdd[12] := bankAccount."No.";
                     BankAdd[13] := bankAccount."Post Code";
                 END;
-                SalesInvoiceHeader.SETRANGE(SalesInvoiceHeader."Order No.", "Sales Header"."No.");
-                IF SalesInvoiceHeader.FINDFIRST THEN
-                    InvoiceNo := SalesInvoiceHeader."No.";
+                PurchInvoiceHeader.SETRANGE(PurchInvoiceHeader."Order No.", "Purchase Header"."No.");
+                IF PurchInvoiceHeader.FINDFIRST THEN
+                    InvoiceNo := PurchInvoiceHeader."No.";
 
-                IF CountryTable.GET("Sales Header"."Sell-to Country/Region Code") THEN;
+                IF CountryTable.GET("Purchase Header"."Buy-from Country/Region Code") THEN;
                 SalesCountryName := CountryTable.Name;
 
-                /* //ASR
-                IF "Loading Location" <> '' THEN
-                  PortOfLoading := "Loading Location"
-                ELSE IF "Load Port" <> '' THEN BEGIN
-                  //IF Port.GET("Load Port")THEN;   //ASR
-                    //PortOfLoading := Port.Description; //ASR
-                END;                
-                
-                IF "Discharge Location" <> '' THEN
-                  DischargePort := "Discharge Location"
-                ELSE IF "Discharge Port"<>'' THEN BEGIN
-                  IF Port.GET("Discharge Port")THEN;
-                   DischargePort := Port.Description;
-                END;
-                
-                IF "Sales Header"."Trans-Shipment" = "Sales Header"."Trans-Shipment"::"1" THEN
-                  TranShipment := 'Allowed';
-                IF "Sales Header"."Trans-Shipment" <> "Sales Header"."Trans-Shipment"::"1" THEN
-                  TranShipment := 'Not Allowed';
-                
-                IF "Sales Header"."Partial Shipment" = "Sales Header"."Partial Shipment"::"1" THEN
-                  PartialShipment := 'Allowed';
-                IF "Sales Header"."Partial Shipment" <> "Sales Header"."Partial Shipment"::"1" THEN
-                  PartialShipment := 'Not Allowed';
-                  */ //ASR
-
-                /*  //ASR
-                SalesAddInfo.RESET;
-                SalesAddInfo.SETRANGE(SalesAddInfo."No.","Sales Header"."No.");
-                IF SalesAddInfo.FINDFIRST THEN
-                BEGIN
-                  Inspection := SalesAddInfo.Inspection;
-                  Package := SalesAddInfo.Packing;
-                  DelTerms := SalesAddInfo."Pricing Description" + DischargePort;
-                  Validity := SalesAddInfo.Validity;
-                END;
-                */  //ASR
-
-                shipmentmethod.SETRANGE(shipmentmethod.Code, "Sales Header"."Shipment Method Code");
+                shipmentmethod.SETRANGE(shipmentmethod.Code, "Purchase Header"."Shipment Method Code");
                 IF shipmentmethod.FINDFIRST THEN
                     shipmentDesc := shipmentmethod.Description;
 
                 i := 1;
-                SalComment.RESET;
-                SalComment.SETRANGE("Document Type", "Document Type");
-                SalComment.SETRANGE("No.", "No.");
-                IF SalComment.FINDFIRST THEN BEGIN
-                    IF SalComment."Line No." <> 0 THEN
+                PurchComment.RESET;
+                PurchComment.SETRANGE("Document Type", "Document Type");
+                PurchComment.SETRANGE("No.", "No.");
+                IF PurchComment.FINDFIRST THEN BEGIN
+                    IF PurchComment."Line No." <> 0 THEN
                         REPEAT
-                            Comments[i] := FORMAT(i) + '.' + FORMAT(SalComment.Comment);
+                            Comments[i] := FORMAT(i) + '.' + FORMAT(PurchComment.Comment);
                             i += 1;
-                        //CommentsTxt := SalComment.Comment;
-                        //MESSAGE('a');
-                        //END;
-                        UNTIL SalComment.NEXT = 0;
-                END;
 
+                        UNTIL PurchComment.NEXT = 0;
+                END;
             end;
 
             trigger OnPreDataItem()
@@ -686,12 +631,12 @@ report 50602 "Proforma UIC"
         //FormatAddr: Codeunit  365;  //temp comment
         CompanyInfo1: Record 79;
         CompanyInfo2: Record 79;
-        SalesSetup: Record 311;
+        PurchSetup: Record 312;
         DischargePort: Text[50];
         CountryTable: Record 9;
         Country: Text[50];
         InvoiceNo: Text[50];
-        SalesInvoiceHeader: Record 112;
+        PurchInvoiceHeader: Record 122;
         TranShipment: Text[30];
         PartialShipment: Text[30];
         Inspection: Text[30];
@@ -716,10 +661,10 @@ report 50602 "Proforma UIC"
         AmountLCY1: Decimal;
         TotalAmount1: Decimal;
         Comments: array[10] of Text[100];
-        SalComment: Record 44;
+        PurchComment: Record 43;
         i: Integer;
         CommentsTxt: Text[100];
-        CustomerRec: Record 18;
+        Vend: Record 23;
         CustVATNo: Text[20];
         EntryExitPoint: Record 282;
         PaymnttermsDiscnt: Decimal;
