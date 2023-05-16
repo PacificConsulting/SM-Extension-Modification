@@ -55,6 +55,15 @@ codeunit 50600 "Sales Order to Sales quotes"
         ValueEntry.Diameter := ItemLedgerEntry."REDM Diameter";
         ValueEntry."Profile Code" := ItemLedgerEntry."REDM Profile Code";
     end;
+
+    [EventSubscriber(ObjectType::Codeunit, Codeunit::"Item Jnl.-Post Line", 'OnBeforeInsertItemLedgEntry', '', true, true)]
+    local procedure OnBeforeInsertItemLedgEntry(var ItemLedgerEntry: Record "Item Ledger Entry"; ItemJournalLine: Record "Item Journal Line"; TransferItem: Boolean; OldItemLedgEntry: Record "Item Ledger Entry"; ItemJournalLineOrigin: Record "Item Journal Line")
+    begin
+        ItemLedgerEntry."Vessel Code" := ItemJournalLine."Vessel Code";
+        ItemLedgerEntry."Country of Origin" := ItemJournalLine."Country of Origin";
+        ItemLedgerEntry."Country of final Destination" := ItemJournalLine."Country of final Destination";
+        ItemLedgerEntry."Destination Country" := ItemJournalLine."Destination Country";
+    end;
     //Codeunit 22 end
 
     //Table 83 start    
@@ -66,7 +75,10 @@ codeunit 50600 "Sales Order to Sales quotes"
         ItemJnlLine."Own VAT Account No." := PurchHeader."REDM OWN VAT Account No.";
         ItemJnlLine."Transport Method" := PurchHeader."Transport Method";
         ItemJnlLine."VAT Transaction Type" := PurchHeader."REDM Transaction Type";
-
+        ItemJnlLine."Vessel Code" := PurchHeader."REDM Vessel Code";
+        ItemJnlLine."Country of Origin" := PurchHeader."REDM Country of Origin";
+        ItemJnlLine."Country of final Destination" := PurchHeader."REDM Country of final destinat";
+        ItemJnlLine."Destination Country" := PurchHeader."REDM Destination Country";
     end;
 
     [EventSubscriber(ObjectType::Table, Database::"Item Journal Line", 'OnAfterCopyItemJnlLineFromPurchLine', '', true, true)]
@@ -83,6 +95,10 @@ codeunit 50600 "Sales Order to Sales quotes"
         ItemJnlLine."Own VAT Account No." := SalesHeader."REDM OWN VAT Account No.";
         ItemJnlLine."Transport Method" := SalesHeader."Transport Method";
         ItemJnlLine."VAT Transaction Type" := Format(SalesHeader."REDM Transaction Type");
+        ItemJnlLine."Vessel Code" := SalesHeader."REDM Vessel Code";
+        ItemJnlLine."Country of Origin" := SalesHeader."REDM Country of Origin";
+        ItemJnlLine."Country of final Destination" := SalesHeader."REDM Country of final dest";
+        ItemJnlLine."Destination Country" := SalesHeader."REDM Destination Country";
     end;
 
     [EventSubscriber(ObjectType::Table, Database::"Item Journal Line", 'OnAfterCopyItemJnlLineFromSalesLine', '', true, true)]

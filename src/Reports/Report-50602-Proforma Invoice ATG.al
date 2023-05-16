@@ -72,7 +72,7 @@ report 50602 "Proforma UIC"
             column(CompanyAddress1; CompanyInfo.Address)
             {
             }
-            column(CompanyAddress2; CompanyInfo."Address 2")
+            column(CompanyAddress2; CompanyAddress2)// CompanyInfo."Address 2")
             {
             }
             column(CompInfoPostCode; CompanyInfo."Post Code")
@@ -405,9 +405,13 @@ report 50602 "Proforma UIC"
                     CurUOM1 := "Sales Line"."Unit of Measure";
                     CurUOM2 := "Sales Header"."Currency Code";
 
+                    PaymentTerms.RESET;
+                    PaymentTerms.SETRANGE(Code, "Sales Header"."Payment Terms Code");
+                    IF PaymentTerms.FINDFIRST THEN
+                        PaymnttermsDiscnt := PaymentTerms."Discount %";
 
                     TotalPrepmntvalue := TotalAmount1 * (PaymnttermsDiscnt / 100);
-                    //MESSAGE('%1',TotalPrepmntvalue);
+                    //MESSAGE('%1', TotalPrepmntvalue);
 
 
                     Check.InitTextVariable();
@@ -415,6 +419,7 @@ report 50602 "Proforma UIC"
                     //MESSAGE('%1',AmountInWords[1]);
 
                     NewAmtInwords := CONVERTSTR(AmountInWords[1], '*', ' ');
+                    //Message(format(NewAmtInwords));
 
                     /*
                     Check.InitTextVariable();
@@ -486,10 +491,10 @@ report 50602 "Proforma UIC"
                         PaymentTermsDesc := (PaymentTerms.Description);
                 END;
 
-                PaymentTerms.RESET;
+                /*PaymentTerms.RESET;
                 PaymentTerms.SETRANGE(Code, "Payment Terms Code");
                 IF PaymentTerms.FINDFIRST THEN
-                    PaymnttermsDiscnt := PaymentTerms."Discount %";
+                    PaymnttermsDiscnt := PaymentTerms."Discount %";*/
 
                 RDMPortMaster.RESET;
                 RDMPortMaster.SETRANGE(Code, "Sales Header"."REDM Load Port");
@@ -511,6 +516,8 @@ report 50602 "Proforma UIC"
                 IF EntryExitPoint.FINDFIRST THEN
                     portofDischarge := EntryExitPoint.Description;
                     */
+                if CompanyInfo."Address 2" <> '' then
+                    CompanyAddress2 := CompanyInfo."Address 2" + ', ';
 
                 bankAccount.SETRANGE(bankAccount."No.", "Sales Header"."REDM Bank Account");//"Sales Header"."Bank to be used");   //temp comment
                 IF bankAccount.FINDFIRST THEN BEGIN
@@ -518,7 +525,8 @@ report 50602 "Proforma UIC"
                     BankAcc := 'Bank Account No. : ' + bankAccount."Bank Account No.";
                     BANKName := bankAccount.Name;
                     BankAdd[1] := 'Bank Address : ' + bankAccount.Address;
-                    BankAdd[2] := bankAccount."Address 2" + ', ';
+                    if bankAccount."Address 2" <> '' then
+                        BankAdd[2] := bankAccount."Address 2" + ', ';
                     BankAdd[3] := bankAccount.City + '- ';
                     IF CountryTable.GET(bankAccount."Country/Region Code") THEN;
                     BankAdd[4] := CountryTable.Name;
@@ -528,7 +536,7 @@ report 50602 "Proforma UIC"
                     //BankAdd[8] := bankAccount."Correspondent Bank Branch";
                     //BankAdd[9] := bankAccount."Correspondent Bank Swift Code";
                     BankAdd[10] := CompanyInfo.Name;
-                    BankAdd[11] := 'Currency : ' + bankAccount."Currency Code";
+                    BankAdd[11] := 'Currency : ' + "Sales Header"."Currency Code";//bankAccount."Currency Code";
                     BankAdd[12] := bankAccount."No.";
                     BankAdd[13] := bankAccount."Post Code";
                 END;
@@ -639,6 +647,7 @@ report 50602 "Proforma UIC"
     trigger OnInitReport()
     begin
         CompanyInfo.GET;
+
         /*
           SalesSetup.GET;
         CASE SalesSetup."Logo Position on Documents" OF
@@ -664,6 +673,8 @@ report 50602 "Proforma UIC"
 
     var
         PageConst: Label 'Page';
+        CompanyAddress2: text;
+
         BenFicname: Text;
         PaymentTerms: Record 3;
         PaymentTermsDesc: Text[100];
@@ -677,7 +688,7 @@ report 50602 "Proforma UIC"
         BANKName: Text[50];
         BankAdd: array[13] of Text[100];
         TotalAmount: Decimal;
-        Check: Report Check;
+        Check: codeunit 50601;//Report Check;
         AmountInWords: array[2] of Text[250];
         NewAmtInwords: Text[250];
         BunkerDelNote: Text[250];

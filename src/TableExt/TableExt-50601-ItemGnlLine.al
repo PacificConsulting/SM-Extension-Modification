@@ -23,6 +23,23 @@ tableextension 50601 "ItemJournal Line EXT" extends "Item Journal Line"
         {
             DataClassification = ToBeClassified;
         }
+        field(50605; "Vessel Code"; Code[20])
+        {
+            DataClassification = ToBeClassified;
+        }
+        field(50606; "Country of Origin"; Code[20])
+        {
+            DataClassification = ToBeClassified;
+        }
+        Field(50607; "Destination Country"; Code[50])
+        {
+            DataClassification = ToBeClassified;
+        }
+
+        field(50608; "Country of final Destination"; code[20])
+        {
+            DataClassification = ToBeClassified;
+        }
     }
 
     var
