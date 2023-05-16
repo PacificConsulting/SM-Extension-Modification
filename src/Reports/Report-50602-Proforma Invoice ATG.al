@@ -1,5 +1,6 @@
 report 50602 "Proforma UIC"
 {
+    //
     DefaultLayout = RDLC;
     RDLCLayout = 'src\Report Layout\ProformaInvoiceATG-1.rdl';
     PreviewMode = Normal;
