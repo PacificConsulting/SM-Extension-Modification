@@ -556,25 +556,25 @@ report 50606 "Purchase Order"
         }
     }
 
-    requestpage
-    {
+    // requestpage
+    // {
 
-        layout
-        {
-            area(content)
-            {
-                field(ShowAmountInLCY; PrintAmountInLCY)
-                {
-                    Caption = 'Show Amount In LCY';
-                    Visible = false;
-                }
-            }
-        }
+    //     layout
+    //     {
+    //         area(content)
+    //         {
+    //             field(ShowAmountInLCY; PrintAmountInLCY)
+    //             {
+    //                 Caption = 'Show Amount In LCY';
+    //                 Visible = false;
+    //             }
+    //         }
+    //     }
 
-        actions
-        {
-        }
-    }
+    //     actions
+    //     {
+    //     }
+    // }
 
     labels
     {

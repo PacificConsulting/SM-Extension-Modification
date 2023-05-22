@@ -14,14 +14,18 @@ pageextension 50603 "Item Tracking_Ext" extends "Item Tracking Lines"
     var
         myInt: Integer;
     begin
-        RecItem.Reset();
-        RecItem.SetRange("No.", Rec."Item No.");
-        if RecItem.FindFirst() then;
-        if (Rec."Lot No." <> '') and (Rec."Qty. to Handle (Base)" <> 0) and (RecItem."Item Category Code" = 'STEEL') then
-            Rec.TestField("No.Of Units");
+        InvSetup.Get();
+        if InvSetup."Validation For No. of units" then begin
+            RecItem.Reset();
+            RecItem.SetRange("No.", Rec."Item No.");
+            if RecItem.FindFirst() then;
+            if (Rec."Lot No." <> '') and (Rec."Qty. to Handle (Base)" <> 0) and (RecItem."Item Category Code" = 'STEEL') then
+                Rec.TestField("No.Of Units");
+        end;
     end;
 
     var
         myInt: Integer;
         RecItem: Record 27;
+        InvSetup: Record "Inventory Setup";
 }

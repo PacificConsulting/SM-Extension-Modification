@@ -620,25 +620,25 @@ report 50602 "Proforma UIC"
         }
     }
 
-    requestpage
-    {
+    // requestpage
+    // {
 
-        layout
-        {
-            area(content)
-            {
-                field(ShowAmountInLCY; PrintAmountInLCY)
-                {
-                    Caption = 'Show Amount In LCY';
-                    Visible = false;
-                }
-            }
-        }
+    //     layout
+    //     {
+    //         area(content)
+    //         {
+    //             field(ShowAmountInLCY; PrintAmountInLCY)
+    //             {
+    //                 Caption = 'Show Amount In LCY';
+    //                 Visible = false;
+    //             }
+    //         }
+    //     }
 
-        actions
-        {
-        }
-    }
+    //     actions
+    //     {
+    //     }
+    // }
 
     labels
     {
@@ -677,14 +677,14 @@ report 50602 "Proforma UIC"
 
         BenFicname: Text;
         PaymentTerms: Record 3;
-        PaymentTermsDesc: Text[100];
-        PortOfLoading: Text[100];
-        portofDischarge: Text[50];
-        CurUOM: Text[30];
-        CurUOM1: Text[30];
-        CurUOM2: Text[30];
+        PaymentTermsDesc: Text;
+        PortOfLoading: Text;
+        portofDischarge: Text;
+        CurUOM: Text;
+        CurUOM1: Text;
+        CurUOM2: Text;
         bankAccount: Record 270;
-        BankAcc: Text[50];
+        BankAcc: Text;
         BANKName: Text[50];
         BankAdd: array[13] of Text[100];
         TotalAmount: Decimal;
@@ -699,19 +699,19 @@ report 50602 "Proforma UIC"
         CompanyInfo1: Record 79;
         CompanyInfo2: Record 79;
         SalesSetup: Record 311;
-        DischargePort: Text[50];
+        DischargePort: Text;
         CountryTable: Record 9;
-        Country: Text[50];
-        InvoiceNo: Text[50];
+        Country: Text;
+        InvoiceNo: Text;
         SalesInvoiceHeader: Record 112;
-        TranShipment: Text[30];
-        PartialShipment: Text[30];
-        Inspection: Text[30];
-        Package: Text[30];
-        DelTerms: Text[50];
-        Validity: Text[50];
+        TranShipment: Text;
+        PartialShipment: Text;
+        Inspection: Text;
+        Package: Text;
+        DelTerms: Text;
+        Validity: Text;
         shipmentmethod: Record 10;
-        shipmentDesc: Text[50];
+        shipmentDesc: Text;
         AmountLCY: Decimal;
         UnitPriceLCY: Decimal;
         FixedPriceLCY: Decimal;
@@ -720,9 +720,9 @@ report 50602 "Proforma UIC"
         SNo: Integer;
         CurrCode: Code[10];
         GenLedSetup: Record 98;
-        OpenPracket: Text[10];
-        ClosePracket: Text[10];
-        SalesCountryName: Text[30];
+        OpenPracket: Text;
+        ClosePracket: Text;
+        SalesCountryName: Text;
         Sales_Invoice_HeaderCaptionLbl: Label 'Sales Invoice Header';
         "-----------------------------------": Integer;
         AmountLCY1: Decimal;
@@ -730,9 +730,9 @@ report 50602 "Proforma UIC"
         Comments: array[10] of Text[100];
         SalComment: Record 44;
         i: Integer;
-        CommentsTxt: Text[100];
+        CommentsTxt: Text;
         CustomerRec: Record 18;
-        CustVATNo: Text[20];
+        CustVATNo: Text;
         EntryExitPoint: Record 282;
         PaymnttermsDiscnt: Decimal;
         TotalPrepmntvalue: Decimal;

@@ -2,7 +2,7 @@
   "id": "1d34e986-c949-4a1c-a8b0-a868ef94c622",
   "name": "SM-Extension-Modification",
   "publisher": "Default publisher",
-  "version": "1.0.0.0",
+  "version": "1.0.0.2",
   "brief": "",
   "description": "",
   "privacyStatement": "",
@@ -15,19 +15,19 @@
       "id": "f9bd46cd-9923-4840-97a2-550fb3b9cc57",
       "publisher": "Robosoft Solutions",
       "name": "SteelMont",
-      "version": "1.0.0.102"
+      "version": "1.0.0.98"
       },
       {        
         "id":"c7658daa-31d8-44b9-a5a8-c6fa8ad7641e",
         "publisher": "GMBH Item Profile",
         "name": "GMBH Item Profile",
-        "version": "1.0.0.58"
+        "version": "1.0.0.52"
       },
       {        
         "id":"16b759cc-55c2-456e-a652-4146bb284f51",
         "publisher": "RoboSoft Dmcc",
         "name": "SteelMontProjectReport",
-        "version": "1.0.0.47"
+        "version": "1.0.0.46"
       },
       {
         "id": "48cf1ef3-9f21-4f8c-a409-85bcded004f2",

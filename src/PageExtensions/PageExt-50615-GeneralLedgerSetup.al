@@ -19,21 +19,21 @@ pageextension 50615 "General Ledger Setup EXT" extends "General Ledger Setup"
     {
         addlast("Bank Posting")
         {
-            action(Test)
-            {
-                ApplicationArea = All;
-                Caption = 'Test';
-                Promoted = true;
-                PromotedCategory = Process;
-                PromotedIsBig = true;
-                Image = Image;
-                RunObject = codeunit 50602;
+            // action(Test)
+            // {
+            //     //ApplicationArea = All;
+            //     Caption = 'Test';
+            //     Promoted = true;
+            //     PromotedCategory = Process;
+            //     PromotedIsBig = true;
+            //     Image = Image;
+            //     RunObject = codeunit 50602;
 
-                trigger OnAction()
-                begin
+            //     trigger OnAction()
+            //     begin
 
-                end;
-            }
+            //     end;
+            // }
         }
     }
 

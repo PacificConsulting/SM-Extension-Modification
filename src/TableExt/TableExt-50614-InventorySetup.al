@@ -11,6 +11,11 @@ tableextension 50614 "Inventory setup EXT" extends "Inventory Setup"
         {
             DataClassification = ToBeClassified;
         }
+        field(50602; "Validation For No. of units"; Boolean)
+        {
+            DataClassification = ToBeClassified;
+            Description = '//PCPL-25/220523';
+        }
     }
 
     var

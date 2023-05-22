@@ -121,11 +121,28 @@ codeunit 50600 "Sales Order to Sales quotes"
         if GenjnlL.FindFirst() then;
         BankAccountLedgerEntry."Gen. Prod. Posting Group" := GenjnlL."Gen. Prod. Posting Group";
     end;
+
+    [EventSubscriber(ObjectType::Codeunit, Codeunit::"Gen. Jnl.-Post Line", 'OnBeforeVendLedgEntryInsert', '', true, true)]
+    local procedure OnBeforeVendLedgEntryInsert(var VendorLedgerEntry: Record "Vendor Ledger Entry"; GenJournalLine: Record "Gen. Journal Line"; GLRegister: Record "G/L Register")
+    begin
+        VendorLedgerEntry."Country of Origin" := GenJournalLine."Country of Origin";
+        VendorLedgerEntry."Country of final Destination" := GenJournalLine."Country of final Destination";
+        VendorLedgerEntry."Destination Country" := GenJournalLine."Destination Country";
+        VendorLedgerEntry."Vessel Code" := GenJournalLine."Vessel Code";
+    end;
+
+    [EventSubscriber(ObjectType::Codeunit, Codeunit::"Gen. Jnl.-Post Line", 'OnBeforeCustLedgEntryInsert', '', true, true)]
+    local procedure OnBeforeCustLedgEntryInsert(var CustLedgerEntry: Record "Cust. Ledger Entry"; var GenJournalLine: Record "Gen. Journal Line"; GLRegister: Record "G/L Register"; var TempDtldCVLedgEntryBuf: Record "Detailed CV Ledg. Entry Buffer"; var NextEntryNo: Integer)
+    begin
+        CustLedgerEntry."Country of Origin" := GenJournalLine."Country of Origin";
+        CustLedgerEntry."Country of final Destination" := GenJournalLine."Country of final Destination";
+        CustLedgerEntry."Destination Country" := GenJournalLine."Destination Country";
+        CustLedgerEntry."Vessel Code" := GenJournalLine."Vessel Code";
+    end;
     //Codeunit 12 end 
 
     // //Codeunit 90 Start
     [EventSubscriber(ObjectType::Codeunit, Codeunit::"Purch.-Post", 'OnAfterPostPurchaseDoc', '', true, true)]
-
     procedure OnAfterPostPurchaseDoc(var PurchaseHeader: Record "Purchase Header"; var GenJnlPostLine: Codeunit "Gen. Jnl.-Post Line"; PurchRcpHdrNo: Code[20]; RetShptHdrNo: Code[20]; PurchInvHdrNo: Code[20]; PurchCrMemoHdrNo: Code[20]; CommitIsSupressed: Boolean)
     var
         PIH: Record 122;
@@ -146,6 +163,15 @@ codeunit 50600 "Sales Order to Sales quotes"
             PCRMH."Invoice Amount(LCY)" += PCRMH.Amount / PCRMH."Currency Factor";
             PCRMH.Modify();
         end;
+    end;
+
+    [EventSubscriber(ObjectType::Codeunit, Codeunit::"Purch.-Post", 'OnBeforePostVendorEntry', '', true, true)]
+    local procedure OnBeforePostVendorEntry(var GenJnlLine: Record "Gen. Journal Line"; var PurchHeader: Record "Purchase Header"; var TotalPurchLine: Record "Purchase Line"; var TotalPurchLineLCY: Record "Purchase Line"; PreviewMode: Boolean; CommitIsSupressed: Boolean; var GenJnlPostLine: Codeunit "Gen. Jnl.-Post Line"; var IsHandled: Boolean)
+    begin
+        GenJnlLine."Country of Origin" := PurchHeader."REDM Country of Origin";
+        GenJnlLine."Country of final Destination" := PurchHeader."REDM Country of final destinat";
+        GenJnlLine."Destination Country" := PurchHeader."REDM Destination Country";
+        GenJnlLine."Vessel Code" := PurchHeader."REDM Vessel Code";
     end;
     // //Codeunit 90 End
 
@@ -171,6 +197,15 @@ codeunit 50600 "Sales Order to Sales quotes"
             SCRMH."Invoice Amount(LCY)" += SCRMH.Amount / SCRMH."Currency Factor";
             SCRMH.Modify();
         end;
+    end;
+
+    [EventSubscriber(ObjectType::Codeunit, Codeunit::"Sales-Post", 'OnBeforePostCustomerEntry', '', true, true)]
+    local procedure OnBeforePostCustomerEntry(var GenJnlLine: Record "Gen. Journal Line"; var SalesHeader: Record "Sales Header"; var TotalSalesLine: Record "Sales Line"; var TotalSalesLineLCY: Record "Sales Line"; CommitIsSuppressed: Boolean; PreviewMode: Boolean; var GenJnlPostLine: Codeunit "Gen. Jnl.-Post Line")
+    begin
+        GenJnlLine."Country of Origin" := SalesHeader."REDM Country of Origin";
+        GenJnlLine."Country of final Destination" := SalesHeader."REDM Country of final dest";
+        GenJnlLine."Destination Country" := SalesHeader."REDM Destination Country";
+        GenJnlLine."Vessel Code" := SalesHeader."REDM Vessel Code";
     end;
     // //Codeunit 80 End
     var

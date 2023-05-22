@@ -56,7 +56,7 @@ codeunit 50605 "Account Receivable Alerts"
         CLE.Reset();
         CLE.SetRange(Open, true);
         CLE.SetFilter("Due Date", '<%1', Today);
-        CLE.SetFilter("Posting Date", '%1..%2', 20220101D, Today);   //temp filter only for test DB 
+        //CLE.SetFilter("Posting Date", '%1..%2', 20220101D, Today);   //temp filter only for test DB 
         IF CLE.FindSet() THEN BEGIN
             REPEAT
                 CLE.CalcFields(Amount, "Amount (LCY)", "Remaining Amount", "Remaining Amt. (LCY)", "Shortcut Dimension 3 Code");

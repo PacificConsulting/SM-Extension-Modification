@@ -3,7 +3,7 @@ pageextension 50605 "Bank Acc Ledger Entries EXT" extends "Bank Account Ledger E
     layout
     {
         // Add changes to page layout here
-        addafter("External Document No.")
+        addafter("Document No.")
         {
             field("Gen. Prod. Posting Group"; Rec."Gen. Prod. Posting Group")
             {

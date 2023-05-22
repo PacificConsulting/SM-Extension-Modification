@@ -30,6 +30,7 @@ codeunit 50606 "Purchase Invoice for Next Week"
         BodyText1: BigText;
         DimSetEntry: Record 480;
         EmailText1: Text;
+        EmailDueInvoice: Text;
         DecamtLcy: decimal;
         TextAmtLcy: Text;
         CntAmtLcy: Integer;
@@ -49,19 +50,22 @@ codeunit 50606 "Purchase Invoice for Next Week"
     begin
         Clear(VarRecipaint1);
         Clear(Email1);
+        Clear(EmailDueInvoice);
         Clear(BodyText1);
         Clear(Emailmessage);
         PurchPaySet.Get();
         PurchPaySet.TestField("Email Alerts");
         EmailText1 := PurchPaySet."Email Id";
+        EmailDueInvoice := PurchPaySet."Email Id for Invoice Due";   //PCPL-25/220523
+        VarRecipaint1.AddRange(EmailDueInvoice.Split(';'));   //PCPL-25/220523
         VarRecipaint1.AddRange(EmailText1.Split(';'));
         srno := 0;
         Clear(Cnt);
         ActivityCue.Get();
         VLE.Reset();
         VLE.SetRange(Open, true);
-        //VLE.SetRange("Due Date", ActivityCue."Due Next Week Filter");
-        VLE.SetFilter("Due Date", '%1..%2', 20230201D, 20230207D);   //temp add code for testing
+        VLE.SetRange("Due Date", ActivityCue."Due Next Week Filter");
+        //VLE.SetFilter("Due Date", '%1..%2', 20230201D, 20230207D);   //temp add code for testing
         VLE.SetFilter("Document Type", '%1|%2', VLE."Document Type"::Invoice, VLE."Document Type"::"Credit Memo");
         IF VLE.FindSet() THEN BEGIN
             REPEAT
@@ -139,19 +143,22 @@ codeunit 50606 "Purchase Invoice for Next Week"
         Clear(BodyText1);
         Clear(EmailText1);
         Clear(VarEmailSender1);
+        Clear(EmailDueInvoice);
         Clear(Varsubject);
         Clear(Emailmessage);
         SalreceiveSet.Get();
         ActivityCue.Get();
         SalreceiveSet.TestField("Email Alerts");
         EmailText1 := SalreceiveSet."Email Id";
+        EmailDueInvoice := SalreceiveSet."Email Id for Invoice Due";   //PCPL-25/220523
+        VarRecipaint1.AddRange(EmailDueInvoice.Split(';'));   //PCPL-25/220523
         VarRecipaint1.AddRange(EmailText1.Split(';'));
         srno := 0;
         Clear(Cnt);
         CLE.Reset();
         CLE.SetRange(Open, true);
-        //VLE.SetRange("Due Date", ActivityCue."Due Next Week Filter");
-        CLE.SetFilter("Due Date", '%1..%2', 20230201D, 20230207D);//temp add code for testing
+        VLE.SetRange("Due Date", ActivityCue."Due Next Week Filter");
+        //CLE.SetFilter("Due Date", '%1..%2', 20230201D, 20230207D);//temp add code for testing
         CLE.SetFilter("Document Type", '%1|%2', CLE."Document Type"::Invoice, CLE."Document Type"::"Credit Memo");
         IF CLE.FindSet() THEN BEGIN
             REPEAT

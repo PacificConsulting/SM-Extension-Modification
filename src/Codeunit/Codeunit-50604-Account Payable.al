@@ -57,7 +57,7 @@ codeunit 50604 "Account Payable Alerts"
         VLE.Reset();
         VLE.SetRange(Open, true);
         VLE.SetFilter("Due Date", '<%1', Today);
-        VLE.SetFilter("Posting Date", '%1..%2', 20220101D, Today);   //temp filter only for test DB 
+        //VLE.SetFilter("Posting Date", '%1..%2', 20220101D, Today);   //temp filter only for test DB 
         IF VLE.FindSet() THEN BEGIN
             REPEAT
                 VLE.CalcFields(Amount, "Amount (LCY)", "Remaining Amount", "Remaining Amt. (LCY)", "Shortcut Dimension 3 Code");

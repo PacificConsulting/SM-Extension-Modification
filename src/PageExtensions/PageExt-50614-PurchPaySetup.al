@@ -13,28 +13,31 @@ pageextension 50614 "Purch & Payable EXT" extends "Purchases & Payables Setup"
             {
                 ApplicationArea = All;
             }
-
+            field("Email Id for Invoice Due"; Rec."Email Id for Invoice Due")
+            {
+                ApplicationArea = All;
+            }
         }
     }
     actions
     {
         addafter("Vendor Posting Groups")
         {
-            action(Test)
-            {
-                ApplicationArea = All;
-                Caption = 'Test';
-                Promoted = true;
-                PromotedCategory = Process;
-                PromotedIsBig = true;
-                Image = Image;
-                RunObject = codeunit 50604;
+            // action(Test)
+            // {
+            //     //ApplicationArea = All;
+            //     Caption = 'Test';
+            //     Promoted = true;
+            //     PromotedCategory = Process;
+            //     PromotedIsBig = true;
+            //     Image = Image;
+            //     RunObject = codeunit 50604;
 
-                trigger OnAction()
-                begin
+            //     trigger OnAction()
+            //     begin
 
-                end;
-            }
+            //     end;
+            // }
 
         }
     }
