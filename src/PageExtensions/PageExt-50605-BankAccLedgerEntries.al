@@ -13,8 +13,6 @@ pageextension 50605 "Bank Acc Ledger Entries EXT" extends "Bank Account Ledger E
             {
                 ApplicationArea = All;
             }
-
-
         }
     }
 

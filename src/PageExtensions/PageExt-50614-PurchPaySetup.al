@@ -23,21 +23,16 @@ pageextension 50614 "Purch & Payable EXT" extends "Purchases & Payables Setup"
     {
         addafter("Vendor Posting Groups")
         {
-            // action(Test)
-            // {
-            //     //ApplicationArea = All;
-            //     Caption = 'Test';
-            //     Promoted = true;
-            //     PromotedCategory = Process;
-            //     PromotedIsBig = true;
-            //     Image = Image;
-            //     RunObject = codeunit 50604;
-
-            //     trigger OnAction()
-            //     begin
-
-            //     end;
-            // }
+            action(Test)
+            {
+                applicationArea = All;
+                Caption = 'Test';
+                Promoted = true;
+                PromotedCategory = Process;
+                PromotedIsBig = true;
+                Image = Image;
+                RunObject = codeunit 50604;
+            }
 
         }
     }

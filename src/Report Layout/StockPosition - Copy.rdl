@@ -478,7 +478,7 @@
                             <Paragraph>
                               <TextRuns>
                                 <TextRun>
-                                  <Value>=Sum(Fields!Remaining_Quantity.Value)</Value>
+                                  <Value>=Fields!Remaining_Quantity.Value</Value>
                                   <Style>
                                     <Format>#,0.000</Format>
                                   </Style>
@@ -512,7 +512,7 @@
                             <Paragraph>
                               <TextRuns>
                                 <TextRun>
-                                  <Value>=Sum(Fields!Cost_Amount__Actual_.Value)</Value>
+                                  <Value>=Fields!Cost_Amount__Actual_.Value</Value>
                                   <Style>
                                     <Format>#,0.00</Format>
                                   </Style>
@@ -847,6 +847,7 @@
                             <PaddingBottom>2pt</PaddingBottom>
                           </Style>
                         </Textbox>
+                        <rd:Selected>true</rd:Selected>
                       </CellContents>
                     </TablixCell>
                   </TablixCells>

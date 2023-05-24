@@ -1,7 +1,7 @@
 report 50607 "Value Entry Update"
 {
     UsageCategory = ReportsAndAnalysis;
-    //ApplicationArea = All;
+    ApplicationArea = All;
     //DefaultRenderingLayout = LayoutName;
     ProcessingOnly = true;
     Permissions = tabledata "Value Entry" = RM;
