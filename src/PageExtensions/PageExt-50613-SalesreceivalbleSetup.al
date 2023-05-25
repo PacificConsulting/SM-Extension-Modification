@@ -24,21 +24,21 @@ pageextension 50613 "Sales & Receivable EXT" extends "Sales & Receivables Setup"
     {
         addafter("Customer Price Groups")
         {
-            action(Test)
-            {
-                ApplicationArea = All;
-                Caption = 'Test';
-                Promoted = true;
-                PromotedCategory = Process;
-                PromotedIsBig = true;
-                Image = Image;
-                RunObject = codeunit 50605;
+            // action(Test)
+            // {
+            //     ApplicationArea = All;
+            //     Caption = 'Test';
+            //     Promoted = true;
+            //     PromotedCategory = Process;
+            //     PromotedIsBig = true;
+            //     Image = Image;
+            //     RunObject = codeunit 50605;
 
-                trigger OnAction()
-                begin
+            //     trigger OnAction()
+            //     begin
 
-                end;
-            }
+            //     end;
+            // }
             // action("Due Next Week")
             // {
             //     ApplicationArea = All;

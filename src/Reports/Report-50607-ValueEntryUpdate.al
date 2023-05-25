@@ -4,7 +4,7 @@ report 50607 "Value Entry Update"
     ApplicationArea = All;
     //DefaultRenderingLayout = LayoutName;
     ProcessingOnly = true;
-    Permissions = tabledata "Value Entry" = RM;
+    Permissions = tabledata "Value Entry" = RM, tabledata "Sales Invoice Header" = RM, tabledata "Purch. Inv. Header" = RM;
 
     dataset
     {
