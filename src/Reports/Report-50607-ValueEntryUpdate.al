@@ -11,7 +11,7 @@ report 50607 "Value Entry Update"
         dataitem("Value Entry"; "Value Entry")
         {
             RequestFilterFields = "Posting Date", "Document No.";
-            DataItemTableView = where("Posting Date" = filter(010123 .. 052123));
+            //DataItemTableView = where("Posting Date" = filter(20230101 .. 20230521));
 
             column(Document_No_; "Document No.")
             {
@@ -22,6 +22,7 @@ report 50607 "Value Entry Update"
                 if "Value Entry"."Document Type" = "Value Entry"."Document Type"::"Sales Invoice" then begin
                     SIH.Reset();
                     SIH.SetRange("No.", "Value Entry"."Document No.");
+                    SIH.SetRange("Posting Date", 20220101D, 20230521D);
                     if SIH.FindFirst() then begin
                         "Value Entry"."Currency Code" := SIH."Currency Code";
                         "Value Entry"."VAT Registration No." := SIH."VAT Registration No.";
@@ -53,6 +54,7 @@ report 50607 "Value Entry Update"
                 if "Value Entry"."Document Type" = "Value Entry"."Document Type"::"Purchase Invoice" then begin
                     PIH.Reset();
                     PIH.SetRange("No.", "Value Entry"."Document No.");
+                    PIH.SetRange("Posting Date", 20220101D, 20230521D);
                     if PIH.FindFirst() then begin
                         "Value Entry"."Currency Code" := PIH."Currency Code";
                         "Value Entry"."VAT Registration No." := PIH."VAT Registration No.";
@@ -80,6 +82,16 @@ report 50607 "Value Entry Update"
                     end;
                     "Value Entry".Modify();
                 end;
+            end;
+
+            trigger OnPreDataItem()
+            begin
+                SetRange("Posting Date", 20220101D, 20230521D);
+            end;
+
+            trigger OnPostDataItem()
+            begin
+                Message('done');
             end;
         }
     }

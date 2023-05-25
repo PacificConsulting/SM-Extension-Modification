@@ -15,4 +15,5 @@ permissionset 50600 GeneratedPermission
         codeunit "Sales Order to Sales quotes" = X,
         codeunit "Stock Position Alerts" = X,
         report "Value Entry Update" = X;
+
 }
