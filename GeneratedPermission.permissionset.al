@@ -14,6 +14,9 @@ permissionset 50600 GeneratedPermission
         codeunit "Purchase Invoice for Next Week" = X,
         codeunit "Sales Order to Sales quotes" = X,
         codeunit "Stock Position Alerts" = X,
-        report "Value Entry Update" = X;
-
+        report "Value Entry Update" = X,
+        report "Posted Purchase Invoice Update" = X,
+        report "Posted Sales Invoice Update" = X;
+    //report "Posted Purchase Invoice Update" = X,
+    // re//port "Posted Sales Invoice Update" = X;
 }

@@ -29,11 +29,11 @@ report 50607 "Value Entry Update"
                         "Value Entry"."VAT Transaction Type" := SIH."REDM Transaction Type";
                         "Value Entry"."Own Vat Account No." := SIH."REDM OWN VAT Account No.";
 
-                        if SIH."Invoice Amount(LCY)" = 0 then begin
-                            SIH.CalcFields(Amount);
-                            SIH."Invoice Amount(LCY)" += SIH.Amount / SIH."Currency Factor";
-                            SIH.Modify();
-                        end;
+                        // if (SIH."Invoice Amount(LCY)" = 0) and (SIH."Currency Factor" <> 0) then begin
+                        //     SIH.CalcFields(Amount);
+                        //     SIH."Invoice Amount(LCY)" += SIH.Amount / SIH."Currency Factor";
+                        //     SIH.Modify();
+                        // end;
                     end;
 
                     SIL.Reset();
@@ -61,11 +61,11 @@ report 50607 "Value Entry Update"
                         "Value Entry"."VAT Transaction Type" := PIH."REDM Transaction Type";
                         "Value Entry"."Own Vat Account No." := PIH."REDM OWN VAT Account No.";
 
-                        if PIH."Invoice Amount(LCY)" = 0 then begin
-                            PIH.CalcFields(Amount);
-                            PIH."Invoice Amount(LCY)" += PIH.Amount / PIH."Currency Factor";
-                            PIH.Modify();
-                        end;
+                        // if (PIH."Invoice Amount(LCY)" = 0) and (PIH."Currency Factor" <> 0) then begin
+                        //     PIH.CalcFields(Amount);
+                        //     PIH."Invoice Amount(LCY)" += PIH.Amount / PIH."Currency Factor";
+                        //     PIH.Modify();
+                        // end;
                     end;
 
                     PIL.Reset();
