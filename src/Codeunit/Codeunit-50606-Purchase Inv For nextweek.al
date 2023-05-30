@@ -62,6 +62,7 @@ codeunit 50606 "Purchase Invoice for Next Week"
         VarRecipaint1.AddRange(EmailDueInvoice.Split(';'));   //PCPL-25/220523
         VarRecipaint1.AddRange(EmailText1.Split(';'));
         srno := 0;
+
         Clear(Cnt);
         ActivityCue.Get();
         VLE.Reset();
