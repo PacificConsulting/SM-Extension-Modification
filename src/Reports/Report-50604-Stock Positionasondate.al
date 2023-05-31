@@ -47,12 +47,21 @@ report 50604 "Stock Position"
             {
 
             }
+            column(LCYCode; 'Value' + ' ' + GLsetup."LCY Code")
+            {
+
+            }
+            trigger OnPreDataItem()
+            begin
+                GLsetup.Get();
+            end;
+
             trigger OnAfterGetRecord()
             begin
                 if RecItem.Get("Item Ledger Entry"."Item No.") then;
                 if Loc.Get("Item Ledger Entry"."Location Code") then;
 
-                //noofdays := Today - "Posting Date";
+
             end;
         }
     }
@@ -62,4 +71,5 @@ report 50604 "Stock Position"
         Loc: Record Location;
         RecItem: Record Item;
         noofdays: Integer;
+        GLsetup: Record "General Ledger Setup";
 }

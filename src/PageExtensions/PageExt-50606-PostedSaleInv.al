@@ -26,6 +26,21 @@ pageextension 50606 "Posted Sales Invoice_Ext" extends "Posted Sales Invoice"
                     end;
                 end;
             }
+            action("Run CU")
+            {
+                ApplicationArea = all;
+                Promoted = true;
+                PromotedCategory = Category6;
+                Image = Print;
+                Visible = false;
+                trigger OnAction()
+                var
+                    CU: Codeunit 50606;
+                begin
+                    CU.Run();
+                end;
+
+            }
         }
     }
 

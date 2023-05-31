@@ -60,14 +60,16 @@ codeunit 50606 "Purchase Invoice for Next Week"
         EmailText1 := PurchPaySet."Email Id";
         EmailDueInvoice := PurchPaySet."Email Id for Invoice Due";   //PCPL-25/220523
         VarRecipaint1.AddRange(EmailDueInvoice.Split(';'));   //PCPL-25/220523
-        VarRecipaint1.AddRange(EmailText1.Split(';'));
+        IF EmailText1 <> '' then
+            VarRecipaint1.AddRange(EmailText1.Split(';'));
         srno := 0;
 
         Clear(Cnt);
         ActivityCue.Get();
         VLE.Reset();
         VLE.SetRange(Open, true);
-        VLE.SetRange("Due Date", ActivityCue."Due Next Week Filter");
+        //VLE.SetRange("Due Date", ActivityCue."Due Next Week Filter");
+        VLE.SetFilter("Due Date", '%1', ActivityCue."Due Next Week Filter");
         //VLE.SetFilter("Due Date", '%1..%2', 20230201D, 20230207D);   //temp add code for testing
         VLE.SetFilter("Document Type", '%1|%2', VLE."Document Type"::Invoice, VLE."Document Type"::"Credit Memo");
         IF VLE.FindSet() THEN BEGIN
@@ -171,12 +173,14 @@ codeunit 50606 "Purchase Invoice for Next Week"
         EmailText1 := SalreceiveSet."Email Id";
         EmailDueInvoice := SalreceiveSet."Email Id for Invoice Due";   //PCPL-25/220523
         VarRecipaint1.AddRange(EmailDueInvoice.Split(';'));   //PCPL-25/220523
-        VarRecipaint1.AddRange(EmailText1.Split(';'));
+        IF EmailText1 <> '' then
+            VarRecipaint1.AddRange(EmailText1.Split(';'));
         srno := 0;
         Clear(Cnt);
         CLE.Reset();
         CLE.SetRange(Open, true);
-        CLE.SetRange("Due Date", ActivityCue."Due Next Week Filter");
+        //CLE.SetRange("Due Date", ActivityCue."Due Next Week Filter");
+        CLE.SetFilter("Due Date", '%1', ActivityCue."Due Next Week Filter");
         //CLE.SetFilter("Due Date", '%1..%2', 20230201D, 20230207D);//temp add code for testing
         CLE.SetFilter("Document Type", '%1|%2', CLE."Document Type"::Invoice, CLE."Document Type"::"Credit Memo");
         IF CLE.FindSet() THEN BEGIN
@@ -249,7 +253,7 @@ codeunit 50606 "Purchase Invoice for Next Week"
                 BodyText1.AddText('</tr>');
                 Emailmessage.Create(VarRecipaint1, Varsubject, Format(BodyText1), true, UserReceipt1, NewReceipt1);
                 Email1.Send(Emailmessage, Enum::"Email Scenario"::Default);
-                Message('Done');
+                //Message('Done');
             END;
         End;
     END;

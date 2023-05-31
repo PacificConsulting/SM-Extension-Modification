@@ -183,7 +183,7 @@
                             <Paragraph>
                               <TextRuns>
                                 <TextRun>
-                                  <Value>=Fields!LCYCode.Value</Value>
+                                  <Value>Value</Value>
                                   <Style>
                                     <FontWeight>Bold</FontWeight>
                                   </Style>
@@ -478,7 +478,7 @@
                             <Paragraph>
                               <TextRuns>
                                 <TextRun>
-                                  <Value>=Sum(Fields!Remaining_Quantity.Value)</Value>
+                                  <Value>=Fields!Remaining_Quantity.Value</Value>
                                   <Style>
                                     <Format>#,0.000</Format>
                                   </Style>
@@ -512,7 +512,7 @@
                             <Paragraph>
                               <TextRuns>
                                 <TextRun>
-                                  <Value>=(Sum(Fields!Cost_Amount__Actual_.Value))/(Sum(Fields!Quantity.Value))*Sum(Fields!Remaining_Quantity.Value)</Value>
+                                  <Value>=Fields!Cost_Amount__Actual_.Value</Value>
                                   <Style>
                                     <Format>#,0.00</Format>
                                   </Style>
@@ -675,14 +675,14 @@
                     </TablixCell>
                     <TablixCell>
                       <CellContents>
-                        <Textbox Name="Textbox12">
+                        <Textbox Name="Cost_Amount__Actual_2">
                           <CanGrow>true</CanGrow>
                           <KeepTogether>true</KeepTogether>
                           <Paragraphs>
                             <Paragraph>
                               <TextRuns>
                                 <TextRun>
-                                  <Value>=((Sum(Fields!Cost_Amount__Actual_.Value))/(Sum(Fields!Quantity.Value))*Sum(Fields!Remaining_Quantity.Value))</Value>
+                                  <Value>=Sum(Fields!Cost_Amount__Actual_.Value)</Value>
                                   <Style>
                                     <FontWeight>Bold</FontWeight>
                                     <Format>#,0.00</Format>
@@ -694,7 +694,7 @@
                               </Style>
                             </Paragraph>
                           </Paragraphs>
-                          <rd:DefaultName>Textbox12</rd:DefaultName>
+                          <rd:DefaultName>Cost_Amount__Actual_</rd:DefaultName>
                           <Style>
                             <Border>
                               <Color>LightGrey</Color>
@@ -706,7 +706,6 @@
                             <PaddingBottom>2pt</PaddingBottom>
                           </Style>
                         </Textbox>
-                        <rd:Selected>true</rd:Selected>
                       </CellContents>
                     </TablixCell>
                   </TablixCells>
@@ -824,7 +823,7 @@
                             <Paragraph>
                               <TextRuns>
                                 <TextRun>
-                                  <Value>=Sum(Sum((Sum(Fields!Cost_Amount__Actual_.Value))/(Sum(Fields!Quantity.Value))*Sum(Fields!Remaining_Quantity.Value)))</Value>
+                                  <Value>=Sum(Fields!Cost_Amount__Actual_.Value)</Value>
                                   <Style>
                                     <FontWeight>Bold</FontWeight>
                                     <Format>#,0.00</Format>
@@ -848,6 +847,7 @@
                             <PaddingBottom>2pt</PaddingBottom>
                           </Style>
                         </Textbox>
+                        <rd:Selected>true</rd:Selected>
                       </CellContents>
                     </TablixCell>
                   </TablixCells>
@@ -1182,9 +1182,6 @@ End Function
         </Field>
         <Field Name="noofdays">
           <DataField>noofdays</DataField>
-        </Field>
-        <Field Name="LCYCode">
-          <DataField>LCYCode</DataField>
         </Field>
       </Fields>
       <Query>
