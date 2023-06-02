@@ -60,8 +60,9 @@ codeunit 50606 "Purchase Invoice for Next Week"
         EmailText1 := PurchPaySet."Email Id";
         EmailDueInvoice := PurchPaySet."Email Id for Invoice Due";   //PCPL-25/220523
         VarRecipaint1.AddRange(EmailDueInvoice.Split(';'));   //PCPL-25/220523
-        IF EmailText1 <> '' then
-            VarRecipaint1.AddRange(EmailText1.Split(';'));
+        //VarRecipaint1.AddRange(EmailText1.Split(';'));
+        // IF EmailText1 <> '' then
+
         srno := 0;
 
         Clear(Cnt);
@@ -69,7 +70,9 @@ codeunit 50606 "Purchase Invoice for Next Week"
         VLE.Reset();
         VLE.SetRange(Open, true);
         //VLE.SetRange("Due Date", ActivityCue."Due Next Week Filter");
-        VLE.SetFilter("Due Date", '%1', ActivityCue."Due Next Week Filter");
+        //Rec.SetFilter("Due Next Week Filter", '%1..%2', CalcDate('<1D>', WorkDate()), CalcDate('<1W>', WorkDate()));
+        //VLE.SetFilter("Due Date", '%1', ActivityCue."Due Next Week Filter");
+        VLE.SetFilter("Due Date", '%1..%2', CalcDate('<1D>', WorkDate()), CalcDate('<1W>', WorkDate()));
         //VLE.SetFilter("Due Date", '%1..%2', 20230201D, 20230207D);   //temp add code for testing
         VLE.SetFilter("Document Type", '%1|%2', VLE."Document Type"::Invoice, VLE."Document Type"::"Credit Memo");
         IF VLE.FindSet() THEN BEGIN
@@ -173,14 +176,17 @@ codeunit 50606 "Purchase Invoice for Next Week"
         EmailText1 := SalreceiveSet."Email Id";
         EmailDueInvoice := SalreceiveSet."Email Id for Invoice Due";   //PCPL-25/220523
         VarRecipaint1.AddRange(EmailDueInvoice.Split(';'));   //PCPL-25/220523
-        IF EmailText1 <> '' then
-            VarRecipaint1.AddRange(EmailText1.Split(';'));
+
+        //  IF SalreceiveSet."Email Id for Invoice Due" = '' then
+        //    VarRecipaint1.AddRange(EmailText1.Split(';'));
+        //IF EmailText1 <> '' then
+
         srno := 0;
         Clear(Cnt);
         CLE.Reset();
         CLE.SetRange(Open, true);
-        //CLE.SetRange("Due Date", ActivityCue."Due Next Week Filter");
-        CLE.SetFilter("Due Date", '%1', ActivityCue."Due Next Week Filter");
+        //CLE.SetFilter("Due Date",'%1', ActivityCue."Due Next Week Filter");
+        CLE.SetFilter("Due Date", '%1..%2', CalcDate('<1D>', WorkDate()), CalcDate('<1W>', WorkDate()));
         //CLE.SetFilter("Due Date", '%1..%2', 20230201D, 20230207D);//temp add code for testing
         CLE.SetFilter("Document Type", '%1|%2', CLE."Document Type"::Invoice, CLE."Document Type"::"Credit Memo");
         IF CLE.FindSet() THEN BEGIN
