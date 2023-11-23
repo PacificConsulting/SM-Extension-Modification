@@ -21,6 +21,10 @@ tableextension 50618 "Vendor Ledger Entry EXT" extends "Vendor Ledger Entry"
         {
             DataClassification = ToBeClassified;
         }
+        field(50605; "ISCC Certificate Number"; Code[20])
+        {
+            DataClassification = ToBeClassified;
+        }
     }
 
     var

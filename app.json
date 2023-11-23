@@ -2,7 +2,7 @@
   "id": "1d34e986-c949-4a1c-a8b0-a868ef94c622",
   "name": "SM-Extension-Modification",
   "publisher": "Default publisher",
-  "version": "1.0.0.15",
+  "version": "1.0.0.29",
   "brief": "",
   "description": "",
   "privacyStatement": "",
@@ -14,7 +14,7 @@
     {
       "id": "f9bd46cd-9923-4840-97a2-550fb3b9cc57",
       "publisher": "Robosoft Solutions",
-      "name": "SteelMont",
+      "name": "SteelMontNew",
       "version": "1.0.0.98"
       },
       {        
@@ -30,10 +30,10 @@
         "version": "1.0.0.46"
       },
       {
-        "id": "48cf1ef3-9f21-4f8c-a409-85bcded004f2",
+        "id": "7bed4fbb-82a6-44af-9cd8-e11b067cca82",
         "publisher": "Robosoft Solutions DMCC",
-        "name": "Robo Energy 365",
-        "version": "17.0.0.11"
+        "name": "Robo Commodity 365",
+        "version": "18.0.0.1"
       }
   ],
   "screenshots": [],

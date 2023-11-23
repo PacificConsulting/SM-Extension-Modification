@@ -14,6 +14,28 @@ tableextension 50605 "Purchase Invoice Header_Ext" extends "Purch. Inv. Header"
             DataClassification = ToBeClassified;
             Editable = false;
         }
+        field(50607; "Purchase Contract Number"; code[20])
+        {
+            DataClassification = ToBeClassified;
+        }
+        field(50608; "Purchase Contract Date"; Date)
+        {
+            DataClassification = ToBeClassified;
+        }
+        field(50609; "Purch Contract Validity Days"; Integer)
+        {
+            Caption = 'Purchase Contract Validity Days';
+            DataClassification = ToBeClassified;
+        }
+        field(50610; "Purch Contract Validity Date"; Date)
+        {
+            Caption = 'Purchase Contract Validity Date';
+            DataClassification = ToBeClassified;
+        }
+        field(50611; "ISCC Claim"; Enum "ISCC Claim List")
+        {
+            DataClassification = ToBeClassified;
+        }
     }
 
     // trigger OnAfterInsert()

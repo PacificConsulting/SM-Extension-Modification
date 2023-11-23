@@ -21,6 +21,10 @@ tableextension 50620 "Cust Ledger Entry EXT" extends "Cust. Ledger Entry"
         {
             DataClassification = ToBeClassified;
         }
+        field(50605; "ISCC Certificate Number"; Code[20])
+        {
+            DataClassification = ToBeClassified;
+        }
     }
 
     var

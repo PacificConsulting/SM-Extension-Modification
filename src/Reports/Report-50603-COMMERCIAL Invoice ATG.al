@@ -20,6 +20,8 @@ report 50603 "COMMERCIAL Invoice UIC"
             {
 
             }
+
+
             column(Deal; "Shortcut Dimension 1 Code")
             {
 
@@ -53,7 +55,7 @@ report 50603 "COMMERCIAL Invoice UIC"
             column(CompInfo_Name; CompInfo.Name)
             {
             }
-            column(CompInfoAdd1; CompInfo.Address)
+            column(CompInfoAdd1; Addcomp)
             {
             }
             column(CompInfoAdd2; CompInfo."Address 2")
@@ -138,13 +140,19 @@ report 50603 "COMMERCIAL Invoice UIC"
             {
             }
             column(Origin_SalesInvoiceHeader2; CountryOrigin.Name)//Origin)
+
             {
             }
+
             column(Origin_SalesInvoiceHeader1; CountryOrigin.Name)//Origin)
             {
             }
             column(DIschargPortDesciptionnn; DischargePortName)
             {
+            }
+            column(VesselName; VesselName)
+            {
+
             }
             column(LoadPortDesciptionnn; LoadPortDesciption)
             {
@@ -638,9 +646,23 @@ report 50603 "COMMERCIAL Invoice UIC"
                 CompInfo.GET;
                 CompInfo.CALCFIELDS(CompInfo.Picture);
 
+                //PCPl-25/171323
+                if CompInfo."Address 2" <> '' then
+                    Addcomp := CompInfo.Address + ',' + CompInfo."Address 2"
+                else
+                    Addcomp := CompInfo.Address;
+                //PCPl-25/171323
                 CountryOrigin.Reset();
                 CountryOrigin.SetRange(Code, "REDM Country of Origin");
                 if CountryOrigin.FindFirst() then;
+
+                //PCPl-25/171023
+                Portmaster.RESET;
+                Portmaster.SETRANGE(Code, "REDM Vessel Code");
+                IF Portmaster.FINDFIRST THEN
+                    VesselName := Portmaster.Decription;
+                //Message(format(VesselName));
+                //PCPl-25/171023
 
                 RDMPortMaster.RESET;
                 RDMPortMaster.SETRANGE(Code, "REDM Load Port");
@@ -652,16 +674,6 @@ report 50603 "COMMERCIAL Invoice UIC"
                 IF RDMPortMaster.FINDFIRST THEN
                     DischargePortName := RDMPortMaster.Decription;
 
-                /*
-                EntryEXit.RESET;
-                EntryEXit.SETRANGE(Code, "Sales Invoice Header"."Port of loading");
-                IF EntryEXit.FINDFIRST THEN
-                    LoadPortDesciption := EntryEXit.Description;
-                EntryEXit.RESET;
-                EntryEXit.SETRANGE(Code, "Sales Invoice Header"."Port of Discharge");
-                IF EntryEXit.FINDFIRST THEN
-                    DischargePortName := EntryEXit.Description;
-                    */
 
                 CountryTable.RESET;
                 CountryTable.SETRANGE(CountryTable.Code, CompInfo."Country/Region Code");
@@ -708,25 +720,9 @@ report 50603 "COMMERCIAL Invoice UIC"
                     BankAdd[12] := BankAccount."No.";
                     BankAdd[13] := bankAccount."Post Code";
                     BankCountry.Reset();
-                    BankCountry.SetRange(Code, BankAccount."No.");
+                    BankCountry.SetRange(Code, BankAccount."Country/Region Code");
                     if BankCountry.FindFirst() then;
                 END;
-
-                //CLEAR(AdvancedReceived);
-                /* CustLedEntryRec.RESET;
-                 CustLedEntryRec.SETRANGE("Customer No.", "Sell-to Customer No.");
-                 CustLedEntryRec.SETRANGE("Global Dimension 1 Code", "Sales Invoice Header"."Shortcut Dimension 1 Code");
-                 CustLedEntryRec.SETRANGE(CustLedEntryRec."Document Type", CustLedEntryRec."Document Type"::Payment);
-                 CustLedEntryRec.SETFILTER("Posting Date", '<%1', "Sales Invoice Header"."Posting Date");
-                 IF CustLedEntryRec.FINDSET THEN
-                     REPEAT
-                         CustLedEntryRec.CALCFIELDS(Amount);
-                         AdvancedReceived += CustLedEntryRec.Amount;
-                     //MESSAGE('%1',AdvancedReceived);
-                     UNTIL CustLedEntryRec.NEXT = 0; */  //temp comment
-
-                //MESSAGE('%1,%2',"Sales Invoice Header"."Shortcut Dimension 1 Code",CustLedEntryRec."Global Dimension 1 Code");
-
 
                 IF country.GET(BankAccRec."Country/Region Code") THEN
                     bankContr := country.Name;
@@ -904,5 +900,8 @@ report 50603 "COMMERCIAL Invoice UIC"
         Srno: Integer;
         Sumqty: Decimal;
         SILine: Record 113;
+        Addcomp: Text;
+        VesselName: text;
+        Portmaster: Record 51411006;
 }
 

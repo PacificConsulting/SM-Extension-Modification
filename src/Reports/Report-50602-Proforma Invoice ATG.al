@@ -205,15 +205,16 @@ report 50602 "Proforma UIC"
             column(ExternalDocumentNo_SalesHeader; "Sales Header"."External Document No.")
             {
             }
+            column(TotalPrepmntvalue; TotalPrepmntvalue)
+            {
+            }
             dataitem("Sales Line"; "Sales Line")
             {
                 DataItemLink = "Document No." = FIELD("No.");
                 DataItemTableView = SORTING("Document Type", "Document No.", "Line No.")
                                     ORDER(Ascending)
                                     WHERE("Document Type" = FILTER(Order | Quote));
-                column(TotalPrepmntvalue; TotalPrepmntvalue)
-                {
-                }
+
                 column(SlDocno; "Sales Line"."Document No.")
                 {
                 }
@@ -405,20 +406,17 @@ report 50602 "Proforma UIC"
                     CurUOM1 := "Sales Line"."Unit of Measure";
                     CurUOM2 := "Sales Header"."Currency Code";
 
-                    PaymentTerms.RESET;
+                    /*PaymentTerms.RESET;
                     PaymentTerms.SETRANGE(Code, "Sales Header"."Payment Terms Code");
                     IF PaymentTerms.FINDFIRST THEN
                         PaymnttermsDiscnt := PaymentTerms."Discount %";
 
                     TotalPrepmntvalue := TotalAmount1 * (PaymnttermsDiscnt / 100);
-                    //MESSAGE('%1', TotalPrepmntvalue);
-
 
                     Check.InitTextVariable();
                     Check.FormatNoText(AmountInWords, TotalPrepmntvalue, CurrCode);
-                    //MESSAGE('%1',AmountInWords[1]);
-
                     NewAmtInwords := CONVERTSTR(AmountInWords[1], '*', ' ');
+                    */
                     //Message(format(NewAmtInwords));
 
                     /*
@@ -466,6 +464,28 @@ report 50602 "Proforma UIC"
 
             trigger OnAfterGetRecord()
             begin
+                //PCPL-25/091023
+                Clear(TAmt);
+                SL.RESET;
+                SL.SetRange("Document No.", "Sales Header"."No.");
+                if SL.FindFirst() then
+                    repeat
+                        TAmt += SL.Amount;
+                    until SL.Next() = 0;
+
+                PaymentTerms.RESET;
+                PaymentTerms.SETRANGE(Code, "Sales Header"."Payment Terms Code");
+                IF PaymentTerms.FINDFIRST THEN
+                    PaymnttermsDiscnt := PaymentTerms."Discount %";
+
+                TotalPrepmntvalue := Round((TAmt * (PaymnttermsDiscnt / 100)));
+
+                Check.InitTextVariable();
+                Check.FormatNoText(AmountInWords, TotalPrepmntvalue, CurrCode);
+                NewAmtInwords := CONVERTSTR(AmountInWords[1], '*', ' ');
+                //PCPL-25/091023
+
+
                 /* //ASR
                 IF "Payment Terms Code" = '' THEN
                   PaymentTerms.INIT
@@ -740,5 +760,7 @@ report 50602 "Proforma UIC"
         Srno: Integer;
         RDMPortMaster: Record "REDM Port Master";
         CountryOrigin: Record 349;
+        SL: Record "Sales Line";
+        TAmt: Decimal;
 }
 

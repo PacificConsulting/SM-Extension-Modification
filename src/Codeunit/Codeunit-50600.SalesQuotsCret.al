@@ -124,20 +124,28 @@ codeunit 50600 "Sales Order to Sales quotes"
 
     [EventSubscriber(ObjectType::Codeunit, Codeunit::"Gen. Jnl.-Post Line", 'OnBeforeVendLedgEntryInsert', '', true, true)]
     local procedure OnBeforeVendLedgEntryInsert(var VendorLedgerEntry: Record "Vendor Ledger Entry"; GenJournalLine: Record "Gen. Journal Line"; GLRegister: Record "G/L Register")
+    var
+        Vend: Record Vendor;
     begin
         VendorLedgerEntry."Country of Origin" := GenJournalLine."Country of Origin";
         VendorLedgerEntry."Country of final Destination" := GenJournalLine."Country of final Destination";
         VendorLedgerEntry."Destination Country" := GenJournalLine."Destination Country";
         VendorLedgerEntry."Vessel Code" := GenJournalLine."Vessel Code";
+        if Vend.GET(VendorLedgerEntry."Vendor No.") THEN;
+        VendorLedgerEntry."ISCC Certificate Number" := Vend."ISCC Certificate Number";
     end;
 
     [EventSubscriber(ObjectType::Codeunit, Codeunit::"Gen. Jnl.-Post Line", 'OnBeforeCustLedgEntryInsert', '', true, true)]
     local procedure OnBeforeCustLedgEntryInsert(var CustLedgerEntry: Record "Cust. Ledger Entry"; var GenJournalLine: Record "Gen. Journal Line"; GLRegister: Record "G/L Register"; var TempDtldCVLedgEntryBuf: Record "Detailed CV Ledg. Entry Buffer"; var NextEntryNo: Integer)
+    var
+        Cust: Record Customer;
     begin
         CustLedgerEntry."Country of Origin" := GenJournalLine."Country of Origin";
         CustLedgerEntry."Country of final Destination" := GenJournalLine."Country of final Destination";
         CustLedgerEntry."Destination Country" := GenJournalLine."Destination Country";
         CustLedgerEntry."Vessel Code" := GenJournalLine."Vessel Code";
+        if Cust.GET(CustLedgerEntry."Customer No.") THEN;
+        CustLedgerEntry."ISCC Certificate Number" := Cust."ISCC Certificate Number";
     end;
     //Codeunit 12 end 
 

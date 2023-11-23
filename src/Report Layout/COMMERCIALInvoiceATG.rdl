@@ -790,7 +790,7 @@
                             <Paragraph>
                               <TextRuns>
                                 <TextRun>
-                                  <Value>=Fields!BLDate.Value</Value>
+                                  <Value>=Format(Fields!BLDate.Value,"dd/MM/yyyy")</Value>
                                   <Style>
                                     <FontFamily>Segoe UI</FontFamily>
                                     <FontSize>8pt</FontSize>
@@ -847,7 +847,7 @@
                             <Paragraph>
                               <TextRuns>
                                 <TextRun>
-                                  <Value>=Fields!VesselCode_SalesInvoiceHeader.Value</Value>
+                                  <Value>=Last(Fields!VessalName.Value)</Value>
                                   <Style>
                                     <FontFamily>Segoe UI</FontFamily>
                                     <FontSize>8pt</FontSize>
@@ -1067,7 +1067,7 @@
                             <Paragraph>
                               <TextRuns>
                                 <TextRun>
-                                  <Value>="Unit " +Fields!Incoterms_SalesInvoiceHeader.Value+" Price (" + Fields!CurrencyCode_SalesInvoiceHeader.Value+")"</Value>
+                                  <Value>=Fields!Incoterms_SalesInvoiceHeader.Value+" Unit  Price (" + Fields!CurrencyCode_SalesInvoiceHeader.Value+")"</Value>
                                   <Style>
                                     <FontFamily>Segoe UI</FontFamily>
                                     <FontSize>8pt</FontSize>
@@ -4298,7 +4298,7 @@
                                   </Style>
                                 </TextRun>
                                 <TextRun>
-                                  <Value>=Fields!REDM_BL_Date.Value</Value>
+                                  <Value>=Format(Fields!REDM_BL_Date.Value,"dd/MM/yyyy")</Value>
                                   <Style>
                                     <FontFamily>Segoe UI</FontFamily>
                                     <FontSize>9pt</FontSize>
@@ -4557,6 +4557,14 @@
                             <Paragraph>
                               <TextRuns>
                                 <TextRun>
+                                  <Value>Currency : </Value>
+                                  <Style>
+                                    <FontFamily>Segoe UI</FontFamily>
+                                    <FontSize>8pt</FontSize>
+                                    <FontWeight>Normal</FontWeight>
+                                  </Style>
+                                </TextRun>
+                                <TextRun>
                                   <Value>=Fields!CurrencyCode_SalesInvoiceHeader.Value</Value>
                                   <Style>
                                     <FontFamily>Segoe UI</FontFamily>
@@ -4570,7 +4578,7 @@
                             <Paragraph>
                               <TextRuns>
                                 <TextRun>
-                                  <Value>=Fields!BankAdd_1_.Value + " " + Fields!BankAdd_2_.Value + ", " + Fields!BankAdd_3_City.Value + "- " + Fields!Postcode.Value +", "+Fields!BankCOuntry.Value</Value>
+                                  <Value>=Fields!BankAdd_1_.Value + " " + Fields!BankAdd_2_.Value + Fields!BankAdd_3_City.Value + Fields!Postcode.Value +", "+Fields!BankCOuntry.Value</Value>
                                   <Style>
                                     <FontFamily>Segoe UI</FontFamily>
                                     <FontSize>8pt</FontSize>
@@ -4931,7 +4939,7 @@
                     <Paragraph>
                       <TextRuns>
                         <TextRun>
-                          <Value>=Fields!CompInfoAdd1.Value + ", " + Fields!CompInfoAdd2.Value + ", " + Fields!CompInfocity.Value + ", " + Fields!Comppostcode.Value + ", " + Fields!CompCountry.Value</Value>
+                          <Value>=Fields!CompInfoAdd1.Value + ", " + Fields!CompInfocity.Value + ", " + Fields!Comppostcode.Value + ", " + Fields!CompCountry.Value</Value>
                           <Style>
                             <FontFamily>Segoe UI</FontFamily>
                             <FontSize>8pt</FontSize>
@@ -5237,6 +5245,9 @@ End Function
         </Field>
         <Field Name="DIschargPortDesciptionnn">
           <DataField>DIschargPortDesciptionnn</DataField>
+        </Field>
+        <Field Name="VesselName">
+          <DataField>VesselName</DataField>
         </Field>
         <Field Name="LoadPortDesciptionnn">
           <DataField>LoadPortDesciptionnn</DataField>
