@@ -2,6 +2,29 @@ pageextension 50602 "Sales ord_Ext" extends "Sales Order"
 {
     layout
     {
+        addlast(General)
+        {
+            field("Purchase Contract Number"; Rec."Sales Contract Number")
+            {
+                ApplicationArea = all;
+            }
+            field("Purchase Contract Date"; Rec."Sales Contract Date")
+            {
+                ApplicationArea = all;
+            }
+            field("Purch Contract Validity Days"; Rec."Sales Contract Validity Days")
+            {
+                ApplicationArea = all;
+            }
+            field("Purch Contract Validity Date"; Rec."Sales Contract Validity Date")
+            {
+                ApplicationArea = all;
+            }
+            field("ISCC Claim"; Rec."ISCC Claim")
+            {
+                ApplicationArea = all;
+            }
+        }
         // Add changes to page layout here
         addafter("Foreign Trade")
         {

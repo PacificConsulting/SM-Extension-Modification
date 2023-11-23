@@ -14,27 +14,28 @@ tableextension 50607 "Sales Invoice Header_Ext" extends "Sales Invoice Header"
             DataClassification = ToBeClassified;
             Editable = false;
         }
-        field(50607; "Purchase Contract Number"; code[20])
+        field(50607; "Sales Contract Number"; code[50])
         {
             DataClassification = ToBeClassified;
         }
-        field(50608; "Purchase Contract Date"; Date)
+        field(50608; "Sales Contract Date"; Date)
         {
             DataClassification = ToBeClassified;
         }
-        field(50609; "Purch Contract Validity Days"; Integer)
+        field(50609; "Sales Contract Validity Days"; Integer)
         {
-            Caption = 'Purchase Contract Validity Days';
+            Caption = 'Sales Contract Validity Days';
             DataClassification = ToBeClassified;
         }
-        field(50610; "Purch Contract Validity Date"; Date)
+        field(50610; "Sales Contract Validity Date"; Date)
         {
-            Caption = 'Purchase Contract Validity Date';
+            Caption = 'Sales Contract Validity Date';
             DataClassification = ToBeClassified;
         }
-        field(50611; "ISCC Claim"; Enum "ISCC Claim List")
+        field(50611; "ISCC Claim"; Text[50])
         {
             DataClassification = ToBeClassified;
+            TableRelation = "ISCC Claim";
         }
     }
 

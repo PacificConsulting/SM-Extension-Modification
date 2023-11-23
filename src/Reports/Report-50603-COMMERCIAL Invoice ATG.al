@@ -12,6 +12,11 @@ report 50603 "COMMERCIAL Invoice UIC"
             column(FOB_Bifurcation; FOB_Bifurcation)
             {
             }
+            column(Country1; Country1)
+            {
+
+            }
+
             column(BenFicname; BenFicname)
             {
 
@@ -150,6 +155,10 @@ report 50603 "COMMERCIAL Invoice UIC"
             column(DIschargPortDesciptionnn; DischargePortName)
             {
             }
+            column(VesselDesciption; VesselDesciption)
+            {
+
+            }
             column(VesselName; VesselName)
             {
 
@@ -263,7 +272,7 @@ report 50603 "COMMERCIAL Invoice UIC"
             column(XXX_; "Shipment Method Code")
             {
             }
-            column(Order_Date; FORMAT("Sales Invoice Header"."Order Date"))
+            column(Order_Date; "Sales Invoice Header"."Order Date")
             {
             }
             column(SODate; FORMAT(SODate, 0, '<day,2>-<month,2>-<year4>'))
@@ -659,10 +668,15 @@ report 50603 "COMMERCIAL Invoice UIC"
                 //PCPl-25/171023
                 Portmaster.RESET;
                 Portmaster.SETRANGE(Code, "REDM Vessel Code");
+                Portmaster.SETRANGE(Type, Portmaster.Type::Vessel);
                 IF Portmaster.FINDFIRST THEN
                     VesselName := Portmaster.Decription;
-                //Message(format(VesselName));
+
                 //PCPl-25/171023
+                RDMPortMaster.RESET;
+                RDMPortMaster.SETRANGE(Code, "REDM Vessel Code");
+                IF RDMPortMaster.FINDFIRST THEN
+                    VesselDesciption := RDMPortMaster.Decription;
 
                 RDMPortMaster.RESET;
                 RDMPortMaster.SETRANGE(Code, "REDM Load Port");
@@ -743,6 +757,11 @@ report 50603 "COMMERCIAL Invoice UIC"
                 //RSPL Resp>>
                 //SETFILTER("Shortcut Dimension 1 Code", CUSecurityCenter.SecurityCenter("Shortcut Dimension 1 Code"));
                 //RSPL Resp<<
+                CompanyInfo.GET;
+                CompanyInfo.CALCFIELDS(Picture);
+                CountryTable.SETRANGE(CountryTable.Code, CompanyInfo."Country/Region Code");
+                IF CountryTable.FINDFIRST THEN
+                    Country1 := CountryTable.Name;
             end;
         }
     }
@@ -892,6 +911,7 @@ report 50603 "COMMERCIAL Invoice UIC"
         FOB_Bifurcation: Boolean;
         Origin_Country: Text;
         LoadPortDesciption: Text;
+        VesselDesciption: Text;
         DichargePort: Text;
         EntryEXit: Record 282;
         RDMPortMaster: Record "REDM Port Master";
@@ -903,5 +923,7 @@ report 50603 "COMMERCIAL Invoice UIC"
         Addcomp: Text;
         VesselName: text;
         Portmaster: Record 51411006;
+        CompanyInfo: Record 79;
+        Country1: text;
 }
 

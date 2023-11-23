@@ -406,28 +406,6 @@ report 50602 "Proforma UIC"
                     CurUOM1 := "Sales Line"."Unit of Measure";
                     CurUOM2 := "Sales Header"."Currency Code";
 
-                    /*PaymentTerms.RESET;
-                    PaymentTerms.SETRANGE(Code, "Sales Header"."Payment Terms Code");
-                    IF PaymentTerms.FINDFIRST THEN
-                        PaymnttermsDiscnt := PaymentTerms."Discount %";
-
-                    TotalPrepmntvalue := TotalAmount1 * (PaymnttermsDiscnt / 100);
-
-                    Check.InitTextVariable();
-                    Check.FormatNoText(AmountInWords, TotalPrepmntvalue, CurrCode);
-                    NewAmtInwords := CONVERTSTR(AmountInWords[1], '*', ' ');
-                    */
-                    //Message(format(NewAmtInwords));
-
-                    /*
-                    Check.InitTextVariable();
-                    Check.FormatNoText(AmountInWords,TotalAmount1,CurrCode);
-                    //MESSAGE('%1',AmountInWords[1]);
-                    
-                    NewAmtInwords := CONVERTSTR(AmountInWords[1],'*',' ');
-                    //MESSAGE(AmountInWords[1]);
-                    //MESSAGE(NewAmtInwords);
-                    */
                 end;
 
                 trigger OnPreDataItem()
@@ -481,20 +459,10 @@ report 50602 "Proforma UIC"
                 TotalPrepmntvalue := Round((TAmt * (PaymnttermsDiscnt / 100)));
 
                 Check.InitTextVariable();
-                Check.FormatNoText(AmountInWords, TotalPrepmntvalue, CurrCode);
+                Check.FormatNoText(AmountInWords, TotalPrepmntvalue, "Sales Header"."Currency Code");
                 NewAmtInwords := CONVERTSTR(AmountInWords[1], '*', ' ');
                 //PCPL-25/091023
 
-
-                /* //ASR
-                IF "Payment Terms Code" = '' THEN
-                  PaymentTerms.INIT
-                ELSE BEGIN
-                  PaymentTerms.GET("Payment Terms Code");
-                  PaymentTerms.TranslateDescription(PaymentTerms,"Language Code");
-                  PaymentTermsDesc := (PaymentTerms.Description);   //ASR +' '+ FORMAT("Sales Header"."Pricing Event Date");
-                END;
-                */
                 CountryOrigin.Reset();
                 CountryOrigin.SetRange(Code, "REDM Country of Origin");
                 if CountryOrigin.FindFirst() then;
@@ -526,16 +494,6 @@ report 50602 "Proforma UIC"
                 IF RDMPortMaster.FINDFIRST THEN
                     portofDischarge := RDMPortMaster.Decription;
 
-                /*EntryExitPoint.RESET;
-                EntryExitPoint.SETRANGE(Code, "Sales Header"."REDM Load Port");//"Sales Header"."Port of Loading");  //temp comment
-                IF EntryExitPoint.FINDFIRST THEN
-                    PortOfLoading := EntryExitPoint.Description;
-
-                EntryExitPoint.RESET;
-                EntryExitPoint.SETRANGE(Code, "Sales Header"."REDM Discharge Port");///"Sales Header"."Port of Discharge");  //temp comment
-                IF EntryExitPoint.FINDFIRST THEN
-                    portofDischarge := EntryExitPoint.Description;
-                    */
                 if CompanyInfo."Address 2" <> '' then
                     CompanyAddress2 := CompanyInfo."Address 2" + ', ';
 
@@ -566,44 +524,6 @@ report 50602 "Proforma UIC"
 
                 IF CountryTable.GET("Sales Header"."Sell-to Country/Region Code") THEN;
                 SalesCountryName := CountryTable.Name;
-
-                /* //ASR
-                IF "Loading Location" <> '' THEN
-                  PortOfLoading := "Loading Location"
-                ELSE IF "Load Port" <> '' THEN BEGIN
-                  //IF Port.GET("Load Port")THEN;   //ASR
-                    //PortOfLoading := Port.Description; //ASR
-                END;                
-                
-                IF "Discharge Location" <> '' THEN
-                  DischargePort := "Discharge Location"
-                ELSE IF "Discharge Port"<>'' THEN BEGIN
-                  IF Port.GET("Discharge Port")THEN;
-                   DischargePort := Port.Description;
-                END;
-                
-                IF "Sales Header"."Trans-Shipment" = "Sales Header"."Trans-Shipment"::"1" THEN
-                  TranShipment := 'Allowed';
-                IF "Sales Header"."Trans-Shipment" <> "Sales Header"."Trans-Shipment"::"1" THEN
-                  TranShipment := 'Not Allowed';
-                
-                IF "Sales Header"."Partial Shipment" = "Sales Header"."Partial Shipment"::"1" THEN
-                  PartialShipment := 'Allowed';
-                IF "Sales Header"."Partial Shipment" <> "Sales Header"."Partial Shipment"::"1" THEN
-                  PartialShipment := 'Not Allowed';
-                  */ //ASR
-
-                /*  //ASR
-                SalesAddInfo.RESET;
-                SalesAddInfo.SETRANGE(SalesAddInfo."No.","Sales Header"."No.");
-                IF SalesAddInfo.FINDFIRST THEN
-                BEGIN
-                  Inspection := SalesAddInfo.Inspection;
-                  Package := SalesAddInfo.Packing;
-                  DelTerms := SalesAddInfo."Pricing Description" + DischargePort;
-                  Validity := SalesAddInfo.Validity;
-                END;
-                */  //ASR
 
                 shipmentmethod.SETRANGE(shipmentmethod.Code, "Sales Header"."Shipment Method Code");
                 IF shipmentmethod.FINDFIRST THEN
@@ -639,26 +559,6 @@ report 50602 "Proforma UIC"
             end;
         }
     }
-
-    // requestpage
-    // {
-
-    //     layout
-    //     {
-    //         area(content)
-    //         {
-    //             field(ShowAmountInLCY; PrintAmountInLCY)
-    //             {
-    //                 Caption = 'Show Amount In LCY';
-    //                 Visible = false;
-    //             }
-    //         }
-    //     }
-
-    //     actions
-    //     {
-    //     }
-    // }
 
     labels
     {
@@ -708,7 +608,7 @@ report 50602 "Proforma UIC"
         BANKName: Text[50];
         BankAdd: array[13] of Text[100];
         TotalAmount: Decimal;
-        Check: codeunit 50601;//Report Check;
+        Check: codeunit 50601; //Report Check; //
         AmountInWords: array[2] of Text[250];
         NewAmtInwords: Text[250];
         BunkerDelNote: Text[250];

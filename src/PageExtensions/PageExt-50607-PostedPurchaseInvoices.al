@@ -21,6 +21,28 @@ pageextension 50607 "Posted Purchase Invoice EXT" extends "Posted Purchase Invoi
             {
                 ApplicationArea = All;
             }
+
+            field("Purchase Contract Number"; Rec."Purchase Contract Number")
+            {
+                ApplicationArea = all;
+            }
+            field("Purchase Contract Date"; Rec."Purchase Contract Date")
+            {
+                ApplicationArea = all;
+            }
+            field("Purch Contract Validity Days"; Rec."Purch Contract Validity Days")
+            {
+                ApplicationArea = all;
+            }
+            field("Purch Contract Validity Date"; Rec."Purch Contract Validity Date")
+            {
+                ApplicationArea = all;
+            }
+            field("ISCC Claim"; Rec."ISCC Claim")
+            {
+                ApplicationArea = all;
+            }
+
         }
         addafter(Amount)
         {

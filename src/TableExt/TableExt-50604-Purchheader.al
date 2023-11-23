@@ -9,7 +9,7 @@ tableextension 50604 "Purchase Header_Ext" extends "Purchase Header"
             CalcFormula = Sum("Purchase Line".Quantity WHERE("Document Type" = FIELD("Document Type"), "Document No." = FIELD("No.")));
             Editable = false;
         }
-        field(50607; "Purchase Contract Number"; code[20])
+        field(50607; "Purchase Contract Number"; code[50])
         {
             DataClassification = ToBeClassified;
         }
@@ -37,9 +37,10 @@ tableextension 50604 "Purchase Header_Ext" extends "Purchase Header"
                     Rec."Purch Contract Validity Days" := ABS(Rec."Purchase Contract Date" - Rec."Purch Contract Validity Date");
             END;
         }
-        field(50611; "ISCC Claim"; Enum "ISCC Claim List")
+        field(50611; "ISCC Claim"; Text[50])
         {
             DataClassification = ToBeClassified;
+            TableRelation = "ISCC Claim";
         }
 
     }

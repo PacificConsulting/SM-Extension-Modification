@@ -16,7 +16,10 @@ permissionset 50600 GeneratedPermission
         codeunit "Stock Position Alerts" = X,
         report "Value Entry Update" = X,
         report "Posted Purchase Invoice Update" = X,
-        report "Posted Sales Invoice Update" = X;
+        report "Posted Sales Invoice Update" = X,
+        tabledata "ISCC Claim" = RIMD,
+        table "ISCC Claim" = X,
+        page "ISCC Claim LIst" = X;
     //report "Posted Purchase Invoice Update" = X,
     // re//port "Posted Sales Invoice Update" = X;
 }

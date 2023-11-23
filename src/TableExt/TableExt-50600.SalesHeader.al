@@ -30,37 +30,38 @@ tableextension 50600 "Sales header_Ext" extends "Sales Header"
             CalcFormula = Sum("Sales Line".Quantity WHERE("Document Type" = FIELD("Document Type"), "Document No." = FIELD("No.")));
             Editable = false;
         }
-        field(50607; "Purchase Contract Number"; code[20])
+        field(50607; "Sales Contract Number"; code[50])
         {
             DataClassification = ToBeClassified;
         }
-        field(50608; "Purchase Contract Date"; Date)
+        field(50608; "Sales Contract Date"; Date)
         {
             DataClassification = ToBeClassified;
         }
-        field(50609; "Purch Contract Validity Days"; Integer)
+        field(50609; "Sales Contract Validity Days"; Integer)
         {
-            Caption = 'Purchase Contract Validity Days';
+            Caption = 'Sales Contract Validity Days';
             DataClassification = ToBeClassified;
             trigger OnValidate()
             begin
-                if Rec."Purch Contract Validity Days" <> 0 then
-                    Rec.Validate("Purch Contract Validity Date", Rec."Purchase Contract Date" + Rec."Purch Contract Validity Days");
+                if Rec."Sales Contract Validity Days" <> 0 then
+                    Rec.Validate("Sales Contract Validity Date", Rec."Sales Contract Date" + Rec."Sales Contract Validity Days");
             end;
         }
-        field(50610; "Purch Contract Validity Date"; Date)
+        field(50610; "Sales Contract Validity Date"; Date)
         {
-            Caption = 'Purchase Contract Validity Date';
+            Caption = 'Sales Contract Validity Date';
             DataClassification = ToBeClassified;
             trigger OnValidate()
             begin
-                IF "Purch Contract Validity Date" <> 0D Then
-                    Rec."Purch Contract Validity Days" := ABS(Rec."Purchase Contract Date" - Rec."Purch Contract Validity Date");
+                IF "Sales Contract Validity Date" <> 0D Then
+                    Rec."Sales Contract Validity Days" := ABS(Rec."Sales Contract Date" - Rec."Sales Contract Validity Date");
             end;
         }
-        field(50611; "ISCC Claim"; Enum "ISCC Claim List")
+        field(50611; "ISCC Claim"; Text[50])
         {
             DataClassification = ToBeClassified;
+            TableRelation = "ISCC Claim";
         }
     }
 

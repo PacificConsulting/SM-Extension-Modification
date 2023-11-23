@@ -360,7 +360,7 @@
                               <rd:DefaultName>Textbox67</rd:DefaultName>
                               <Top>0.95278cm</Top>
                               <Left>0cm</Left>
-                              <Height>0.95278cm</Height>
+                              <Height>0.79403cm</Height>
                               <Width>9.23379cm</Width>
                               <ZIndex>1</ZIndex>
                               <Style>
@@ -409,15 +409,66 @@
                                 </Paragraph>
                               </Paragraphs>
                               <rd:DefaultName>Textbox67</rd:DefaultName>
-                              <Top>1.90556cm</Top>
+                              <Top>2.61994cm</Top>
                               <Left>0cm</Left>
-                              <Height>1.49902cm</Height>
+                              <Height>0.78465cm</Height>
                               <Width>9.23379cm</Width>
                               <ZIndex>2</ZIndex>
                               <Style>
                                 <Border>
                                   <Style>None</Style>
                                 </Border>
+                                <PaddingLeft>2pt</PaddingLeft>
+                                <PaddingRight>2pt</PaddingRight>
+                                <PaddingTop>2pt</PaddingTop>
+                                <PaddingBottom>2pt</PaddingBottom>
+                              </Style>
+                            </Textbox>
+                            <Textbox Name="Textbox88">
+                              <CanGrow>true</CanGrow>
+                              <KeepTogether>true</KeepTogether>
+                              <Paragraphs>
+                                <Paragraph>
+                                  <TextRuns>
+                                    <TextRun>
+                                      <Value>Place : </Value>
+                                      <Style>
+                                        <FontFamily>Segoe UI</FontFamily>
+                                        <FontSize>8pt</FontSize>
+                                        <FontWeight>Bold</FontWeight>
+                                      </Style>
+                                    </TextRun>
+                                  </TextRuns>
+                                  <Style />
+                                </Paragraph>
+                                <Paragraph>
+                                  <TextRuns>
+                                    <TextRun>
+                                      <Value>=Fields!Country1.Value</Value>
+                                      <Style>
+                                        <FontFamily>Segoe UI</FontFamily>
+                                        <FontSize>8pt</FontSize>
+                                      </Style>
+                                    </TextRun>
+                                  </TextRuns>
+                                  <Style />
+                                </Paragraph>
+                              </Paragraphs>
+                              <rd:DefaultName>Textbox67</rd:DefaultName>
+                              <Top>1.74681cm</Top>
+                              <Left>0.01cm</Left>
+                              <Height>0.87313cm</Height>
+                              <Width>9.23379cm</Width>
+                              <ZIndex>3</ZIndex>
+                              <Style>
+                                <Border>
+                                  <Style>None</Style>
+                                </Border>
+                                <BottomBorder>
+                                  <Color>LightGrey</Color>
+                                  <Style>Solid</Style>
+                                  <Width>0.5pt</Width>
+                                </BottomBorder>
                                 <PaddingLeft>2pt</PaddingLeft>
                                 <PaddingRight>2pt</PaddingRight>
                                 <PaddingTop>2pt</PaddingTop>
@@ -834,7 +885,7 @@
                             <Paragraph>
                               <TextRuns>
                                 <TextRun>
-                                  <Value>Vessel Name :</Value>
+                                  <Value>Vessel Name : </Value>
                                   <Style>
                                     <FontFamily>Segoe UI</FontFamily>
                                     <FontSize>8pt</FontSize>
@@ -847,7 +898,7 @@
                             <Paragraph>
                               <TextRuns>
                                 <TextRun>
-                                  <Value>=Last(Fields!VessalName.Value)</Value>
+                                  <Value>=Fields!VesselDesciption.Value</Value>
                                   <Style>
                                     <FontFamily>Segoe UI</FontFamily>
                                     <FontSize>8pt</FontSize>
@@ -4273,6 +4324,11 @@
                                     <FontSize>8pt</FontSize>
                                   </Style>
                                 </TextRun>
+                              </TextRuns>
+                              <Style />
+                            </Paragraph>
+                            <Paragraph>
+                              <TextRuns>
                                 <TextRun>
                                   <Value>Sales and Purchase Agreement No: </Value>
                                   <Style>
@@ -4298,7 +4354,7 @@
                                   </Style>
                                 </TextRun>
                                 <TextRun>
-                                  <Value>=Format(Fields!REDM_BL_Date.Value,"dd/MM/yyyy")</Value>
+                                  <Value>=FORMAT(Fields!Order_Date.Value,"dd/MM/yyyy")</Value>
                                   <Style>
                                     <FontFamily>Segoe UI</FontFamily>
                                     <FontSize>9pt</FontSize>
@@ -4306,7 +4362,39 @@
                                   </Style>
                                 </TextRun>
                                 <TextRun>
-                                  <Value> shall govern this invoice and the sales covered herein.</Value>
+                                  <Value> is binding for both Buyer &amp; Seller and shall govern this order and the sales covered herein. The invoice no </Value>
+                                  <Style>
+                                    <FontFamily>Segoe UI</FontFamily>
+                                    <FontSize>9pt</FontSize>
+                                    <FontWeight>Bold</FontWeight>
+                                  </Style>
+                                </TextRun>
+                                <TextRun>
+                                  <Value>=Fields!Deal.Value</Value>
+                                  <Style>
+                                    <FontFamily>Segoe UI</FontFamily>
+                                    <FontSize>9pt</FontSize>
+                                    <FontWeight>Bold</FontWeight>
+                                  </Style>
+                                </TextRun>
+                                <TextRun>
+                                  <Value>  dated </Value>
+                                  <Style>
+                                    <FontFamily>Segoe UI</FontFamily>
+                                    <FontSize>9pt</FontSize>
+                                    <FontWeight>Bold</FontWeight>
+                                  </Style>
+                                </TextRun>
+                                <TextRun>
+                                  <Value>=FORMAT(Fields!PostingDate_SalesInvoiceHeader.Value,"dd/MM/yyyy")</Value>
+                                  <Style>
+                                    <FontFamily>Segoe UI</FontFamily>
+                                    <FontSize>9pt</FontSize>
+                                    <FontWeight>Bold</FontWeight>
+                                  </Style>
+                                </TextRun>
+                                <TextRun>
+                                  <Value> is an integral part of the above mentioned Sales &amp; Purchase agreement.</Value>
                                   <Style>
                                     <FontFamily>Segoe UI</FontFamily>
                                     <FontSize>9pt</FontSize>
@@ -4625,6 +4713,14 @@
                             <Paragraph>
                               <TextRuns>
                                 <TextRun>
+                                  <Value>For </Value>
+                                  <Style>
+                                    <FontFamily>Segoe UI</FontFamily>
+                                    <FontSize>8pt</FontSize>
+                                    <FontWeight>Bold</FontWeight>
+                                  </Style>
+                                </TextRun>
+                                <TextRun>
                                   <Value>=Fields!CompInfo_Name.Value</Value>
                                   <Style>
                                     <FontFamily>Segoe UI</FontFamily>
@@ -4924,8 +5020,8 @@
                   <Sizing>Fit</Sizing>
                   <Top>0cm</Top>
                   <Left>0cm</Left>
-                  <Height>3.48975cm</Height>
-                  <Width>4.73743cm</Width>
+                  <Height>2.696cm</Height>
+                  <Width>3.85548cm</Width>
                   <Style>
                     <Border>
                       <Style>None</Style>
@@ -4942,7 +5038,7 @@
                           <Value>=Fields!CompInfoAdd1.Value + ", " + Fields!CompInfocity.Value + ", " + Fields!Comppostcode.Value + ", " + Fields!CompCountry.Value</Value>
                           <Style>
                             <FontFamily>Segoe UI</FontFamily>
-                            <FontSize>8pt</FontSize>
+                            <FontSize>9pt</FontSize>
                           </Style>
                         </TextRun>
                       </TextRuns>
@@ -4956,7 +5052,7 @@
                           <Value>="UEN: " + Fields!CompInfo_VATRegNo.Value + " "+Fields!CompInfo_Email.Value</Value>
                           <Style>
                             <FontFamily>Segoe UI</FontFamily>
-                            <FontSize>8pt</FontSize>
+                            <FontSize>9pt</FontSize>
                           </Style>
                         </TextRun>
                       </TextRuns>
@@ -4970,7 +5066,7 @@
                           <Value>="Website: " + Fields!Website.Value + " "+Fields!CompInfo_Tel_PhoneNo.Value</Value>
                           <Style>
                             <FontFamily>Segoe UI</FontFamily>
-                            <FontSize>8pt</FontSize>
+                            <FontSize>9pt</FontSize>
                           </Style>
                         </TextRun>
                       </TextRuns>
@@ -4981,9 +5077,9 @@
                   </Paragraphs>
                   <rd:DefaultName>Textbox110</rd:DefaultName>
                   <Top>0.28221in</Top>
-                  <Left>4.73743cm</Left>
+                  <Left>3.96131cm</Left>
                   <Height>0.53935in</Height>
-                  <Width>5.83184in</Width>
+                  <Width>6.1374in</Width>
                   <ZIndex>1</ZIndex>
                   <Style>
                     <Border>
@@ -5004,7 +5100,7 @@
                         <TextRun>
                           <Value>=Fields!CompInfo_Name.Value</Value>
                           <Style>
-                            <FontSize>16pt</FontSize>
+                            <FontSize>20pt</FontSize>
                             <FontWeight>Bold</FontWeight>
                           </Style>
                         </TextRun>
@@ -5016,9 +5112,9 @@
                   </Paragraphs>
                   <rd:DefaultName>Textbox5</rd:DefaultName>
                   <Top>0.07271cm</Top>
-                  <Left>4.73743cm</Left>
+                  <Left>3.96131cm</Left>
                   <Height>0.64411cm</Height>
-                  <Width>14.81288cm</Width>
+                  <Width>15.589cm</Width>
                   <ZIndex>2</ZIndex>
                   <Style>
                     <Border>
@@ -5056,8 +5152,7 @@
         <InteractiveWidth>8.5in</InteractiveWidth>
         <LeftMargin>0.6cm</LeftMargin>
         <RightMargin>0.8cm</RightMargin>
-        <TopMargin>0.5cm</TopMargin>
-        <BottomMargin>0.2cm</BottomMargin>
+        <BottomMargin>0cm</BottomMargin>
         <ColumnSpacing>1.27cm</ColumnSpacing>
         <Style />
       </Page>
@@ -5107,6 +5202,9 @@ End Function
       <Fields>
         <Field Name="FOB_Bifurcation">
           <DataField>FOB_Bifurcation</DataField>
+        </Field>
+        <Field Name="Country1">
+          <DataField>Country1</DataField>
         </Field>
         <Field Name="BenFicname">
           <DataField>BenFicname</DataField>
@@ -5245,6 +5343,9 @@ End Function
         </Field>
         <Field Name="DIschargPortDesciptionnn">
           <DataField>DIschargPortDesciptionnn</DataField>
+        </Field>
+        <Field Name="VesselDesciption">
+          <DataField>VesselDesciption</DataField>
         </Field>
         <Field Name="VesselName">
           <DataField>VesselName</DataField>
