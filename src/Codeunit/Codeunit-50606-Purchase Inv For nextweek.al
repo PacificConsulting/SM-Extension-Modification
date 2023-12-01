@@ -98,7 +98,7 @@ codeunit 50606 "Purchase Invoice for Next Week"
                     if (Not VarRecipaint1.Contains('')) then begin
                         if srno = 0 then begin
                             VarEmailSender1 := 'steelmont.erp@steelmont.net';
-                            Varsubject := 'Payable Invoice Due For Next Week: ';
+                            Varsubject := 'Payable Invoice Due For Next Week for ' + CompanyName;
                             BodyText1.AddText('Hi All,');
                             BodyText1.AddText('<br><Br>');
                             BodyText1.AddText('Payable Invoice Due For Next Week:');
@@ -129,17 +129,6 @@ codeunit 50606 "Purchase Invoice for Next Week"
                             BodyText1.AddText('<td align="center">' + FORMAT(VLE."Due Date", 0, '<Day,2>/<Month,2>/<Year4>') + '</td>');
                             BodyText1.AddText('</tr>');
                         end;
-                        /*if srno = Cnt then begin
-                            BodyText1.AddText('</table>');
-                            BodyText1.AddText('<br><Br>');
-                            BodyText1.AddText('<table border="0">');
-                            BodyText1.AddText('<tr>');
-                            BodyText1.AddText('<td style="text-align:left" colspan=8><b>' + 'Thanks & Regards' + '</b></td>');
-                            BodyText1.AddText('</tr>');
-                            Emailmessage.Create(VarRecipaint1, Varsubject, Format(BodyText1), true, UserReceipt1, NewReceipt1);
-                            Email1.Send(Emailmessage, Enum::"Email Scenario"::Default);
-                            Message('Done');
-                        END; */
                     end;
                 end;
             UNTIL VLE.Next() = 0;
@@ -204,7 +193,7 @@ codeunit 50606 "Purchase Invoice for Next Week"
                     if (Not VarRecipaint1.Contains('')) then begin
                         if srno = 0 then begin
                             VarEmailSender1 := 'steelmont.erp@steelmont.net';
-                            Varsubject := 'Receivable Invoice Due For Next Week :';
+                            Varsubject := 'Receivable Invoice Due For Next Week for ' + CompanyName;
                             BodyText1.AddText('Hi All,');
                             BodyText1.AddText('<br><Br>');
                             BodyText1.AddText('Receivable Invoice Due For Next Week :');
@@ -236,17 +225,6 @@ codeunit 50606 "Purchase Invoice for Next Week"
                             BodyText1.AddText('<td align="center">' + FORMAT(CLE."Due Date", 0, '<Day,2>/<Month,2>/<Year4>') + '</td>');
                             BodyText1.AddText('</tr>');
                         end;
-                        /*if srno = Cnt then begin
-                            BodyText1.AddText('</table>');
-                            BodyText1.AddText('<br><Br>');
-                            BodyText1.AddText('<table border="0">');
-                            BodyText1.AddText('<tr>');
-                            BodyText1.AddText('<td style="text-align:left" colspan=8><b>' + 'Thanks & Regards' + '</b></td>');
-                            BodyText1.AddText('</tr>');
-                            Emailmessage.Create(VarRecipaint1, Varsubject, Format(BodyText1), true, UserReceipt1, NewReceipt1);
-                            Email1.Send(Emailmessage, Enum::"Email Scenario"::Default);
-                            Message('Done');
-                        END; */
                     end;
                 end;
             UNTIL CLE.Next() = 0;
