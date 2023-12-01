@@ -3,7 +3,7 @@ pageextension 50630 Contactpage extends "Contact List"
     layout
     {
         // Add changes to page layout here
-        addafter(Control1)
+        addlast(Control1)
         {
             field("Date of Meeting"; Rec."Date of Meeting")
             {
