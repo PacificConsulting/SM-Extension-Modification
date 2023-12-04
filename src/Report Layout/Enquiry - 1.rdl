@@ -791,7 +791,7 @@
                             <Paragraph>
                               <TextRuns>
                                 <TextRun>
-                                  <Value>=Fields!Deal_Date.Value</Value>
+                                  <Value>=Format(Fields!Deal_Date.Value,"dd/MM/yyyy")</Value>
                                   <Style>
                                     <Format>M/d/yyyy</Format>
                                   </Style>
@@ -1356,7 +1356,7 @@
                             <Paragraph>
                               <TextRuns>
                                 <TextRun>
-                                  <Value>=Fields!Deal_Date.Value</Value>
+                                  <Value>=Format(Fields!Deal_Date.Value,"dd/MM/yyyy")</Value>
                                   <Style>
                                     <Format>M/d/yyyy</Format>
                                   </Style>
@@ -1921,7 +1921,7 @@
                             <Paragraph>
                               <TextRuns>
                                 <TextRun>
-                                  <Value>=Fields!Deal_Date.Value</Value>
+                                  <Value>=Format(Fields!Deal_Date.Value,"dd/MM/yyyy")</Value>
                                   <Style>
                                     <Format>M/d/yyyy</Format>
                                   </Style>
@@ -2486,7 +2486,7 @@
                             <Paragraph>
                               <TextRuns>
                                 <TextRun>
-                                  <Value>=Fields!Deal_Date.Value</Value>
+                                  <Value>=Format(Fields!Deal_Date.Value,"dd/MM/yyyy")</Value>
                                   <Style>
                                     <Format>M/d/yyyy</Format>
                                   </Style>

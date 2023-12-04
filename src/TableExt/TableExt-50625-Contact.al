@@ -7,7 +7,7 @@ tableextension 50625 ContactExt extends Contact
         {
             DataClassification = ToBeClassified;
         }
-        field(50601; "Type of Meeting"; Text[50])
+        field(50601; "Type of Meeting"; Text[100])
         {
             DataClassification = ToBeClassified;
         }

@@ -67,7 +67,7 @@ report 50610 "Enquiry Report"
                 IF ("REDM Deal Header".Status = "REDM Deal Header".Status::Lost) AND (CreatDate < varDate) then
                     CurrReport.Skip();
 
-                RDate := CalcDate('-90D', today);
+                RDate := CalcDate('-6D', today);
 
                 Clear(DataShow);
                 if CreatDate >= RDate then begin
