@@ -17,7 +17,10 @@ pageextension 50613 "Sales & Receivable EXT" extends "Sales & Receivables Setup"
             {
                 ApplicationArea = All;
             }
-
+            field("Email ID for Opportunity"; Rec."Email ID for Opportunity")
+            {
+                ApplicationArea = all;
+            }
         }
     }
     actions
@@ -32,22 +35,23 @@ pageextension 50613 "Sales & Receivable EXT" extends "Sales & Receivables Setup"
             //     PromotedCategory = Process;
             //     PromotedIsBig = true;
             //     Image = Image;
-            //     RunObject = codeunit 50605;
+            //     RunObject = codeunit 50607;
 
             //     trigger OnAction()
             //     begin
 
             //     end;
             // }
+
             // action("Due Next Week")
             // {
             //     ApplicationArea = All;
-            //     Caption = 'Due NExt Week';
+            //     Caption = 'Stock';
             //     Promoted = true;
             //     PromotedCategory = Process;
             //     PromotedIsBig = true;
             //     Image = Image;
-            //     RunObject = codeunit 50606;
+            //     RunObject = codeunit 50603;
             // }
 
         }

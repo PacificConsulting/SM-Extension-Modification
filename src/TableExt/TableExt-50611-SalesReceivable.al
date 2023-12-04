@@ -16,6 +16,10 @@ tableextension 50611 "Sales And Receivable EXT" extends "Sales & Receivables Set
             DataClassification = ToBeClassified;
             Description = '//PCPL-25/220523';
         }
+        field(50603; "Email ID for Opportunity"; Text[500])
+        {
+            DataClassification = ToBeClassified;
+        }
 
     }
 
