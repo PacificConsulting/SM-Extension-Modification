@@ -54,7 +54,7 @@ codeunit 50607 "Opportunity Alerts"
             TempBlob.CreateOutStream(OutStr);
             Report.SaveAs(Report::"Enquiry Report", '', ReportFormat::Excel, OutStr, Recref);
             TempBlob.CreateInStream(InStr);
-            EmailMessage.AddAttachment('OPPORTUNITY AS ON.pdf', '.xlsx', InStr);
+            EmailMessage.AddAttachment('OPPORTUNITY AS ON.xlsx', '.xlsx', InStr);
         END;
         Email1.Send(Emailmessage, Enum::"Email Scenario"::Default);
         Message('Done');

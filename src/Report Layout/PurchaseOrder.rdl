@@ -6505,9 +6505,6 @@ End Function
         <Field Name="IncoTerms_SH">
           <DataField>IncoTerms_SH</DataField>
         </Field>
-        <Field Name="PageConst_________FORMAT_CurrReport_PAGENO_">
-          <DataField>PageConst_________FORMAT_CurrReport_PAGENO_</DataField>
-        </Field>
         <Field Name="COMPANYNAME">
           <DataField>COMPANYNAME</DataField>
         </Field>

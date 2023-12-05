@@ -44,9 +44,9 @@ report 50606 "Purchase Order"
             column(IncoTerms_SH; "Purchase Header"."REDM Inco Terms/Delivery Terms")
             {
             }
-            column(PageConst_________FORMAT_CurrReport_PAGENO_; PageConst + ' ' + FORMAT(CurrReport.PAGENO))
-            {
-            }
+            // column(PageConst_________FORMAT_CurrReport_PAGENO_; PageConst + ' ' + FORMAT(CurrReport.PAGENO))
+            // {
+            // }
             column(COMPANYNAME; CompanyInfo.Name)
             {
             }
