@@ -3,11 +3,11 @@ tableextension 50625 ContactExt extends Contact
     fields
     {
         // Add changes to table fields here
-        field(50600; "Date of Meeting"; Date)
+        field(50650; "Date of Meeting"; Date)
         {
             DataClassification = ToBeClassified;
         }
-        field(50601; "Type of Meeting"; Text[100])
+        field(50651; "Type of Meeting"; Text[100])
         {
             DataClassification = ToBeClassified;
         }
